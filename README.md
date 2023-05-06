@@ -1,2 +1,2 @@
-# [skjapps.github.io]([URL](https://skjapps.github.io))
-My Website : )
+#[skjapps](https://skjapps.github.io/)
+My portfolio website : )
