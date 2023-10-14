@@ -41,3 +41,19 @@ setInterval(() => {
     counterDecimalElement.textContent = decimalAmount;
     
 }, 10);
+
+
+// Animations
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Once the DOM is loaded, start the animations
+    const title = document.querySelector('.title');
+    const debtAmount = document.querySelector('.debt-amount');
+
+    title.classList.remove('animate__fadeOut');
+    title.classList.add('animate__fadeIn');
+    
+    setTimeout(() => {
+        debtAmount.classList.remove('animate__fadeOut');
+        debtAmount.classList.add('animate__fadeIn');
+    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
+});
