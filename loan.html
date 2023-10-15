@@ -4,20 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How Much Student Debt Am I In?</title>
+    <link rel="icon" href="loancounter/assets/img/favicon.png" type="image/png">
+<!--
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch.png">
+    <link rel="manifest" href="loancounter/manifest.json">
+-->
     
     <!--  CSS  -->
     <link rel="stylesheet" type="text/css" href="loancounter/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
-    
+     
 </head>
 <body>
-    <div class="container">
-        <h1 class="title animate__animated animate__fadeInDown">How Much Student Debt Am I In?</h1>
-        <p class="debt-amount animate__animated animate__fadeInUp">
-            £<span id="counter-pounds">0.00</span>
-            <span id="counter-decimal">00</span>
-        </p>
+    
+    <!-- The year selection interface -->
+    <div class="js-Prompt">
+        <div class="container">
+            <h1 class="title animate__animated animate__fadeInDown">How Much Student Debt Are You In?</h1>
+            <p class="prompt hidden-visibility">What year are you in?</p>
+            <div class="year-buttons">
+                <button onclick="selectYear(1)" class="hidden-visibility">Year 1</button>
+                <button onclick="selectYear(2)" class="hidden-visibility">Year 2</button>
+                <button onclick="selectYear(3)" class="hidden-visibility">Year 3</button>
+                <button onclick="selectYear(4)" class="hidden-visibility">Year 4</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- The Loan Counter -->
+    <div class="js-Counter">
+        <div class="container hidden-display">
+            <h1 class="title">My Current Student Debt</h1>
+            <p class="debt-amount">
+                <span id="counter-pounds" class="hidden-visibility"></span>
+                <span id="counter-decimal" class="hidden-visibility"></span>
+            </p>
+        </div>
     </div>
     <script src="loancounter/script.js"></script>
 </body>

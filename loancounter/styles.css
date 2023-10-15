@@ -11,12 +11,28 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh; /* 100% of the viewport height */
+    /*  No more scrollbars  */
+    overflow: hidden;
 }
 
 .title {
     font-size: 5vw; /* Adjust the font size as needed */
     text-align: center;
     width: 80%;
+}
+
+.prompt {
+    font-size: 4vw;
+    text-align: center;
+    width: 80%;
+}
+
+.hidden-visibility {
+    visibility: hidden;
+}
+
+.hidden-display {
+    display: none;
 }
 
 .debt-amount {
@@ -28,10 +44,28 @@ body {
     justify-content: center;
 }
 
+/*
 .debt-amount #counter-pounds {
     display: inline-block;
 }
+*/
 
 .debt-amount #counter-decimal {
     font-size: 2vw;
-    display: inline-block;}
+}
+
+.year-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.year-buttons button:hover {
+    background-color: #2980b9;
+}
