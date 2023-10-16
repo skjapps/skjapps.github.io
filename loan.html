@@ -14,10 +14,23 @@
     <link rel="stylesheet" type="text/css" href="loancounter/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
-     
+    <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="loancounter/flip-master/example/flip/flip.min.css" />
+    <script src="loancounter/flip-master/example/flip/flip.min.js"></script>
+
 </head>
 <body>
+    <!-- Dark mode   -->
+    <button class="toggle-dark-mode">
+        <i class="fa-regular fa-moon" aria-hidden="true"></i>
+    </button>
     
+    <!-- Mute Sound   -->
+    <button class="toggle-sound">
+        <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+    </button>
+
     <!-- The year selection interface -->
     <div class="js-Prompt">
         <div class="container">
@@ -35,11 +48,12 @@
     <!-- The Loan Counter -->
     <div class="js-Counter">
         <div class="container hidden-display">
-            <h1 class="title">My Current Student Debt</h1>
+            <h1 class="title">My Current Student Debt Is</h1>
             <p class="debt-amount">
                 <span id="counter-pounds" class="hidden-visibility"></span>
-                <span id="counter-decimal" class="hidden-visibility"></span>
+                <span id="counter-decimal" class="hidden-visibility hidden-display"></span>
             </p>
+            <h2 class="jokes hidden-visibility">...probably, it might be a bit more or less but who's counting?</h2> 
         </div>
     </div>
     <script src="loancounter/script.js"></script>

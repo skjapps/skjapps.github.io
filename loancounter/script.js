@@ -12,6 +12,9 @@ var drumRoll = new Audio('loancounter/assets/snd/drumroll.mp3');
 // The title changes now
 let debtShown = false;
 
+// Toggle sound
+let soundOn = true;
+
 // Year 0 = 1, 1 = 2, so on... for calculations
 let yearOfUni = 0;
 
@@ -59,6 +62,45 @@ setInterval(() => {
     
 }, 10);
 
+// Dark mode
+const darkModeButton = document.querySelector('.toggle-dark-mode');
+
+darkModeButton.addEventListener('click', function() {
+    const currentTheme = document.body.getAttribute('data-theme');
+    
+    // Cycling themes
+    if (currentTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'black');
+        localStorage.setItem('theme', 'black'); // Save preference
+        darkModeButton.querySelector('i').className = "fa-solid fa-moon";
+    } else if (currentTheme === 'black') {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light'); // Save preference
+        darkModeButton.querySelector('i').className = "fa-regular fa-moon";
+    } else {
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark'); // Save preference
+        darkModeButton.querySelector('i').className = "fa-solid fa-moon";
+    }
+});
+
+// Sound Toggle
+const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
+
+soundButton.addEventListener('click', function() {    
+    // Cycling themes
+    if (soundOn) {
+        drumRoll.volume = 0;
+        soundOn = false;
+        soundButton.querySelector('i').className = "fa-solid fa-volume-xmark";
+    } else {
+        drumRoll.volume = 1;
+        soundOn = true;
+        soundButton.querySelector('i').className = "fa-solid fa-volume-high";
+    }
+});
+
+// The main debt counter
 function selectYear(year) {    
     // using the thing
     yearOfUni = year - 1;
@@ -76,6 +118,7 @@ function selectYear(year) {
     const debtTitle = document.querySelector('.js-Counter .title');
     const debtAmountPounds = document.querySelector('#counter-pounds');
     const debtAmountDecimal = document.querySelector('#counter-decimal');
+    const jokes = document.querySelector('.js-Counter .jokes');
     
     // First make container display
     debtContainer.classList.remove('hidden-display');
@@ -94,6 +137,13 @@ function selectYear(year) {
         });
     }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
     
+    // Add some suspense elipses
+    for(let i = 1; i <= 3; i++) {
+        setTimeout(() => {
+            debtTitle.textContent += '.'
+        }, 1000*i);
+    }
+ 
     // Show main pounds
     setTimeout(() => {
         debtAmountPounds.classList.remove('hidden-visibility');
@@ -106,10 +156,23 @@ function selectYear(year) {
         debtAmountDecimal.classList.add('animate__animated', 'animate__fadeInUp', 'animate__slower');
     }, 8000);  // This delays the second animation by 5 seconds.
     
+    setTimeout(() => {
+        jokes.classList.remove('hidden-visibility');
+        jokes.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
+    }, 8000);  // This delays the second animation by 5 seconds.
+    
+    // probably, based on the current tuition fees and average maintainence loan
+    // i should probably pay more attention to this lecture :think:
+    // definitely haven't done the seminar pre-reading :skull:
+    // what on earth is even going on in this lab?
+    // i hope this is't on the exam lol
+    // 
+    
     debtShown = true;
 }
 
 // When the DOM (content) is loaded
+// The year selector
 document.addEventListener('DOMContentLoaded', (event) => {
     
     // Prompt Animations

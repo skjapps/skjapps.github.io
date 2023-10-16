@@ -1,8 +1,47 @@
+/* Default light theme styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0; /* Optional background color */
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    --icon-color: #333;  /* Set a default icon color */
+}
+
+.toggle-dark-mode, .toggle-sound {
+    color: var(--icon-color); /* Use the CSS variable for color */
+}
+
+/* Dark theme styles */
+body[data-theme="dark"] {
+    background-color: #333;
+    color: #f0f0f0;
+    --icon-color: #f0f0f0;  /* Update the icon color for dark theme */
+}
+
+body[data-theme="black"] {
+    background-color: #000;
+    color: #f0f0f0;
+    --icon-color: #f0f0f0;  /* Update the icon color for black theme */
+}
+
+.toggle-dark-mode {
+    font-size: 4vw;
+    padding: 1vw;
+    border: none;
+    border-radius: 2vw;
+    background-color: none;
+    background: transparent;
+}
+
+.toggle-sound {
+    font-size: 4vw;
+    padding: 1vw;
+    border: none;
+    border-radius: 2vw;
+    background-color: none;
+    background: transparent;
 }
 
 .container {
@@ -10,7 +49,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* 100% of the viewport height */
+    height: 80vh; /* 100% of the viewport height */
     /*  No more scrollbars  */
     overflow: hidden;
 }
@@ -18,7 +57,14 @@ body {
 .title {
     font-size: 5vw; /* Adjust the font size as needed */
     text-align: center;
+    width: 100%;
+}
+
+.jokes {
+    font-size: 3vw; /* Adjust the font size as needed */
+    text-align: center;
     width: 80%;
+    opacity: 0.2;
 }
 
 .prompt {
@@ -55,17 +101,17 @@ body {
 }
 
 .year-buttons button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin: 1vw;
+    padding: 2vw 4vw;
+    font-size: 3vw;
     cursor: pointer;
     border: none;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
+    background-color: #c5c5c5;
+    color: #000;
+    border-radius: 1vw;
     transition: background-color 0.2s;
 }
 
 .year-buttons button:hover {
-    background-color: #2980b9;
+    background-color: #e6e6e6;
 }
