@@ -51,7 +51,7 @@ setInterval(() => {
 
     // Update the counter elements with the calculated amount
     // Display the pounds amount with two decimal places
-    counterPoundsElement.textContent = "£" + wholeAmount;
+    counterPoundsElement.textContent = "£ " + wholeAmount;
     // Display the extra decimal places for dramatic effect
     counterDecimalElement.textContent = decimalAmount;
     
