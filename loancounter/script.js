@@ -11,6 +11,8 @@ var drumRoll = new Audio('loancounter/assets/snd/drumroll2.mp3');
 
 // Crickets background sound effect
 var crickets = new Audio('loancounter/assets/snd/crickets.mp3');
+crickets.volume = 0.1;
+crickets.loop = true;
 
 // The title changes now
 let debtShown = false;
@@ -94,10 +96,12 @@ soundButton.addEventListener('click', function() {
     // Cycling themes
     if (soundOn) {
         drumRoll.volume = 0;
+        crickets.volume = 0;
         soundOn = false;
         soundButton.querySelector('i').className = "fa-solid fa-volume-xmark";
     } else {
         drumRoll.volume = 1;
+        crickets.volume = 0.1;
         soundOn = true;
         soundButton.querySelector('i').className = "fa-solid fa-volume-high";
     }
@@ -159,7 +163,14 @@ function selectYear(year) {
         debtAmountDecimal.classList.add('animate__animated', 'animate__fadeInUp', 'animate__slower');
     }, 8000);  // This delays the second animation by 5 seconds.
     
+    // Reveal jokes + play crickets sound effect
     setTimeout(() => {
+        crickets.play().then(_ => {
+            // Audio playback started
+        }).catch(err => {
+            // Audio playback failed
+            console.log("Audio playback failed:", err);
+        });
         jokes.classList.remove('hidden-visibility');
         jokes.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
     }, 8000);  // This delays the second animation by 5 seconds.
