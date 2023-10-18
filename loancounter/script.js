@@ -18,7 +18,10 @@ const commentsArray = [
 ];
 
 // Drum Roll sound effect
-var drumRoll = new Audio('loancounter/assets/snd/drumroll.mp3');
+var drumRoll = new Audio('loancounter/assets/snd/drumroll2.mp3');
+
+// Crickets background sound effect
+var crickets = new Audio('loancounter/assets/snd/crickets.mp3');
 
 // The title changes now
 let debtShown = false;
