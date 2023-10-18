@@ -6,6 +6,17 @@ const yearlyAmount = 9250 + 6860; // Tuition + Average maintaince loan 2020/21 f
 const counterPoundsElement = document.getElementById('counter-pounds');
 const counterDecimalElement = document.getElementById('counter-decimal');
 
+// The motd bottom text phrases.
+const commentsArray = [
+    "probably, based on the current tuition fees and average maintainence loan",
+    "i should probably pay more attention to this lecture :think:",
+    "definitely haven't done the seminar pre-reading :skull:",
+    "what on earth is even going on in this lab?",
+    "i hope this isn't on the exam lol",
+    "its a bit more depressing with those extra decimals :/",
+    "you're probably on plan 2... here's the interest rates based on RPI"
+];
+
 // Drum Roll sound effect
 var drumRoll = new Audio('loancounter/assets/snd/drumroll.mp3');
 
@@ -14,6 +25,9 @@ let debtShown = false;
 
 // Toggle sound
 let soundOn = true;
+
+// Toggle bottom text
+let motd = true;
 
 // Year 0 = 1, 1 = 2, so on... for calculations
 let yearOfUni = 0;
@@ -100,6 +114,19 @@ soundButton.addEventListener('click', function() {
     }
 });
 
+// Fading and changing the motd text
+function changeTextWithFade(textElement, newText) {
+    // First, fade out the text
+    textElement.classList.add('hidden');
+    
+    // Once faded out, change the text and fade it back in
+    setTimeout(() => {
+        textElement.textContent = newText;
+        textElement.classList.remove('hidden');
+    }, 500); // Make sure this timeout matches the transition duration in CSS
+}
+
+
 // The main debt counter
 function selectYear(year) {    
     // using the thing
@@ -118,7 +145,7 @@ function selectYear(year) {
     const debtTitle = document.querySelector('.js-Counter .title');
     const debtAmountPounds = document.querySelector('#counter-pounds');
     const debtAmountDecimal = document.querySelector('#counter-decimal');
-    const jokes = document.querySelector('.js-Counter .jokes');
+    const motd = document.querySelector('.js-Counter .motd');
     
     // First make container display
     debtContainer.classList.remove('hidden-display');
@@ -157,17 +184,26 @@ function selectYear(year) {
     }, 8000);  // This delays the second animation by 5 seconds.
     
     setTimeout(() => {
-        jokes.classList.remove('hidden-visibility');
-        jokes.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
+        motd.classList.remove('hidden-visibility');
+        motd.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
     }, 8000);  // This delays the second animation by 5 seconds.
+    
+    while (motd) {
+        setTimeout(() => {
+            debtTitle.textContent = commentsArray[Math.random() * commentsArray.length];
+        }, 5000);
+    }
     
     // probably, based on the current tuition fees and average maintainence loan
     // i should probably pay more attention to this lecture :think:
     // definitely haven't done the seminar pre-reading :skull:
     // what on earth is even going on in this lab?
     // i hope this is't on the exam lol
+    // its a bit more depressing with those extra decimals :/
+    // you're probably on plan 2... here's the interest rates based on RPI
     // 
     
+    // shows debt on the page title
     debtShown = true;
 }
 

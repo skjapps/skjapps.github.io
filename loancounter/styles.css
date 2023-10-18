@@ -60,11 +60,12 @@ body[data-theme="black"] {
     width: 100%;
 }
 
-.jokes {
+.motd {
     font-size: 3vw; /* Adjust the font size as needed */
     text-align: center;
     width: 80%;
     opacity: 0.2;
+    transition: opacity 0.5s; /* Adjust the duration as required */
 }
 
 .prompt {
