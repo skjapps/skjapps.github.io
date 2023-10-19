@@ -27,15 +27,15 @@
     <button class="toggle-dark-mode">
         <i class="fa-regular fa-moon" aria-hidden="true"></i>
     </button>
+        
+    <!-- Disable MOTD-->
+    <button class="toggle-motd">
+        <i class="fa-solid fa-message" aria-hidden="true"></i>
+    </button>
     
     <!-- Mute Sound  -->
     <button class="toggle-sound">
         <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-    </button>
-    
-    <!-- Disable MOTD-->
-    <button class="toggle-motd">
-        <i class="fa-solid fa-message" aria-hidden="true"></i>
     </button>
 
     <!-- The year selection interface -->
@@ -49,7 +49,7 @@
                 <button onclick="selectYear(3)" class="hidden-visibility">Year 3</button>
                 <button onclick="selectYear(4)" class="hidden-visibility">Year 4</button>
             </div>
-            
+            <!--     Custom Year Button       -->
             <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
             Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
 </button>
