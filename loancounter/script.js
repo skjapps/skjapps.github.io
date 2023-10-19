@@ -6,16 +6,58 @@ const yearlyAmount = 9250 + 6860; // Tuition + Average maintaince loan 2020/21 f
 const counterPoundsElement = document.getElementById('counter-pounds');
 const counterDecimalElement = document.getElementById('counter-decimal');
 
+// Prompt elements
+const promptContainer = document.querySelector('.js-Prompt .container');
+const promptTitle = document.querySelector('.js-Prompt .title');
+const prompt = document.querySelector('.js-Prompt .prompt');
+const yearButtons = document.querySelectorAll('.js-Prompt .year-buttons button');
+const customYearButton = document.querySelector('.js-Prompt .custom-year-btn');
+const customYearInput = document.querySelector('.js-Prompt .custom-year-btn input');
+
+// Debt Counter Elements
+const debtContainer = document.querySelector('.js-Counter .container');
+const debtTitle = document.querySelector('.js-Counter .title');
+const debtAmountPounds = document.querySelector('#counter-pounds');
+const debtAmountDecimal = document.querySelector('#counter-decimal');
+const motdText = document.querySelector('.js-Counter .motd');
+    
+// Control Buttons
+const darkModeButton = document.querySelector('.toggle-dark-mode');
+const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
+const motdButton = document.querySelector('.toggle-motd'); // Changed the selector
+
+// Dark Mode live change to system pref
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
 // The motd bottom text phrases.
 const commentsArray = [
-    "probably, based on the current tuition fees and average maintainence loan",
-    "i should probably pay more attention to this lecture :think:",
-    "definitely haven't done the seminar pre-reading :skull:",
-    "what on earth is even going on in this lab?",
+    "i should probably pay more attention to this lecture",
+    "definitely haven't done the seminar pre-reading",
+    "what on earth is even going on in this lab? ",
     "i hope this isn't on the exam lol",
-    "its a bit more depressing with those extra decimals :/",
-    "you're probably on plan 2... here's the interest rates based on RPI"
+    "this is gonna be hard to recover from lmao",
+    "its fine i can do the essay on a couple energy drinks",
+    "put it on the company card...? when no-one's looking.",
+    "wow this isn't even funny anymore lol",
+    "[ YOUR AD HERE ] - even I gotta pay this off lol",
+    "...probably, it might really be a bit more or less...",
+    "...probably, based on average annual student loans..."
 ];
+
+//Avg interest rates on student loans over the past years
+// 2022-23 = 6.7%
+// 2021-22 = 4.5%
+// 2020-21 = 5.6%
+// 2019-20 = 5.4%
+// 2018-19 = 6.3%
+// 2017-18 = 6.1%
+// 2016-17 = 4.6%
+// 2015-16 = 3.9%
+// 2014-15 = 5.5%
+// 2013-14 = 6.3%
+// 2012-13 = 6.6%
+// Array in decending years
+const interestArray = [6.7, 4.5, 5.6, 5.4, 6.3, 6.1, 4.6, 3.9, 5.5, 6.3, 6.6];
 
 // Drum Roll sound effect
 var drumRoll = new Audio('loancounter/assets/snd/drumroll2.mp3');
@@ -32,7 +74,7 @@ let debtShown = false;
 let soundOn = true;
 
 // Toggle bottom text
-let motd = true;
+let motdOn = true;
 
 // Year 0 = 1, 1 = 2, so on... for calculations
 let yearOfUni = 0;
@@ -61,7 +103,13 @@ setInterval(() => {
     
     // Calculate the amount spent in total over the years
     // The chaging bit + previous loan
-    const amountSpent = (calculateProgress() * yearlyAmount) + (yearlyAmount * yearOfUni);
+    // Now with Interest!
+    //  The compound interest formula is ((P*(1+i)^n) - P), where P is the principal, i is the annual interest rate, and n is the number of periods.
+    let interest = 0;
+    for(let i = 0; i < yearOfUni; i++) {
+        interest += yearlyAmount * (1 + (interestArray[i] / 100));
+    }
+    const amountSpent = (calculateProgress() * yearlyAmount) + interest;
     
     // Extract the numbers with string functions / calculations
     const amountSpentString = amountSpent.toFixed(10).split('.');
@@ -82,8 +130,6 @@ setInterval(() => {
 }, 10);
 
 // Dark mode
-const darkModeButton = document.querySelector('.toggle-dark-mode');
-
 darkModeButton.addEventListener('click', function() {
     const currentTheme = document.body.getAttribute('data-theme');
     
@@ -103,9 +149,13 @@ darkModeButton.addEventListener('click', function() {
     }
 });
 
-// Sound Toggle
-const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
+// Live change to system dark mode
+darkModeMediaQuery.addListener((e) => {
+    const newColorScheme = e.matches ? "dark" : "light";
+    document.body.setAttribute('data-theme', newColorScheme);
+});
 
+// Sound Toggle
 soundButton.addEventListener('click', function() {    
     // Cycling themes
     if (soundOn) {
@@ -121,39 +171,69 @@ soundButton.addEventListener('click', function() {
     }
 });
 
+// MOTD Toggle
+motdButton.addEventListener('click', function() {    
+    // Cycling themes
+    if (motdOn) {
+        motdText.classList.add('hidden-visibility');
+        motdOn = false;
+        motdButton.querySelector('i').className = "fa-regular fa-message";
+    } else {
+        motdText.classList.remove('hidden-visibility');
+        motdOn = true;
+        motdButton.querySelector('i').className = "fa-solid fa-message";
+    }
+});
+
 // Fading and changing the motd text
-function changeTextWithFade(textElement, newText) {
+function changeMOTDWithFade(newText) {
     // First, fade out the text
-    textElement.classList.add('hidden');
+    motdText.classList.add('animate__fadeOut');
     
-    // Once faded out, change the text and fade it back in
+    // After fade out, change the content
     setTimeout(() => {
-        textElement.textContent = newText;
-        textElement.classList.remove('hidden');
-    }, 500); // Make sure this timeout matches the transition duration in CSS
+        motdText.textContent = newText;
+        // Remove fadeOut class
+        motdText.classList.remove('animate__fadeOut');
+    }, 1000);
+    
+    // Then fade back in
+    motdText.classList.add('animate__fadeIn');
 }
 
+// Custom Year Button
+function handleCustomYearClick() {
+    var year = document.getElementById('customYearInput').value;
+    if (year.match(/^[0-9]{1}$/)) { // Validate if it's a single-digit number
+        motdText.textContent = "...ok this is a pretty big number for you...";
+        selectYear(year);
+    } else {
+        alert("Please enter a valid year.");
+    }
+}
+// Pressing enter to press button
+customYearInput.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        handleCustomYearClick();
+    }
+});
+// Only numbers can be entered into the field
+function validateInput(input) {
+    input.value = input.value.replace(/[^0-9]/g, ''); 
+}
 
 // The main debt counter
 function selectYear(year) {    
     // using the thing
     yearOfUni = year - 1;
     
-    // Removing prompt
-    const promptContainer = document.querySelector('.js-Prompt .container');
-    
+    // Fade out prompt
     setTimeout(() => {
         promptContainer.classList.add('animate__animated', 'animate__fadeOut');
     }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
     promptContainer.classList.add('hidden-display');
     
     // Counter Animations
-    const debtContainer = document.querySelector('.js-Counter .container');
-    const debtTitle = document.querySelector('.js-Counter .title');
-    const debtAmountPounds = document.querySelector('#counter-pounds');
-    const debtAmountDecimal = document.querySelector('#counter-decimal');
-    const motd = document.querySelector('.js-Counter .motd');
-    
     // First make container display
     debtContainer.classList.remove('hidden-display');
     
@@ -190,37 +270,31 @@ function selectYear(year) {
         debtAmountDecimal.classList.add('animate__animated', 'animate__fadeInUp', 'animate__slower');
     }, 8000);  // This delays the second animation by 5 seconds.
     
-    // Reveal jokes + play crickets sound effect
+    // Reveal motd + play crickets sound effect
     setTimeout(() => {
-<<<<<<< HEAD
-        motd.classList.remove('hidden-visibility');
-        motd.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
-=======
+        motdText.classList.remove('hidden-visibility');
+        motdText.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
         crickets.play().then(_ => {
             // Audio playback started
         }).catch(err => {
             // Audio playback failed
             console.log("Audio playback failed:", err);
         });
-        jokes.classList.remove('hidden-visibility');
-        jokes.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
->>>>>>> main
     }, 8000);  // This delays the second animation by 5 seconds.
     
-    while (motd) {
-        setTimeout(() => {
-            debtTitle.textContent = commentsArray[Math.random() * commentsArray.length];
+    // Reveal motd + play crickets sound effect
+    setTimeout(() => {
+        // Remove this for re-adding later
+        motdText.classList.remove('animate__fadeIn', 'animate__slower');
+        // If MOTD enabled, keep changing text.
+        setInterval(() => {    
+            let newMOTD = commentsArray[Math.floor(Math.random() * commentsArray.length)];
+            while (newMOTD == motdText.textContent) {
+                newMOTD = commentsArray[Math.floor(Math.random() * commentsArray.length)];
+            }
+            changeMOTDWithFade(newMOTD);
         }, 5000);
-    }
-    
-    // probably, based on the current tuition fees and average maintainence loan
-    // i should probably pay more attention to this lecture :think:
-    // definitely haven't done the seminar pre-reading :skull:
-    // what on earth is even going on in this lab?
-    // i hope this is't on the exam lol
-    // its a bit more depressing with those extra decimals :/
-    // you're probably on plan 2... here's the interest rates based on RPI
-    // 
+    }, 13000);  // This delays the second animation by 5 seconds.
     
     // shows debt on the page title
     debtShown = true;
@@ -230,12 +304,22 @@ function selectYear(year) {
 // The year selector
 document.addEventListener('DOMContentLoaded', (event) => {
     
-    // Prompt Animations
-    const promptContainer = document.querySelector('.js-Prompt .container');
-    const promptTitle = document.querySelector('.js-Prompt .title');
-    const prompt = document.querySelector('.js-Prompt .prompt');
-    const yearButtons = document.querySelectorAll('.js-Prompt .year-buttons button');
+    // Check if user prefers dark mode
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Set the theme accordingly
+    if (userPrefersDark) {
+        document.body.setAttribute('data-theme', 'black');
+        darkModeButton.querySelector('i').className = "fa-solid fa-moon";
+    } else {
+        document.body.setAttribute('data-theme', 'light');
+    }
+
+    // Make sure input is always numeric only
+    customYearInput.addEventListener('input', function() {
+        validateInput(this);
+    });
     
+    // Prompt Animations
     // Show prompt
     setTimeout(() => {
         prompt.classList.add('animate__animated', 'animate__fadeInUp');
@@ -252,5 +336,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 2000 + i);  // This delays the second animation by 1 second. Adjust as needed.
         i += 500;
     });
+    
+    // Custom Year button after 5 seconds
+    setTimeout(() => {
+        customYearButton.classList.add('animate__animated', 'animate__fadeInUp');
+        customYearButton.classList.remove('hidden-visibility');
+    }, 7000);  // This delays the second animation by 1 second. Adjust as needed.
     
 });

@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
     <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
 
+<!--
     <link rel="stylesheet" href="loancounter/flip-master/example/flip/flip.min.css" />
     <script src="loancounter/flip-master/example/flip/flip.min.js"></script>
+-->
 
 </head>
 <body>
@@ -29,6 +31,11 @@
     <!-- Mute Sound  -->
     <button class="toggle-sound">
         <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+    </button>
+    
+    <!-- Disable MOTD-->
+    <button class="toggle-motd">
+        <i class="fa-solid fa-message" aria-hidden="true"></i>
     </button>
 
     <!-- The year selection interface -->
@@ -42,6 +49,11 @@
                 <button onclick="selectYear(3)" class="hidden-visibility">Year 3</button>
                 <button onclick="selectYear(4)" class="hidden-visibility">Year 4</button>
             </div>
+            
+            <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
+            Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
+</button>
+
         </div>
     </div>
     
@@ -53,7 +65,7 @@
                 <span id="counter-pounds" class="hidden-visibility"></span>
                 <span id="counter-decimal" class="hidden-visibility hidden-display"></span>
             </p>
-            <h2 class="motd hidden-visibility">...probably, it might be a bit more or less but who's counting?</h2> 
+            <h2 class="motd hidden-visibility">...probably, it might be a bit more or less...</h2> 
         </div>
     </div>
     <script src="loancounter/script.js"></script>
