@@ -8,6 +8,43 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* Navbar */
+nav {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.logo img {
+  width: auto;
+  height: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+button {
+  background-color: #3A4B6D;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #ffffff;
+}
+
 .background {
   position: fixed;
   top: 0;
