@@ -2,27 +2,43 @@
 <html>
   <head>
     <title>skjapps</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+      
+    <!--  CSS  -->
+    <link rel="stylesheet" type="text/css" href="index/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+    <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
+      
   </head>
   <body>
+      
+    <!--   Navbar   -->
     <nav>
         <div class="logo">
-            <img src="index/assets/logo.png" alt="skjapps">
+            <a href="index.html">
+              <img src="index/assets/img/logo.png" alt="skjapps">
+            </a>
         </div>
         <div class="buttons">
-            <a href="loan.html">
-              <button>Loan Counter</button>
-            </a>
+            <button onclick="navigateTo('loan.html')">Loan Counter</button>
             <button>Flocking Design</button>
             <button>Space Simulator</button>
             <button>Card Game</button>
-            <button>About</button>
+            <button onclick="loadContent('about.html')">About</button>
         </div>      
     </nav>
-    <div class="background"></div>
+      
+    <!--  Load About  -->
+<!--    <div id="content"></div>-->
+      
+    <!--   Main Greeting   -->
     <div class="container">
-      <h1 class="fade-in fly-up">Srikanth J</h1>
-      <h2 class="fade-in fly-up">Internet homeless person.</h2>
+      <h1 class="animate__animated animate__fadeInDown">skjapps</h1>
+      <h2 class="animate__animated animate__fadeInUp">sri's stuff, check it!</h2>
     </div>
+      
+    <!--  JS  -->
+    <script src="index/script.js"></script>
+      
   </body>
 </html>

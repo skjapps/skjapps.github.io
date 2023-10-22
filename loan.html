@@ -23,6 +23,12 @@
 
 </head>
 <body>
+        
+    <!-- Home Button  -->
+    <button class="home-button">
+        <i class="fa-solid fa-house fa-sm" aria-hidden="true"></i>
+    </button>
+    
     <!-- Dark mode   -->
     <button class="toggle-dark-mode">
         <i class="fa-regular fa-moon" aria-hidden="true"></i>
@@ -52,7 +58,7 @@
             <!--     Custom Year Button       -->
             <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
             Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
-</button>
+            </button>
 
         </div>
     </div>
@@ -68,6 +74,9 @@
             <h2 class="motd hidden-visibility">...probably, it might be a bit more or less...</h2> 
         </div>
     </div>
+    
+    <!--  JS  -->
     <script src="loancounter/script.js"></script>
+    
 </body>
 </html>

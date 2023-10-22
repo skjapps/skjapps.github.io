@@ -24,7 +24,8 @@ const motdText = document.querySelector('.js-Counter .motd');
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
-const motdButton = document.querySelector('.toggle-motd'); // Changed the selector
+const motdButton = document.querySelector('.toggle-motd');
+const homeButton = document.querySelector('.home-button'); 
 
 // Dark Mode live change to system pref
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -183,6 +184,12 @@ motdButton.addEventListener('click', function() {
         motdOn = true;
         motdButton.querySelector('i').className = "fa-solid fa-message";
     }
+});
+
+// Home Button
+homeButton.addEventListener('click', function() {    
+    // Go to index
+    window.location.href = 'index.html';
 });
 
 // Fading and changing the motd text

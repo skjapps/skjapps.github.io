@@ -1,0 +1,71 @@
+/* Reset and Globals */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden; /* hide scrollbars, cuts off vertical */
+}
+
+/* Typography */
+h1 {
+    font-size: 16vw;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 6vw;
+    color: #fff;
+}
+
+/* Navbar Styles */
+nav {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5vh;
+    padding: 0 2vw;
+    width: 100%;
+}
+
+.logo img {
+    width: 40%;
+    height: auto;
+}
+
+.buttons button {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 0.5vw 0.5vw;
+    border-radius: 0.5vw;
+    margin: 0.5vw;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #e6e6e6;
+}
+
+/* Main Content Container */
+.container {
+    /* Background stuff  */
+    background-image: url('assets/img/background.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background */
+    /*  Rest of the stuff  */
+    background-color: #000; /* the background colour behind the image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;     /* This should make it take up the rest of the viewport height */
+    overflow: hidden; /* No scrollbars */
+}
