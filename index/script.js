@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to set parallax effect
     function setParallax(xPos, yPos) {
-        const xOffset = (-500 * xPos) + 'px'; // Max movement in X
-        const yOffset = (-100 * yPos) + 'px'; // Max movement in Y
+        const xOffset = (-200 * xPos) + 'px'; // Max movement in X
+        const yOffset = (-50 * yPos) + 'px'; // Max movement in Y
 
         // Adding zoom effect
-        const zoom = 115; // 110% of the original size
+        const zoom = 125; // 110% of the original size
 
         container.style.backgroundPosition = `calc(50% + ${xOffset}) calc(50% + ${yOffset})`;
         container.style.backgroundSize = `auto ${zoom}%`;  // Applying the zoom effect while maintaining aspect ratio
