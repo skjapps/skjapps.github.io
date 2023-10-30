@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* A common font as an example */
+    background-image: url('assets/img/background.gif'); /* Replace with the path to your GIF */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem; /* Adjust this value to control the space around the container */
+}
+
+.container {
+    background-color: rgba(000, 000, 000, 0.98); /* Slight transparency to let the gif show through */
+    border-radius: 15px; /* Rounded rectangle as per your request */
+    padding: 2rem;
+    flex-grow: 1; /* Allows the container to take up available space */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+}

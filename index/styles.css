@@ -8,64 +8,145 @@
 body {
     font-family: 'Roboto', sans-serif;
     overflow-y: hidden; /* hide scrollbars, cuts off vertical */
+    height: 100vh; /*Body takes all space*/
+    
+    /* Background stuff  */
+    background-image: url('assets/img/background.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background */
+    background-color: #000; /* the background colour behind the image */
+    
+    /* Layout the content in the center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* No scrollbars */
 }
 
 /* Typography */
 h1 {
     font-size: 16vw;
     font-weight: bold;
-    color: #fff;
-    margin-bottom: 1rem;
+    color: #ddd;
 }
 
 h2 {
     font-size: 6vw;
-    color: #fff;
+    color: #999;
 }
 
-/* Navbar Styles */
-nav {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5vh;
-    padding: 0 2vw;
-    width: 100%;
-}
-
-.logo img {
-    width: 40%;
-    height: auto;
-}
-
-.buttons button {
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 0.5vw 0.5vw;
-    border-radius: 0.5vw;
-    margin: 0.5vw;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-button:hover {
-    background-color: #e6e6e6;
-}
-
-/* Main Content Container */
-.container {
-    /* Background stuff  */
-    background-image: url('assets/img/background.gif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; /* Center the background */
-    /*  Rest of the stuff  */
-    background-color: #000; /* the background colour behind the image */
+/* Greeting Container*/
+.greeting {
+    
+    /*  Size  */
+    height: 100%;
+    width: 60%;
+    
+    /* Layout the content in the center */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 95vh;     /* This should make it take up the rest of the viewport height */
-    overflow: hidden; /* No scrollbars */
+/*    overflow: hidden;  No scrollbars */
+}
+
+/* Navbar Styles */
+nav {
+    background-color: rgba(255, 255, 255, 0.9);  
+    height: 10rem;
+    padding: 0 2rem;
+    box-shadow: 0rem 0rem 1rem rgba(255, 255, 255, 0.5); /* Shadow for depth */
+    top: 2%;                 /* 2% from the top of the container */
+}
+
+/*AppBar*/
+appbar {
+    background-color: rgba(50, 50, 50, 0.9);  
+    justify-content: space-between;
+    height: 15rem;
+    padding: 0 5rem;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */
+    bottom: 2%;                 /* 2% from the top of the container */
+}
+
+/* Common Bar Styles */
+nav, appbar {
+    display: flex; 
+    align-items: center; 
+    width: 95%;              /* Reduced to 95% for a margin effect */
+    margin: 2% auto;         /* Top and bottom margin for hover effect and centered horizontally */
+    border-radius: 2rem;     /* Rounded edges */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo in navbar */
+.logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Centers the logo */
+}
+
+.logo img {
+    width: auto; /* Example width - you can adjust as needed */
+    height: 3rem; /* Maintain the aspect ratio */
+    display: block; /* To remove any default vertical spacing */
+}
+
+nav button {
+    border: none;
+    font-size: 1rem;
+}
+
+/* Hidden styles */
+.hidden-visibility {
+    visibility: hidden;
+}
+
+.hidden-display {
+    display: none;
+}
+
+
+/* Shine Buttons */
+.shine-button {
+    position: relative;
+    overflow: hidden; /* Hide the overflowing parts of pseudo-element */
+    padding: 4rem 4rem;
+    background-color: #888; /* Any color of your choice */
+    background-size: 80%; /* Cover the button */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background image */
+    border: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.shine-button:hover {
+    background-color: #777; /* Darkened background on hover */
+}
+
+.shine-button::before {
+    content: ""; /* Empty content for the pseudo-element */
+    position: absolute;
+    top: -50%; /* Start from above the button */
+    left: -50%; /* Start from the left side */
+    width: 200%; /* Double the width */
+    height: 200%; /* Double the height */
+    background: rgba(255, 255, 255, 0.4); /* White with some opacity for shine */
+    transform: rotate(30deg); /* Diagonal shine */
+    pointer-events: none; /* Ensures the shine doesn't interfere with clicks */
+    transition: transform 0.5s, opacity 0.5s; /* Smooth transition */
+    opacity: 0; /* Hide by default */
+    transform-origin: 50% 50%; /* Ensure the rotation is from the center */
+}
+
+.shine-button:hover::before {
+    opacity: 1; /* Show on hover */
+    transform: rotate(30deg) translateX(200%); /* Move to the right on hover */
 }

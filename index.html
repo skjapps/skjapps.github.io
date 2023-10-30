@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>skjapps</title>
+    <link rel="icon" href="index/assets/img/favicon.png" type="image/png">
       
     <!--  CSS  -->
     <link rel="stylesheet" type="text/css" href="index/styles.css">
@@ -11,31 +12,50 @@
       
   </head>
   <body>
-      
-    <!--   Navbar   -->
-    <nav>
+
+    <!--   Top "Nav" Bar   -->
+    <nav class="animate__animated animate__fadeInDown animate__fast">
         <div class="logo">
             <a href="index.html">
-              <img src="index/assets/img/logo.png" alt="skjapps">
+                <img src="index/assets/img/logo.png" alt="skjapps">
             </a>
         </div>
-        <div class="buttons">
-            <button onclick="navigateTo('loan.html')">Loan Counter</button>
-            <button>Flocking Design</button>
-            <button>Space Simulator</button>
-            <button>Card Game</button>
-            <button onclick="loadContent('about.html')">About</button>
-        </div>      
+        <button onclick="navigateTo('about.html')"
+                class="hidden-visibility">
+            <i class="fa-solid fa-circle-question fa-2xl" aria-hidden="true"></i>
+        </button> 
     </nav>
       
-    <!--  Load About  -->
-<!--    <div id="content"></div>-->
-      
     <!--   Main Greeting   -->
-    <div class="container">
-      <h1 class="animate__animated animate__fadeInDown">skjapps</h1>
-      <h2 class="animate__animated animate__fadeInUp">sri's stuff, check it!</h2>
+    <div class="greeting">
+        <h1>skjapps</h1>
+        <h2>sri's stuff, check it!</h2>
     </div>
+      
+    <!--   Bottom "App" Bar   -->
+    <appbar class="animate__animated animate__fadeInUp animate__fast">
+        <button style="background-image: url('index/assets/img/loan.png')" 
+                class="shine-button hidden-visibility" 
+                onclick="navigateTo('loan.html')">
+        </button>
+        <button style="background-image: url('index/assets/img/bird.png')" 
+                class="shine-button hidden-visibility">
+        </button>
+        <button style="background-image: url('index/assets/img/earth.png')" 
+                class="shine-button hidden-visibility" 
+                onclick="navigateTo('spaceflight.html')">
+        </button>
+        <button style="background-image: url('index/assets/img/joker.png')" 
+                class="shine-button hidden-visibility">
+        </button>
+        <button style="background-image: url('index/assets/img/music.png')" 
+                class="shine-button hidden-visibility">
+        </button>
+    </appbar>
+      
+    <!--  Load About  -->
+    <!--    <div id="content"></div>-->
+    <!-- Navbar -->
       
     <!--  JS  -->
     <script src="index/script.js"></script>

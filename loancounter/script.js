@@ -61,7 +61,7 @@ const commentsArray = [
 const interestArray = [6.7, 4.5, 5.6, 5.4, 6.3, 6.1, 4.6, 3.9, 5.5, 6.3, 6.6];
 
 // Drum Roll sound effect
-var drumRoll = new Audio('loancounter/assets/snd/drumroll2.mp3');
+var drumRoll = new Audio('loancounter/assets/snd/drumroll3.mp3');
 
 // Crickets background sound effect
 var crickets = new Audio('loancounter/assets/snd/crickets.mp3');
