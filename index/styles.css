@@ -15,7 +15,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; /* Center the background */
-    background-color: #000; /* the background colour behind the image */
+    background-color: #210f0c; /* the background colour behind the image */
     
     /* Layout the content in the center */
     display: flex;
