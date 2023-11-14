@@ -26,14 +26,14 @@ body {
 
 /* Typography */
 h1 {
-    font-size: 16vw;
+    font-size: 10rem;
     font-weight: bold;
-    color: #ddd;
+    color: #eee;
 }
 
 h2 {
-    font-size: 6vw;
-    color: #999;
+    font-size: 3.5rem;
+    color: #ddd;
 }
 
 /* Greeting Container*/
@@ -63,9 +63,9 @@ nav {
 /*AppBar*/
 appbar {
     background-color: rgba(50, 50, 50, 0.9);  
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 15rem;
-    padding: 0 5rem;
+    padding: 0 0;
     box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */
     bottom: 2%;                 /* 2% from the top of the container */
 }
