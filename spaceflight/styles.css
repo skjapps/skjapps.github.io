@@ -5,21 +5,22 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh;
+    min-height: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2rem; /* Adjust this value to control the space around the container */
+    padding: 1rem; /* Adjust this value to control the space around the container */
 }
 
 .container {
-    background-color: rgba(000, 000, 000, 0.98); /* Slight transparency to let the gif show through */
+    background-color: rgba(255, 255, 255, 0.98); /* Slight transparency to let the gif show through */
     border-radius: 15px; /* Rounded rectangle as per your request */
-    padding: 2rem;
+    padding: 1rem;
     flex-grow: 1; /* Allows the container to take up available space */
 }
 
 footer {
+    font-size: 1rem;
     text-align: center;
     padding: 1rem 0;
 }
