@@ -1,26 +1,57 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif; /* A common font as an example */
+    font-family: 'Roboto', sans-serif;
     background-image: url('assets/img/background.gif'); /* Replace with the path to your GIF */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 50rem;
+    min-height: 96.5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem; /* Adjust this value to control the space around the container */
+    /*  Text Colour  */
+    color: #f0f0f0;
+    overflow: hidden;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.98); /* Slight transparency to let the gif show through */
+    background-color: rgba(000, 000, 000, 0.98); /* Slight transparency to let the gif show through */
     border-radius: 15px; /* Rounded rectangle as per your request */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
     padding: 1rem;
     flex-grow: 1; /* Allows the container to take up available space */
 }
 
+h1 {
+    font-family: 'Tiny BoxBitA10', sans-serif;
+    text-align: center;
+}
+
+img {
+    max-width: 60%;
+    max-height: auto;
+}
+
+a {
+    text-align: center;
+}
+
+p1 {
+    text-align: center;
+}
+
+p2 {
+    font-size: 0.64rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
 footer {
-    font-size: 1rem;
+    font-size: 0.5rem;
     text-align: center;
     padding: 1rem 0;
 }
