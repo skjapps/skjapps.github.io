@@ -26,6 +26,15 @@ body {
     flex-grow: 1; /* Allows the container to take up available space */
 }
 
+.home-button {
+    position: fixed; /* Fixed position */
+    top: 3rem; /* Top padding */
+    left: 3rem; /* Left padding */
+    font-size: 2rem; /* Icon size */
+    color: #f0f0f0; /* Icon color */
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
 h1 {
     font-size: 2rem;
     font-family: 'Tiny BoxBitA10', sans-serif;
