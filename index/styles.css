@@ -56,18 +56,17 @@ nav {
     background-color: rgba(255, 255, 255, 0.9);  
     height: 10rem;
     padding: 0 2rem;
-    box-shadow: 0rem 0rem 1rem rgba(255, 255, 255, 0.5); /* Shadow for depth */
-    top: 2%;                 /* 2% from the top of the container */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%);
+    box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 /*AppBar*/
 appbar {
-    background-color: rgba(50, 50, 50, 0.9);  
     justify-content: space-evenly;
     height: 15rem;
     padding: 0 0;
-    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */
-    bottom: 2%;                 /* 2% from the top of the container */
+    background: linear-gradient(to bottom, rgba(50, 50, 50, 0.95) 0%, rgba(50, 50, 50, 0.75) 100%);
+    box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 /* Common Bar Styles */

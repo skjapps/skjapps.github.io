@@ -17,23 +17,30 @@ body {
 
 .container {
     background-color: rgba(000, 000, 000, 0.98); /* Slight transparency to let the gif show through */
-    border-radius: 15px; /* Rounded rectangle as per your request */
+    border-radius: 1rem; /* Rounded rectangle as per your request */
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 10rem;
     flex-grow: 1; /* Allows the container to take up available space */
 }
 
 h1 {
+    font-size: 2rem;
     font-family: 'Tiny BoxBitA10', sans-serif;
     text-align: center;
 }
 
-img {
-    max-width: 60%;
-    max-height: auto;
+.screenshots {
+    height: 10rem;
+    width: auto; /* Or a fixed width, if needed */
+    object-fit: contain; /* Or 'contain', depending on the desired effect */
+}
+
+.download {
+    max-height: 10rem;
+    width: auto;
 }
 
 a {
