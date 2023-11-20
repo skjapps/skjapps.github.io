@@ -5,11 +5,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 96.5vh;
+    min-height: 98vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem; /* Adjust this value to control the space around the container */
+    padding: 1.5rem; /* Adjust this value to control the space around the container */
     /*  Text Colour  */
     color: #f0f0f0;
     overflow: hidden;
@@ -28,8 +28,8 @@ body {
 
 .home-button {
     position: fixed; /* Fixed position */
-    top: 3rem; /* Top padding */
-    left: 3rem; /* Left padding */
+    top: 3.5rem; /* Top padding */
+    left: 3.5rem; /* Left padding */
     font-size: 2rem; /* Icon size */
     color: #f0f0f0; /* Icon color */
     z-index: 1000; /* Ensures it stays above other elements */
@@ -57,6 +57,7 @@ a {
 }
 
 p1 {
+    padding: 0 1rem;
     text-align: center;
 }
 

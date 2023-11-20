@@ -56,7 +56,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.9);  
     height: 10rem;
     padding: 0 2rem;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(200, 200, 200, 0.75) 100%);
     box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
@@ -65,7 +65,7 @@ appbar {
     justify-content: space-evenly;
     height: 15rem;
     padding: 0 0;
-    background: linear-gradient(to bottom, rgba(50, 50, 50, 0.95) 0%, rgba(50, 50, 50, 0.75) 100%);
+    background: linear-gradient(to bottom, rgba(50, 50, 50, 0.95) 0%, rgba(0, 0, 0, 0.75) 100%);
     box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
@@ -114,7 +114,7 @@ nav button {
     position: relative;
     overflow: hidden; /* Hide the overflowing parts of pseudo-element */
     padding: 4rem 4rem;
-    background-color: #888; /* Any color of your choice */
+    background-color: #555;
     background-size: 80%; /* Cover the button */
     background-repeat: no-repeat;
     background-position: center; /* Center the background image */
