@@ -96,7 +96,8 @@ nav, appbar {
 
 nav button {
     border: none;
-    font-size: 1rem;
+    background: none;
+    font-size: 2rem;
 }
 
 /* Hidden styles */

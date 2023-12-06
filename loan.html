@@ -24,25 +24,32 @@
 </head>
 <body>
         
-    <!-- Home Button  -->
-    <button class="home-button">
-        <i class="fa-solid fa-house fa-sm" aria-hidden="true"></i>
-    </button>
-    
-    <!-- Dark mode   -->
-    <button class="toggle-dark-mode">
-        <i class="fa-regular fa-moon" aria-hidden="true"></i>
-    </button>
-        
-    <!-- Disable MOTD-->
-    <button class="toggle-motd">
-        <i class="fa-solid fa-message" aria-hidden="true"></i>
-    </button>
-    
-    <!-- Mute Sound  -->
-    <button class="toggle-sound">
-        <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-    </button>
+    <div class="control-buttons">
+        <!-- Home Button  -->
+        <button class="home-button">
+            <i class="fa-solid fa-house fa-sm" aria-hidden="true"></i>
+        </button>
+
+        <!-- Dark mode  -->
+        <button class="toggle-dark-mode">
+            <i class="fa-regular fa-moon" aria-hidden="true"></i>
+        </button>
+
+        <!-- Mute Sound  -->
+        <button class="toggle-sound">
+            <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+        </button>
+
+        <!-- Disable MOTD-->
+        <button class="toggle-motd hidden-display">
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+        </button>
+
+        <!-- Info Button  -->
+        <button class="info-button hidden-display">
+            <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
+        </button>
+    </div>
 
     <!-- The year selection interface -->
     <div class="js-Prompt">
@@ -71,9 +78,20 @@
                 <span id="counter-pounds" class="hidden-visibility"></span>
                 <span id="counter-decimal" class="hidden-visibility hidden-display"></span>
             </p>
-            <h2 class="motd hidden-visibility">...probably, it might be a bit more or less...</h2> 
+            <h2 class="motd hidden-visibility animate__animated">...probably, it might be a bit more or less...</h2> 
+        </div>
+        <!--  Money Rain GIF  -->
+        <div class="gif-container hidden-display animate__animated">
+            <img src="loancounter/assets/img/raining-money.gif" alt="Your GIF">
         </div>
     </div>
+    
+    <div class="info-screen hidden-display animate__animated animate__fast">
+        <h1>What is this page lol?</h1>
+        <p>
+            wow we are screwed idk
+        </p>
+    </div>        
     
     <!--  JS  -->
     <script src="loancounter/script.js"></script>

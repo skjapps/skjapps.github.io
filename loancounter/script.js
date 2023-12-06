@@ -20,12 +20,17 @@ const debtTitle = document.querySelector('.js-Counter .title');
 const debtAmountPounds = document.querySelector('#counter-pounds');
 const debtAmountDecimal = document.querySelector('#counter-decimal');
 const motdText = document.querySelector('.js-Counter .motd');
+const backgroundgif = document.querySelector('.js-Counter .gif-container');
     
+// Info Screen
+const infoScreen = document.querySelector('.info-screen');
+
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
 const motdButton = document.querySelector('.toggle-motd');
-const homeButton = document.querySelector('.home-button'); 
+const homeButton = document.querySelector('.home-button');
+const infoButton = document.querySelector('.info-button'); 
 
 // Dark Mode live change to system pref
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -137,14 +142,17 @@ darkModeButton.addEventListener('click', function() {
     // Cycling themes
     if (currentTheme === 'dark') {
         document.body.setAttribute('data-theme', 'black');
+        infoScreen.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'black'); // Save preference
         darkModeButton.querySelector('i').className = "fa-solid fa-moon";
     } else if (currentTheme === 'black') {
         document.body.setAttribute('data-theme', 'light');
+        infoScreen.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'light'); // Save preference
         darkModeButton.querySelector('i').className = "fa-regular fa-moon";
     } else {
         document.body.setAttribute('data-theme', 'dark');
+        infoScreen.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'dark'); // Save preference
         darkModeButton.querySelector('i').className = "fa-solid fa-moon";
     }
@@ -192,6 +200,24 @@ homeButton.addEventListener('click', function() {
     window.location.href = 'index.html';
 });
 
+// Info Button
+infoButton.addEventListener('click', function() {    
+    // Show info
+    if (infoScreen.classList.contains('hidden-display')) {
+        infoScreen.classList.remove('hidden-display');
+        infoScreen.classList.add('animate__fadeInDown');
+        setTimeout(() => {
+            infoScreen.classList.remove('animate__fadeInDown');
+        }, 1000);
+    } else {
+        infoScreen.classList.add('animate__fadeOutUp');
+        setTimeout(() => {
+            infoScreen.classList.add('hidden-display');
+            infoScreen.classList.remove('animate__fadeOutUp');
+        }, 1000); 
+    }
+});
+
 // Fading and changing the motd text
 function changeMOTDWithFade(newText) {
     // First, fade out the text
@@ -233,6 +259,14 @@ function validateInput(input) {
 function selectYear(year) {    
     // using the thing
     yearOfUni = year - 1;
+    
+    // Show the motd toggle and info buttons
+    motdButton.classList.remove('hidden-display');
+    motdButton.classList.add('animate__animated', 'animate__fadeInDown')
+    setTimeout(() => {
+        infoButton.classList.remove('hidden-display');
+        infoButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 500);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Fade out prompt
     setTimeout(() => {
@@ -279,8 +313,10 @@ function selectYear(year) {
     
     // Reveal motd + play crickets sound effect
     setTimeout(() => {
-        motdText.classList.remove('hidden-visibility');
-        motdText.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
+        if (motdOn) {
+            motdText.classList.remove('hidden-visibility');
+        }
+        motdText.classList.add('animate__fadeIn', 'animate__slower');
         crickets.play().then(_ => {
             // Audio playback started
         }).catch(err => {
@@ -289,7 +325,7 @@ function selectYear(year) {
         });
     }, 8000);  // This delays the second animation by 5 seconds.
     
-    // Reveal motd + play crickets sound effect
+    // Change motd constantly
     setTimeout(() => {
         // Remove this for re-adding later
         motdText.classList.remove('animate__fadeIn', 'animate__slower');
@@ -302,6 +338,22 @@ function selectYear(year) {
             changeMOTDWithFade(newMOTD);
         }, 5000);
     }, 13000);  // This delays the second animation by 5 seconds.
+    
+    // Show gif
+    setTimeout(() => {
+        setInterval(() => {
+            if (backgroundgif.classList.contains('hidden-display')) {
+                backgroundgif.classList.remove('hidden-display');
+            }
+            backgroundgif.classList.remove('animate__fadeOut');
+            backgroundgif.classList.add('animate__fadeIn');
+            // Set a timeout to hide the GIF after fade out animation
+            setTimeout(() => {
+                backgroundgif.classList.remove('animate__fadeIn');
+                backgroundgif.classList.add('animate__fadeOut');
+            }, 2000); // Match this duration to the length of the fade out animation
+        }, 15000);
+    }, 15000);  // This delays the second animation by 5 seconds.
     
     // shows debt on the page title
     debtShown = true;
@@ -316,9 +368,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Set the theme accordingly
     if (userPrefersDark) {
         document.body.setAttribute('data-theme', 'black');
+        infoScreen.setAttribute('data-theme', 'dark');
         darkModeButton.querySelector('i').className = "fa-solid fa-moon";
     } else {
         document.body.setAttribute('data-theme', 'light');
+        infoScreen.setAttribute('data-theme', 'dark');
     }
 
     // Make sure input is always numeric only
