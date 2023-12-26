@@ -25,11 +25,6 @@
 <body>
         
     <div class="control-buttons">
-        <!-- Home Button  -->
-        <button class="home-button">
-            <i class="fa-solid fa-house fa-sm" aria-hidden="true"></i>
-        </button>
-
         <!-- Dark mode  -->
         <button class="toggle-dark-mode">
             <i class="fa-regular fa-moon" aria-hidden="true"></i>
@@ -66,7 +61,7 @@
             <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
             Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
             </button>
-
+            <p class="custom-year-hint hidden-visibility">Type a number and click the box</p>
         </div>
     </div>
     
@@ -82,15 +77,24 @@
         </div>
         <!--  Money Rain GIF  -->
         <div class="gif-container hidden-display animate__animated">
-            <img src="loancounter/assets/img/raining-money.gif" alt="Your GIF">
+            <img src="loancounter/assets/img/raining-money.gif" alt="Money Rain">
         </div>
     </div>
     
     <div class="info-screen hidden-display animate__animated animate__fast">
         <h1>What is this page lol?</h1>
         <p>
-            wow we are screwed idk
+            Current interest rates are kinda mad, and if you started uni after 2013 (most of you), you ain't really finna pay it back 💀
         </p>
+        <p>
+            It's probably not all that funny, but you could have this on in a lecture or seminar or something... just pay attention to what they're saying at the front lol
+        </p>
+        <p>
+            To-do: add some actually useful information and links for people to follow through to.
+        </p>
+        <footer>
+            Made with '&lt;3' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
+        </footer>
     </div>        
     
     <!--  JS  -->

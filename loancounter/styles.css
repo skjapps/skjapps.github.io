@@ -79,17 +79,19 @@ body[data-theme="black"] {
     position: fixed;
     top: 0;
     left: 0;
-    margin: 2rem;
+    margin: 5vw;
+    padding: 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     border: none;
     border-radius: 1rem;
-    height: 90vh;
-    width: 90vw;
+    height: 80vh;
+    width: 80vw;
     overflow: hidden;
     z-index: 50;
+    text-align: justify;
 }
 
 .gif-container {

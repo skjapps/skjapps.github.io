@@ -10,6 +10,7 @@ const counterDecimalElement = document.getElementById('counter-decimal');
 const promptContainer = document.querySelector('.js-Prompt .container');
 const promptTitle = document.querySelector('.js-Prompt .title');
 const prompt = document.querySelector('.js-Prompt .prompt');
+const customYearHint = document.querySelector('.js-Prompt .custom-year-hint');
 const yearButtons = document.querySelectorAll('.js-Prompt .year-buttons button');
 const customYearButton = document.querySelector('.js-Prompt .custom-year-btn');
 const customYearInput = document.querySelector('.js-Prompt .custom-year-btn input');
@@ -29,7 +30,6 @@ const infoScreen = document.querySelector('.info-screen');
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
 const motdButton = document.querySelector('.toggle-motd');
-const homeButton = document.querySelector('.home-button');
 const infoButton = document.querySelector('.info-button'); 
 
 // Dark Mode live change to system pref
@@ -194,11 +194,6 @@ motdButton.addEventListener('click', function() {
     }
 });
 
-// Home Button
-homeButton.addEventListener('click', function() {    
-    // Go to index
-    window.location.href = 'index.html';
-});
 
 // Info Button
 infoButton.addEventListener('click', function() {    
@@ -241,7 +236,18 @@ function handleCustomYearClick() {
         motdText.textContent = "...ok this is a pretty big number for you...";
         selectYear(year);
     } else {
-        alert("Please enter a valid year.");
+        if (customYearHint.classList.contains('hidden-visibility')) {
+            customYearHint.classList.add('animate__animated', 'animate__fadeInUp');
+            customYearHint.classList.remove('hidden-visibility');
+            setTimeout(() => {
+                customYearHint.classList.remove('animate__fadeInUp');
+            }, 1000);
+        } else {
+            customYearHint.classList.add('animate__headShake')
+            setTimeout(() => {
+                customYearHint.classList.remove('animate__headShake');
+            }, 1000);
+        }   
     }
 }
 // Pressing enter to press button
