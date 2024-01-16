@@ -4,7 +4,7 @@ const body = document.body;
 // Page elements
 const navbarElement = document.querySelector('nav');
 const navbarLogo = document.querySelector('.logo');
-const helpButton = document.querySelector('nav button');
+const navButtons = document.querySelectorAll('nav button');
 const greetingText1 = document.querySelector('.greeting h1');
 const greetingText2 = document.querySelector('.greeting h2');
 const appbarElement = document.querySelector('appbar');
@@ -43,14 +43,19 @@ function setParallax(xPos, yPos) {
 // Animation Routine
 function loadAnimation() {
     
-    // Animating About Button
-    setTimeout(() => {
-            helpButton.classList.remove('hidden-visibility');
-            helpButton.classList.add('animate__animated', 'animate__backInLeft');
-    }, 500);  // This delays the second animation by 1 second. Adjust as needed.
+    // Animating Nav Buttons
+    let i = 0;
+    navButtons.forEach(button => {
+        // Animate
+        setTimeout(() => {
+            button.classList.remove('hidden-visibility');
+            button.classList.add('animate__animated', 'animate__backInDown');
+        }, 500 + i);  // This delays the second animation by 1 second. Adjust as needed.
+        i += 500;
+    });
     
     // Animating Appbar buttons
-    let i = 0;
+    i = 0;
     appbarButtons.forEach(button => {
         // Animate
         setTimeout(() => {
@@ -58,15 +63,7 @@ function loadAnimation() {
             button.classList.add('animate__animated', 'animate__bounceInDown');
         }, 500 + i);  // This delays the second animation by 1 second. Adjust as needed.
         i += 500;
-    });
-    
-    // Show main pounds
-//    setTimeout(() => {
-//        debtAmountPounds.classList.remove('hidden-visibility');
-//        debtAmountPounds.classList.add('animate__animated', 'animate__fadeInUpBig');
-//    }, 3000);
-//    
-//    
+    });  
     
 }
 

@@ -250,12 +250,14 @@ function handleCustomYearClick() {
         }   
     }
 }
+
 // Pressing enter to press button
 customYearInput.addEventListener('keydown', function(event) {
     if (event.keyCode === 13) {
         handleCustomYearClick();
     }
 });
+
 // Only numbers can be entered into the field
 function validateInput(input) {
     input.value = input.value.replace(/[^0-9]/g, ''); 
