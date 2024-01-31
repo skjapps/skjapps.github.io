@@ -31,6 +31,7 @@ const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
 const motdButton = document.querySelector('.toggle-motd');
 const infoButton = document.querySelector('.info-button'); 
+const soundHint = document.querySelector('.sound-hint');
 
 // Dark Mode live change to system pref
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -89,10 +90,19 @@ let yearOfUni = 0;
 setInterval(() => {
     // Get the current date
     const currentDate = new Date();
-    
-    // Define the start and end dates for the academic year (September to September)
-    const academicYearStart = new Date(currentDate.getFullYear(), 8, 1); // Academic year starts on September 1st
-    const academicYearEnd = new Date(currentDate.getFullYear() + 1, 7, 31); // Academic year ends on August 31st of the next year
+
+    // Define the academic year start and end dates
+    let academicYearStart, academicYearEnd;
+
+    if (currentDate.getMonth() < 8) { // If the current month is before September
+        // The academic year started in the previous year
+        academicYearStart = new Date(currentDate.getFullYear() - 1, 8, 1);
+        academicYearEnd = new Date(currentDate.getFullYear(), 7, 31);
+    } else {
+        // The academic year started in the current year
+        academicYearStart = new Date(currentDate.getFullYear(), 8, 1);
+        academicYearEnd = new Date(currentDate.getFullYear() + 1, 7, 31);
+    }
 
     // Calculate the progress in the academic year as a decimal
     function calculateProgress() {
@@ -102,10 +112,10 @@ setInterval(() => {
             return 1;
         } else {
             const totalDaysInYear = (academicYearEnd - academicYearStart) / (1000 * 60 * 60 * 24); // Total days in the academic year
-            const currentDay = (currentDate - academicYearStart) / (1000 * 60 * 60 * 24); // Number of days elapsed
+            const currentDay = (currentDate - academicYearStart) / (1000 * 60 * 60 * 24); // Number of days elapsed since the start of the academic year
             return currentDay / totalDaysInYear; // Progress as a decimal
         }
-    }   
+    }
     
     // Calculate the amount spent in total over the years
     // The chaging bit + previous loan
@@ -203,13 +213,13 @@ infoButton.addEventListener('click', function() {
         infoScreen.classList.add('animate__fadeInDown');
         setTimeout(() => {
             infoScreen.classList.remove('animate__fadeInDown');
-        }, 1000);
+        }, 500);
     } else {
         infoScreen.classList.add('animate__fadeOutUp');
         setTimeout(() => {
             infoScreen.classList.add('hidden-display');
             infoScreen.classList.remove('animate__fadeOutUp');
-        }, 1000); 
+        }, 500); 
     }
 });
 
@@ -267,6 +277,10 @@ function validateInput(input) {
 function selectYear(year) {    
     // using the thing
     yearOfUni = year - 1;
+    
+    //Remove soundHint
+    soundHint.classList.remove('animate__fadeInDown');
+    soundHint.classList.add('animate__fadeOutUp');
     
     // Show the motd toggle and info buttons
     motdButton.classList.remove('hidden-display');
@@ -405,6 +419,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 2000 + i);  // This delays the second animation by 1 second. Adjust as needed.
         i += 500;
     });
+    
+    // Warning to turn sound off lol
+    setTimeout(() => {
+        soundHint.classList.add('animate__animated', 'animate__fadeInDown');
+        soundHint.classList.remove('hidden-visibility');
+    }, 3000);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Custom Year button after 5 seconds
     setTimeout(() => {

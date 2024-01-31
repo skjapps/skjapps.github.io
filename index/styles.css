@@ -24,50 +24,108 @@ body {
     overflow: hidden; /* No scrollbars */
 }
 
+/* Main Container*/
+.main {
+    /* Size */
+    height: 100%;
+    width: 95%;
+
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.greeting,
+.loan-pane,
+.clock-pane {
+    /* Size */
+    height: 100%;
+    width: 100%;
+    
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.loan-pane {
+    background-image: url('assets/img/Img29_(Windows_Vista)%20(1).png'); /* Replace with the path to your GIF */
+}
+
+.clock-pane {
+    background-image: url('assets/img/Img29_(Windows_Vista).png'); /* Replace with the path to your GIF */
+}
+
+.loan-pane,
+.clock-pane {
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    padding: 0 5vh;
+    
+    border-radius: 2vh;     /* Rounded edges */
+    box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
+}
+
 /* Typography */
 h1 {
-    font-size: 10rem;
     font-weight: bold;
     color: #eee;
 }
 
 h2 {
-    font-size: 3.5rem;
     color: #ddd;
 }
 
-/* Greeting Container*/
-.greeting {
-    
-    /*  Size  */
-    height: 100%;
-    width: 60%;
-    
-    /* Layout the content in the center */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-/*    overflow: hidden;  No scrollbars */
+.greeting h1 {
+    font-size: 20vh;
+}
+
+.greeting h2 {
+    font-size: 6.5vh;
+}
+
+.loan-pane h1 {
+    /* Layout */
+    font-size: 5vh;
+}
+
+.loan-pane h2 {
+    /* Layout */
+    font-size: 4vh;
+}
+
+.clock-pane h1 {
+    /* Layout */
+    font-size: 10vh;
+    color: black;
+}
+
+.clock-pane h2 {
+    /* Layout */
+    font-size: 5vh;
+    color: #555;
 }
 
 /* Navbar Styles */
 nav {
     justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.9);  
-    height: 10rem;
-    padding: 0 2rem;
+    height: 15vh;
+    padding: 0 5vh;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(200, 200, 200, 0.75) 100%);
-    box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 /*AppBar*/
 appbar {
     justify-content: space-evenly;
-    height: 15rem;
+    height: 25vh;
     padding: 0 0;
     background: linear-gradient(to bottom, rgba(50, 50, 50, 0.95) 0%, rgba(0, 0, 0, 0.75) 100%);
-    box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 /* Common Bar Styles */
@@ -76,21 +134,22 @@ nav, appbar {
     align-items: center; 
     width: 95%;              /* Reduced to 95% for a margin effect */
     margin: 2% auto;         /* Top and bottom margin for hover effect and centered horizontally */
-    border-radius: 2rem;     /* Rounded edges */
+    border-radius: 2vh;     /* Rounded edges */
+    box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
 }
 
 .logo img {
     width: auto; /* Example width - you can adjust as needed */
-    height: 3rem; /* Maintain the aspect ratio */
+    height: 5vh; /* Maintain the aspect ratio */
     display: block; /* To remove any default vertical spacing */
 }
 
 nav button {
     border: none;
     background: none;
-    font-size: 2rem;
+    font-size: 3vh;
 }
 
 /* Hidden styles */
@@ -107,13 +166,13 @@ nav button {
 .shine-button {
     position: relative;
     overflow: hidden; /* Hide the overflowing parts of pseudo-element */
-    padding: 4rem 4rem;
+    padding: 6.5vh;
     background-color: #555;
     background-size: 80%; /* Cover the button */
     background-repeat: no-repeat;
     background-position: center; /* Center the background image */
-    border: 1rem;
-    border-radius: 1rem;
+    border: 2vh;
+    border-radius: 2vh;
     cursor: pointer;
     color: white;
     box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */

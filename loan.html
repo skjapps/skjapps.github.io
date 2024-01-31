@@ -44,7 +44,15 @@
         <button class="info-button hidden-display">
             <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
         </button>
+        
+        <p class="sound-hint hidden-visibility animate__faster"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
     </div>
+<!--
+    
+    <div class="sound-hint-container">
+        
+    </div>
+-->
 
     <!-- The year selection interface -->
     <div class="js-Prompt">
@@ -52,10 +60,10 @@
             <h1 class="title animate__animated animate__fadeInDown">How Much Student Debt Are You In?</h1>
             <p class="prompt hidden-visibility">What year are you in?</p>
             <div class="year-buttons">
-                <button onclick="selectYear(1)" class="hidden-visibility">Year 1</button>
-                <button onclick="selectYear(2)" class="hidden-visibility">Year 2</button>
-                <button onclick="selectYear(3)" class="hidden-visibility">Year 3</button>
-                <button onclick="selectYear(4)" class="hidden-visibility">Year 4</button>
+                <button onclick="selectYear(1)" class="hidden-visibility">First Year</button>
+                <button onclick="selectYear(2)" class="hidden-visibility">Second Year</button>
+                <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
+                <button onclick="selectYear(4)" class="hidden-visibility">Fourth Year</button>
             </div>
             <!--     Custom Year Button       -->
             <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
@@ -81,7 +89,7 @@
         </div>
     </div>
     
-    <div class="info-screen hidden-display animate__animated animate__fast">
+    <div class="info-screen hidden-display animate__animated animate__faster">
         <h1>What is this page lol?</h1>
         <p>
             Current interest rates are kinda mad, and if you started uni after 2013 (most of you), you ain't really finna pay it back 💀
