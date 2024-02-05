@@ -21,9 +21,11 @@ const debtTitle = document.querySelector('.js-Counter .title');
 const debtAmountPounds = document.querySelector('#counter-pounds');
 const debtAmountDecimal = document.querySelector('#counter-decimal');
 const motdText = document.querySelector('.js-Counter .motd');
-const backgroundgif = document.querySelector('.js-Counter .gif-container');
+const backgroundgif = document.getElementById('money_rain');
+const confettigif = document.getElementById('confetti');
     
 // Info Screen
+const infoScreenContainer = document.querySelector('.info-screen-container');
 const infoScreen = document.querySelector('.info-screen');
 
 // Control Buttons
@@ -47,8 +49,9 @@ const commentsArray = [
     "put it on the company card...? when no-one's looking.",
     "wow this isn't even funny anymore lol",
     "[ YOUR AD HERE ] - even I gotta pay this off lol",
-    "...probably, it might really be a bit more or less...",
-    "...probably, based on average annual student loans..."
+    "...probably, it might be a bit more or less...",
+    "...probably, based on average annual student loans...",
+    "don't watch this for too long!"
 ];
 
 //Avg interest rates on student loans over the past years
@@ -71,7 +74,7 @@ var drumRoll = new Audio('loancounter/assets/snd/drumroll3.mp3');
 
 // Crickets background sound effect
 var crickets = new Audio('loancounter/assets/snd/crickets.mp3');
-crickets.volume = 0.1;
+crickets.volume = 0.4;
 crickets.loop = true;
 
 // The title changes now
@@ -140,7 +143,7 @@ setInterval(() => {
     
     // The webpage title is the loan so you dont forget :skull:
     if (debtShown) {
-        document.title = `£ ${wholeAmount} 💀`;
+        document.title = `${counterPoundsElement.textContent} 💀`;
     }
     
 }, 10);
@@ -176,15 +179,17 @@ darkModeMediaQuery.addListener((e) => {
 
 // Sound Toggle
 soundButton.addEventListener('click', function() {    
-    // Cycling themes
+    // Turn off sound if on, else turn it on
     if (soundOn) {
         drumRoll.volume = 0;
         crickets.volume = 0;
+        crickets.pause();
         soundOn = false;
         soundButton.querySelector('i').className = "fa-solid fa-volume-xmark";
     } else {
         drumRoll.volume = 1;
-        crickets.volume = 0.1;
+        crickets.volume = 0.4;
+        crickets.play();
         soundOn = true;
         soundButton.querySelector('i').className = "fa-solid fa-volume-high";
     }
@@ -208,17 +213,17 @@ motdButton.addEventListener('click', function() {
 // Info Button
 infoButton.addEventListener('click', function() {    
     // Show info
-    if (infoScreen.classList.contains('hidden-display')) {
-        infoScreen.classList.remove('hidden-display');
-        infoScreen.classList.add('animate__fadeInDown');
+    if (infoScreenContainer.classList.contains('hidden-display')) {
+        infoScreenContainer.classList.remove('hidden-display');
+        infoScreenContainer.classList.add('animate__fadeInDown');
         setTimeout(() => {
-            infoScreen.classList.remove('animate__fadeInDown');
+            infoScreenContainer.classList.remove('animate__fadeInDown');
         }, 500);
     } else {
-        infoScreen.classList.add('animate__fadeOutUp');
+        infoScreenContainer.classList.add('animate__fadeOutUp');
         setTimeout(() => {
-            infoScreen.classList.add('hidden-display');
-            infoScreen.classList.remove('animate__fadeOutUp');
+            infoScreenContainer.classList.add('hidden-display');
+            infoScreenContainer.classList.remove('animate__fadeOutUp');
         }, 500); 
     }
 });
@@ -231,6 +236,10 @@ function changeMOTDWithFade(newText) {
     // After fade out, change the content
     setTimeout(() => {
         motdText.textContent = newText;
+        // Adjust the font size of the motdText to fit within the container
+        // Set a scaling factor (1.25) - 2x is maximum
+        const fontSize = (debtContainer.offsetWidth / motdText.textContent.length) * 1.25;
+        motdText.style.fontSize = fontSize + 'px';
         // Remove fadeOut class
         motdText.classList.remove('animate__fadeOut');
     }, 1000);
@@ -326,6 +335,17 @@ function selectYear(year) {
         debtAmountPounds.classList.remove('hidden-visibility');
         debtAmountPounds.classList.add('animate__animated', 'animate__fadeInUpBig');
     }, 3000);  // This delays the second animation by 1 second. Adjust as needed.
+
+    //Show confetti gif and remove after
+    setTimeout(() => {
+        confettigif.classList.remove('hidden-display');
+    }, 4000);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        confettigif.classList.add('animate__fadeOutDown');
+    }, 4750);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        confettigif.classList.add('hidden-display');
+    }, 7000);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Delay for decimal counter
     setTimeout(() => {

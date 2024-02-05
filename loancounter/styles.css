@@ -77,25 +77,6 @@ body[data-theme="black"] {
     z-index: 10;
 }
 
-.info-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 10vh 5vw;
-    padding: 5vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border: none;
-    border-radius: 1vh;
-    height: 70vh;
-    width: 80vw;
-    overflow: hidden;
-    z-index: 50;
-    text-align: justify;
-}
-
 .gif-container {
     position: fixed; /* or absolute */
     top: 0;
@@ -105,13 +86,55 @@ body[data-theme="black"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#confetti .gif-container {
     z-index: 5; /* below main container */
 }
 
-.gif-container img {
+#money_rain .gif-container {
+    z-index: 5; /* below main container */
+}
+
+#confetti.gif-container img {
     width: auto; /* Adjust as needed */
     height: 100%; /* Adjust as needed */
-    opacity: 10%;
+    opacity: 25%; /* 5% opacity for confetti */
+}
+
+#money_rain.gif-container img {
+    width: auto; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    opacity: 10%; /* 10% opacity for money rain */
+}
+
+.info-screen-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50; /* above main container */
+}
+
+.info-screen {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    margin: 20%, 10%;
+    padding: 20%, 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    border: none;
+    border-radius: 2vh;
+    text-align: justify;
 }
 
 .custom-year-hint {
@@ -128,16 +151,34 @@ body[data-theme="black"] {
 
 .title {
     font-size: 5vw; /* Adjust the font size as needed */
-    margin: 2vh;
+    margin: 0;
+    padding: 0;
     text-align: center;
     width: 100%;
 }
 
 .motd {
-    font-size: 3.25vw; /* Adjust the font size as needed */
+    font-size: 3vw; /* Adjust the font size as needed */
     text-align: center;
     color: #888888;
-    width: 80%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.motd_bounds {
+    /* Restrict size */
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    padding: 0;
+
+    /* center content */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .prompt {
@@ -156,29 +197,29 @@ body[data-theme="black"] {
 }
 
 .debt-amount {
-    font-size: 10vw;
-    text-align: center;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     line-height: 0;
 }
 
-/*
 .debt-amount #counter-pounds {
+    font-size: 10vw;
     display: inline-block;
+    font-weight: bold;
 }
-*/
 
 .debt-amount #counter-decimal {
     font-size: 2vw;
+    position: absolute;
+    left: 100%;
+    top: 90%;
+    transform: translate(30%, -20%);
+    color: #777;
 }
 
 .year-buttons button {
     margin: 1vw;
     padding: 2vh 2vw;
-    font-size: 2.5vw;
+    font-size: 3vw;
     cursor: pointer;
     border: none;
     background-color: #c5c5c5;
@@ -196,7 +237,7 @@ body[data-theme="black"] {
     border: none;
     background-color: #c5c5c5;
     color: #000;
-    width: 72vw;
+    width: 60vw;
     border-radius: 1vw;
     transition: background-color 0.2s;
 }
