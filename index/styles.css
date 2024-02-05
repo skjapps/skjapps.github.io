@@ -28,7 +28,7 @@ body {
 .main {
     /* Size */
     height: 100%;
-    width: 95%;
+    width: 90%;
 
     /* Layout */
     display: flex;
@@ -39,7 +39,8 @@ body {
 
 .greeting,
 .loan-pane,
-.clock-pane {
+.clock-pane,
+.scene-container {
     /* Size */
     height: 100%;
     width: 100%;
@@ -50,6 +51,11 @@ body {
     text-align: center;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+myCanvas {
+    position: relative;
 }
 
 .loan-pane {
@@ -65,7 +71,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     
-    padding: 0 5vh;
+    padding: 0vh 0vw;
     
     border-radius: 2vh;     /* Rounded edges */
     box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
@@ -96,7 +102,10 @@ h2 {
 
 .loan-pane h2 {
     /* Layout */
-    font-size: 4vh;
+    position: relative;
+    top: 18rem; /* adjust as needed */
+    right: 26rem; /* adjust as needed */
+    font-size: 2.5vh;
 }
 
 .clock-pane h1 {
@@ -109,6 +118,16 @@ h2 {
     /* Layout */
     font-size: 5vh;
     color: #555;
+}
+
+.clock-pane p {
+    /* Layout */
+    position: relative;
+    bottom: 16rem; /* adjust as needed */
+    left: 20rem; /* adjust as needed */
+    
+    color: #bbb;
+    font-size: 2vh;
 }
 
 /* Navbar Styles */

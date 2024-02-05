@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
     <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
       
+    <!-- Three.js 3d card   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+      
   </head>
   <body>
 
@@ -20,7 +24,7 @@
             <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
         </button>
         <div class="logo">
-            <a href="index.html">
+            <a onclick="showCard()">
                 <img src="index/assets/img/logo.png" alt="skjapps">
             </a>
         </div>
@@ -31,19 +35,25 @@
     </nav>
       
     <!--   Main pane   -->
-    <div class="main">
+    <div class="main animate__animated animate__faster">
         <div class="greeting animate__animated animate__faster">
             <h1>skjapps</h1>
             <h2>sri's cool stuffs</h2>
         </div>
         <div class="loan-pane animate__animated animate__faster hidden-display">
-            <h1>How much student loan do you have?</h1>
-            <h2>find out here lol</h2>
+            <h1>How Much Student Debt Are You In?</h1>
+            <h2><i class="fa-solid fa-arrow-down"></i> find out here lol</h2>
         </div>
         <div class="clock-pane animate__animated animate__faster hidden-display">
+            <p>It's up here! <i class="fa-solid fa-arrow-up"></i></p>
             <h1>Check out my clock!</h1>
             <h2>Read that again</h2>
         </div>
+    </div>
+    
+    <!--   3d Card   -->
+    <div class="card-pane animate__animated animate__faster hidden-display" id="scene-container">
+        <canvas id="myCanvas"></canvas>
     </div>
       
     <!--   Bottom "App" Bar   -->

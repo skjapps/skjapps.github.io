@@ -8,10 +8,41 @@ const navButtons = document.querySelectorAll('nav button');
 const appbarElement = document.querySelector('appbar');
 const appbarButtons = document.querySelectorAll('appbar button');
 
+// 3d Card constants
+const cardPane = document.querySelector('.card-pane');
+
+var drawingSurface = document.getElementById( 'myCanvas' );
+var renderer = new THREE.WebGLRenderer( { antialias: true, canvas: drawingSurface } );
+renderer.setPixelRatio( window.devicePixelRatio );
+const scene = new THREE.Scene();
+
+const fov = 75; // Field of view
+const aspect = window.innerWidth / window.innerHeight;
+const near = 0.1;
+const far = 1000;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+const cardGeometry = new THREE.BoxGeometry(8, 0.01, 4); // Adjust the dimensions of the card
+const cardMaterials = [
+    new THREE.MeshBasicMaterial({ color: 0xffffff }),
+    new THREE.MeshBasicMaterial({ color: 0xffffff }),
+    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('index/assets/img/Img29_(Windows_Vista).png') }), // Back
+    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('index/assets/img/Img29_(Windows_Vista) (1).png') }), // Front
+    new THREE.MeshBasicMaterial({ color: 0xffffff }),
+    new THREE.MeshBasicMaterial({ color: 0xffffff })
+];
+const card = new THREE.Mesh(cardGeometry, cardMaterials);
+
+
 // Current showings
+const maindiv = document.querySelector('.main');
 const mainList = document.querySelectorAll('.main > div');
 const totalElements = mainList.length;
 let currentIndex = 0;
+
+//////////////////////
+/*  Page Functions  */
+//////////////////////
 
 // Load other htmls
 function navigateTo(url) {
@@ -29,6 +60,96 @@ function loadContent(url) {
     };
     xhr.send();
 }
+
+
+///////////////
+/*  3d Card  */
+///////////////
+
+// Animation function
+const animate = function () {
+    requestAnimationFrame(animate);
+
+    // Rotate the card
+    card.rotation.x += 0.01;
+    card.rotation.y += 0.001;
+
+    renderer.render(scene, camera);
+};
+
+function threedimensioncard() {
+    // Set up the scene
+    scene.background = new THREE.Color(0xffffff); // Set background color to white
+
+    // Set up the camera
+    camera.position.z = 5;
+    
+    // Set up the renderer
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('scene-container').appendChild(renderer.domElement);
+
+    // Calculate dimensions based on the panels
+    const panelWidth = document.querySelector('.main > div').offsetWidth;
+    const panelHeight = document.querySelector('.main > div').offsetHeight;
+    
+    // Create a 3D card
+    scene.add(card);
+    
+    // Initial card rotation
+    card.rotation.x = 1;
+    window.dispatchEvent(new Event('resize'));
+    
+    // Start the animation
+    animate();
+}
+
+// Show the business card
+function showCard() {
+    // Your JavaScript code here
+    if (maindiv.classList.contains('hidden-display')) {
+        // Hide 3d card and show carousel
+        
+        // Main panel fades out to the bottom
+        cardPane.classList.add('animate__fadeOutUp');
+        
+        setTimeout(() => {
+            cardPane.classList.add('hidden-display');
+            cardPane.classList.remove('animate__fadeOutUp');
+            // Next panel fades in from the right
+            maindiv.classList.remove('hidden-display');
+            maindiv.classList.add('animate__fadeInUp');
+        }, 500);
+
+        // Reset the animation class from the next panel after the animation completes
+        setTimeout(() => {
+            maindiv.classList.remove('animate__fadeInUp');
+        }, 1000);
+    }
+    else {
+        // Show 3d card and hide carousel
+                
+        // Main panel fades out to the bottom
+        maindiv.classList.add('animate__fadeOutDown');
+        
+        setTimeout(() => {
+            maindiv.classList.add('hidden-display');
+            maindiv.classList.remove('animate__fadeOutDown');
+            // Next panel fades in from the right
+            cardPane.classList.remove('hidden-display');
+            cardPane.classList.add('animate__fadeInDown');
+        }, 500);
+
+        // Reset the animation class from the next panel after the animation completes
+        setTimeout(() => {
+            cardPane.classList.remove('animate__fadeInDown');
+        }, 1000);
+    }
+    // Add any actions or logic you want to perform when the button is clicked
+}
+
+//////////////////////////////
+/*  Crappy Custom Carousel  */
+//////////////////////////////
 
 // Function to handle animation of panels
 function animatePanels(currentIndex) {
@@ -126,6 +247,17 @@ document.addEventListener('touchmove', e => {
     }
 });
 
+// Handle window resize
+window.addEventListener('resize', function () {
+  const newWidth = body.innerWidth - (body.innerWidth / 1.5);
+  const newHeight = body.innerHeight - (body.innerHeight / 1.5);
+
+  camera.aspect = newWidth / newHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(newWidth, newHeight);
+});
+
 // Main Container Parallax 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -134,5 +266,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Play page load animations
     loadAnimation();
+    
+    // Make 3d Card
+    threedimensioncard();
     
 });
