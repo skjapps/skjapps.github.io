@@ -51,7 +51,7 @@ const commentsArray = [
     "[ YOUR AD HERE ] - even I gotta pay this off lol",
     "...probably, it might be a bit more or less...",
     "...probably, based on average annual student loans...",
-    "don't watch this for too long!"
+    "don't stare at it for too long! it just gets you down : /"
 ];
 
 //Avg interest rates on student loans over the past years
