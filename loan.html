@@ -63,7 +63,6 @@
                 <button onclick="selectYear(1)" class="hidden-visibility">First Year</button>
                 <button onclick="selectYear(2)" class="hidden-visibility">Second Year</button>
                 <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
-                <button onclick="selectYear(4)" class="hidden-visibility">Fourth Year</button>
             </div>
             <!--     Custom Year Button       -->
             <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
@@ -79,31 +78,40 @@
             <h1 class="title">My Current Student Debt Is</h1>
             <p class="debt-amount">
                 <span id="counter-pounds" class="hidden-visibility"></span>
-                <span id="counter-decimal" class="hidden-visibility hidden-display"></span>
+                <span id="counter-decimal" class="hidden-visibility"></span>
             </p>
-            <h2 class="motd hidden-visibility animate__animated">...probably, it might be a bit more or less...</h2> 
+            <div class="motd_bounds">
+                <h2 class="motd hidden-visibility animate__animated">...probably, it might be a bit more or less...</h2> 
+            </div>
+        </div>
+        <!--  Confetti GIF  -->
+        <div id="confetti" class="gif-container hidden-display animate__animated animate__slower">
+            <img src="loancounter/assets/img/confetti.gif" alt="Confetti">
         </div>
         <!--  Money Rain GIF  -->
-        <div class="gif-container hidden-display animate__animated">
+        <div id="money_rain" class="gif-container hidden-display animate__animated">
             <img src="loancounter/assets/img/raining-money.gif" alt="Money Rain">
         </div>
     </div>
-    
-    <div class="info-screen hidden-display animate__animated animate__faster">
-        <h1>What is this page lol?</h1>
-        <p>
-            Current interest rates are kinda mad, and if you started uni after 2013 (most of you), you ain't really finna pay it back 💀
-        </p>
-        <p>
-            It's probably not all that funny, but you could have this on in a lecture or seminar or something... just pay attention to what they're saying at the front lol
-        </p>
-        <p>
-            To-do: add some actually useful information and links for people to follow through to.
-        </p>
-        <footer>
-            Made with '&lt;3' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
-        </footer>
-    </div>        
+
+    <!-- Info Screen -->
+    <div class="info-screen-container hidden-display animate__animated animate__faster">
+        <div class="info-screen">
+            <h1>What is this lol?</h1>
+            <p>
+                Current interest rates are kinda mad, and if you started uni after 2013 (most of you), you ain't really finna pay it back 💀
+            </p>
+            <p>
+                It's probably not all that funny, but you could have this on in a lecture or seminar or something... just pay attention to what they're saying at the front lol
+            </p>
+            <p>
+                To-do: add some actually useful information and links for people to follow through to.
+            </p>
+            <footer>
+                Made with '&lt;3' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
+            </footer>
+        </div> 
+    </div>
     
     <!--  JS  -->
     <script src="loancounter/script.js"></script>
