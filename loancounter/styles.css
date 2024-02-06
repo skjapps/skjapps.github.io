@@ -7,6 +7,7 @@ body {
     color: #333;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition */
     --icon-color: #333;  /* Set a default icon color */
+    overflow: hidden;
 }
 
 /* Dark theme styles */
@@ -52,18 +53,24 @@ body[data-theme="black"] {
 
 .toggle-dark-mode,
 .toggle-sound,
-.toggle-motd,
+.toggle-comments,
 .home-button,
 .info-button{
     font-size: 4vw;
-    padding: 1vw;
+    padding: 0.5vh 1vw;
     border: none;
     background-color: none;
     background: none;
     color: var(--icon-color); /* Use the CSS variable for color */
 }
 
-.container {
+.js-Counter {
+    overflow: hidden;
+    overflow-y: hidden;
+}
+
+.container,
+.comments_container {
     position: relative;
     top: 10vh;
     padding: 2vh 5vw;
@@ -122,10 +129,9 @@ body[data-theme="black"] {
 
 .info-screen {
     position: absolute;
-    width: 80%;
-    height: 80%;
-    margin: 20%, 10%;
-    padding: 20%, 5%;
+    width: 75%;
+    height: 75%;
+    padding: 4vh 4vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,7 +149,7 @@ body[data-theme="black"] {
 }
 
 .sound-hint {
-    font-size: min(1.75vh, 3vw);
+    font-size: min(2vh, 3vw);
     color: #777;
     margin: 0;
     padding: 0vh 8vw;

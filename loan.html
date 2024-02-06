@@ -35,16 +35,17 @@
             <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
         </button>
 
-        <!-- Disable MOTD-->
-        <button class="toggle-motd hidden-display">
-            <i class="fa-solid fa-message" aria-hidden="true"></i>
-        </button>
-
         <!-- Info Button  -->
         <button class="info-button hidden-display">
             <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
         </button>
-        <div class="transparent-div">
+
+        <!-- Comments Button -->
+        <button class="toggle-comments hidden-display">
+            <i class="fa-regular fa-message" aria-hidden="true"></i>
+        </button>
+
+        <div class="transparent-div" style="opacity: 50%;">
             <p class="sound-hint hidden-visibility animate__faster"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
         </div>
     </div>
@@ -75,17 +76,20 @@
     
     <!-- The Loan Counter -->
     <div class="js-Counter">
-        <div class="container hidden-display">
-            <h1 class="title">My Current Student Debt Is</h1>
-            <p class="debt-amount">
+        <div class="container animate__animated hidden-display">
+            <h1 class="title animate__animated">My Current Student Debt Is</h1>
+            <p class="debt-amount animate__animated">
                 <span id="counter-pounds" class="hidden-visibility"></span>
                 <span id="counter-decimal" class="hidden-visibility"></span>
             </p>
-            <div class="transparent-div" style="opacity: 20%;">
+            <div class="transparent-div animate__animated" style="opacity: 40%;">
                 <div class="motd_bounds">
                     <h2 class="motd hidden-visibility animate__animated">...probably, it might be a bit more or less...</h2> 
                 </div>
             </div>
+        </div>
+        <div class="comments_container animate__animated hidden-display">
+            <h1>The comments will be here...</h1>
         </div>
         <!--  Confetti GIF  -->
         <div id="confetti" class="gif-container hidden-display animate__animated animate__slower">
@@ -111,7 +115,7 @@
                 To-do: add some actually useful information and links for people to follow through to.
             </p>
             <footer>
-                Made with '&lt;3' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
+                Made with '❤️' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
             </footer>
         </div> 
     </div>

@@ -28,10 +28,13 @@ const confettigif = document.getElementById('confetti');
 const infoScreenContainer = document.querySelector('.info-screen-container');
 const infoScreen = document.querySelector('.info-screen');
 
+// Comments Screen
+const commentsContainer = document.querySelector('.comments_container');
+
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
-const motdButton = document.querySelector('.toggle-motd');
+const commentsButton = document.querySelector('.toggle-comments');
 const infoButton = document.querySelector('.info-button'); 
 const soundHint = document.querySelector('.sound-hint');
 
@@ -70,11 +73,12 @@ const commentsArray = [
 const interestArray = [6.7, 4.5, 5.6, 5.4, 6.3, 6.1, 4.6, 3.9, 5.5, 6.3, 6.6];
 
 // Drum Roll sound effect
-var drumRoll = new Audio('loancounter/assets/snd/drumroll3.mp3');
+var drumRoll = new Audio('loancounter/assets/snd/drumroll4.mp3');
+var partyPopper = new Audio('loancounter/assets/snd/partypopper.mp3');
 
 // Crickets background sound effect
 var crickets = new Audio('loancounter/assets/snd/crickets.mp3');
-crickets.volume = 0.4;
+crickets.volume = 0.2;
 crickets.loop = true;
 
 // The title changes now
@@ -182,30 +186,50 @@ soundButton.addEventListener('click', function() {
     // Turn off sound if on, else turn it on
     if (soundOn) {
         drumRoll.volume = 0;
+        partyPopper.volume = 0;
         crickets.volume = 0;
         crickets.pause();
         soundOn = false;
         soundButton.querySelector('i').className = "fa-solid fa-volume-xmark";
     } else {
         drumRoll.volume = 1;
-        crickets.volume = 0.4;
+        partyPopper.volume = 1;
+        crickets.volume = 0.2;
         crickets.play();
         soundOn = true;
         soundButton.querySelector('i').className = "fa-solid fa-volume-high";
     }
 });
 
-// MOTD Toggle
-motdButton.addEventListener('click', function() {    
-    // Cycling themes
-    if (motdOn) {
-        motdText.classList.add('hidden-visibility');
-        motdOn = false;
-        motdButton.querySelector('i').className = "fa-regular fa-message";
+// show comments
+commentsButton.addEventListener('click', function() {    
+    // if comments aren't showing
+    if (commentsContainer.classList.contains('hidden-display')) {
+        debtContainer.classList.add('animate__fadeOutLeftBig');
+        setTimeout(() => {
+            debtContainer.classList.add('hidden-display');
+            debtContainer.classList.remove('animate__fadeOutLeftBig');
+
+            commentsContainer.classList.remove('hidden-display');
+            commentsContainer.classList.add('animate__fadeInRightBig');
+        }, 500); 
+        setTimeout(() => {
+            commentsContainer.classList.remove('animate__fadeInRightBig');
+        }, 1500);
+        commentsButton.querySelector('i').className = "fa-solid fa-message";
     } else {
-        motdText.classList.remove('hidden-visibility');
-        motdOn = true;
-        motdButton.querySelector('i').className = "fa-solid fa-message";
+        commentsContainer.classList.add('animate__fadeOutRightBig');
+        setTimeout(() => {
+            commentsContainer.classList.add('hidden-display');
+            commentsContainer.classList.remove('animate__fadeOutRightBig');
+
+            debtContainer.classList.remove('hidden-display');
+            debtContainer.classList.add('animate__fadeInLeftBig');
+        }, 500);
+        setTimeout(() => {
+            debtContainer.classList.remove('animate__fadeInLeftBig');
+        }, 1500);
+        commentsButton.querySelector('i').className = "fa-regular fa-message";
     }
 });
 
@@ -213,17 +237,18 @@ motdButton.addEventListener('click', function() {
 // Info Button
 infoButton.addEventListener('click', function() {    
     // Show info
+    // If info isn't showing
     if (infoScreenContainer.classList.contains('hidden-display')) {
         infoScreenContainer.classList.remove('hidden-display');
-        infoScreenContainer.classList.add('animate__fadeInDown');
+        infoScreenContainer.classList.add('animate__fadeInLeftBig');
         setTimeout(() => {
-            infoScreenContainer.classList.remove('animate__fadeInDown');
+            infoScreenContainer.classList.remove('animate__fadeInLeftBig');
         }, 500);
     } else {
-        infoScreenContainer.classList.add('animate__fadeOutUp');
+        infoScreenContainer.classList.add('animate__fadeOutLeftBig');
         setTimeout(() => {
             infoScreenContainer.classList.add('hidden-display');
-            infoScreenContainer.classList.remove('animate__fadeOutUp');
+            infoScreenContainer.classList.remove('animate__fadeOutLeftBig');
         }, 500); 
     }
 });
@@ -292,8 +317,6 @@ function selectYear(year) {
     soundHint.classList.add('animate__fadeOutUp');
     
     // Show the motd toggle and info buttons
-    motdButton.classList.remove('hidden-display');
-    motdButton.classList.add('animate__animated', 'animate__fadeInDown')
     setTimeout(() => {
         infoButton.classList.remove('hidden-display');
         infoButton.classList.add('animate__animated', 'animate__fadeInDown')
@@ -327,14 +350,24 @@ function selectYear(year) {
     for(let i = 1; i <= 3; i++) {
         setTimeout(() => {
             debtTitle.textContent += '.'
-        }, 1000*i);
+        }, 800*i);
     }
  
     // Show main pounds
     setTimeout(() => {
         debtAmountPounds.classList.remove('hidden-visibility');
         debtAmountPounds.classList.add('animate__animated', 'animate__fadeInUpBig');
-    }, 3000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 2500);  // This delays the second animation by 1 second. Adjust as needed.
+
+    // Play the party popper
+    setTimeout(() => {
+        partyPopper.play().then(_ => {
+            // Audio playback started
+        }).catch(err => {
+            // Audio playback failed
+            console.log("Audio playback failed:", err);
+        });
+    }, 4000);  // This delays the second animation by 1 second. Adjust as needed.
 
     //Show confetti gif and remove after
     setTimeout(() => {
@@ -367,6 +400,20 @@ function selectYear(year) {
         });
     }, 8000);  // This delays the second animation by 5 seconds.
     
+    // Clear animations
+    setTimeout(() => {
+        debtTitle.classList.remove('animate__fadeInDown');
+        debtAmountPounds.classList.remove('animate__fadeInUpBig');
+        // debtAmountDecimal.classList.remove('animate__fadeInUp', 'animate__slower');
+        motdText.classList.remove('animate__fadeIn', 'animate__slower');
+    }, 10000);  // This delays the second animation by 5 seconds.
+
+    // Show comments button
+    setTimeout(() => {
+        commentsButton.classList.remove('hidden-display');
+        commentsButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 10000);  // This delays the second animation by 1 second. Adjust as needed.
+
     // Change motd constantly
     setTimeout(() => {
         // Remove this for re-adding later
