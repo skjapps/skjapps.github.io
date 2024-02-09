@@ -32,7 +32,7 @@ const infoScreen = document.querySelector('.info-screen');
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound');
-const commentsButton = document.querySelector('.toggle-comments');
+const motdToggle = document.querySelector('.toggle-motd');
 const infoButton = document.querySelector('.info-button');
 // Social Buttons
 const instaButton = document.querySelector('.instagram');
@@ -138,12 +138,13 @@ setInterval(() => {
     
     // Extract the numbers with string functions / calculations
     const amountSpentString = amountSpent.toFixed(10).split('.');
-    const wholeAmount = amountSpentString[0] + '.' + amountSpentString[1].slice(0,2); 
+    const wholeAmount = parseFloat(amountSpentString[0] + '.' + amountSpentString[1].slice(0,2)).toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
+    // const wholeAmount = amountSpentString[0] + '.' + amountSpentString[1].slice(0,2); 
     const decimalAmount = amountSpentString[1].slice(2); 
 
     // Update the counter elements with the calculated amount
     // Display the pounds amount with two decimal places
-    counterPoundsElement.textContent = "£" + wholeAmount;
+    counterPoundsElement.textContent = wholeAmount;
     // Display the extra decimal places for dramatic effect
     counterDecimalElement.textContent = decimalAmount;
     
@@ -177,12 +178,6 @@ darkModeButton.addEventListener('click', function() {
     }
 });
 
-// Live change to system dark mode
-darkModeMediaQuery.addListener((e) => {
-    const newColorScheme = e.matches ? "dark" : "light";
-    document.body.setAttribute('data-theme', newColorScheme);
-});
-
 // Sound Toggle
 soundButton.addEventListener('click', function() {    
     // Turn off sound if on, else turn it on
@@ -213,35 +208,23 @@ tweetButton.addEventListener('click', function() {
     
 });
 
-// show comments
-commentsButton.addEventListener('click', function() {    
+// show MOTD
+motdToggle.addEventListener('click', function() {    
     // if comments aren't showing
-    if (commentsContainer.classList.contains('hidden-display')) {
-        debtContainer.classList.add('animate__fadeOutLeftBig');
+    if (motdContainer.classList.contains('hidden-visibility')) {
+        motdContainer.classList.remove('hidden-visibility');
+        motdContainer.classList.add('animate__fadeIn');
         setTimeout(() => {
-            debtContainer.classList.add('hidden-display');
-            debtContainer.classList.remove('animate__fadeOutLeftBig');
-
-            commentsContainer.classList.remove('hidden-display');
-            commentsContainer.classList.add('animate__fadeInRightBig');
-        }, 250); 
-        setTimeout(() => {
-            commentsContainer.classList.remove('animate__fadeInRightBig');
+            motdContainer.classList.remove('animate__fadeIn');
         }, 750);
-        commentsButton.querySelector('i').className = "fa-solid fa-message";
+        motdToggle.querySelector('i').className = "fa-solid fa-message";
     } else {
-        commentsContainer.classList.add('animate__fadeOutRightBig');
+        motdContainer.classList.add('animate__fadeOut');
         setTimeout(() => {
-            commentsContainer.classList.add('hidden-display');
-            commentsContainer.classList.remove('animate__fadeOutRightBig');
-
-            debtContainer.classList.remove('hidden-display');
-            debtContainer.classList.add('animate__fadeInLeftBig');
-        }, 250);
-        setTimeout(() => {
-            debtContainer.classList.remove('animate__fadeInLeftBig');
+            motdContainer.classList.add('hidden-visibility');
+            motdContainer.classList.remove('animate__fadeOut');
         }, 750);
-        commentsButton.querySelector('i').className = "fa-regular fa-message";
+        motdToggle.querySelector('i').className = "fa-regular fa-message";
     }
 });
 
@@ -257,10 +240,10 @@ infoButton.addEventListener('click', function() {
             infoScreenContainer.classList.remove('animate__fadeInUpBig');
         }, 500);
     } else {
-        infoScreenContainer.classList.add('animate__fadeOutLeftBig');
+        infoScreenContainer.classList.add('animate__fadeOutDownBig');
         setTimeout(() => {
             infoScreenContainer.classList.add('hidden-display');
-            infoScreenContainer.classList.remove('animate__fadeOutLeftBig');
+            infoScreenContainer.classList.remove('animate__fadeOutDownBig');
         }, 500); 
     }
 });
@@ -279,10 +262,12 @@ function changeMOTDWithFade(newText) {
         motdText.style.fontSize = fontSize + 'px';
         // Remove fadeOut class
         motdText.classList.remove('animate__fadeOut');
-    }, 1000);
-    
-    // Then fade back in
-    motdText.classList.add('animate__fadeIn');
+        motdText.classList.add('animate__fadeIn');
+    }, 650);
+    setTimeout(() => {
+        // remove this
+        motdText.classList.remove('animate__fadeIn');
+    }, 1200);
 }
 
 // Custom Year Button
@@ -334,8 +319,8 @@ function selectYear(year) {
         infoButton.classList.add('animate__animated', 'animate__fadeInDown')
     }, 250);  // This delays the second animation by 1 second. Adjust as needed.
     setTimeout(() => {
-        motdButton.classList.remove('hidden-display');
-        motdButton.classList.add('animate__animated', 'animate__fadeInDown')
+        motdToggle.classList.remove('hidden-display');
+        motdToggle.classList.add('animate__animated', 'animate__fadeInDown')
     }, 500);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Fade out prompt
@@ -414,7 +399,7 @@ function selectYear(year) {
             // Audio playback failed
             console.log("Audio playback failed:", err);
         });
-    }, 8000);  // This delays the second animation by 5 seconds.
+    }, 8000);
     
     // Clear animations
     setTimeout(() => {
@@ -422,7 +407,23 @@ function selectYear(year) {
         debtAmountPounds.classList.remove('animate__fadeInUpBig');
         // debtAmountDecimal.classList.remove('animate__fadeInUp', 'animate__slower');
         motdText.classList.remove('animate__fadeIn', 'animate__slower');
-    }, 10000);  // This delays the second animation by 5 seconds.
+    }, 10000);
+
+    
+    // Show social buttons and hint
+    setTimeout(() => {
+        instaButton.classList.remove('hidden-display');
+        instaButton.classList.add('animate__animated', 'animate__fadeInDown');
+    }, 10250);
+    setTimeout(() => {
+        tweetButton.classList.remove('hidden-display');
+        tweetButton.classList.add('animate__animated', 'animate__fadeInDown');
+    }, 10500);
+    setTimeout(() => {
+        socialHint.classList.remove('hidden-display');
+        socialHint.classList.add('animate__animated', 'animate__fadeInLeft');
+    }, 10750);
+    
 
     // Change motd constantly
     setTimeout(() => {

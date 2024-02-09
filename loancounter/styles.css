@@ -58,7 +58,7 @@ body[data-theme="black"] {
 
 .toggle-dark-mode,
 .toggle-sound,
-.toggle-comments,
+.toggle-motd,
 .home-button,
 .info-button,
 .instagram,
@@ -76,8 +76,7 @@ body[data-theme="black"] {
     overflow-y: hidden;
 }
 
-.container,
-.comments_container {
+.container {
     position: relative;
     top: 10vh;
     padding: 2vh 5vw;
@@ -151,11 +150,11 @@ body[data-theme="black"] {
 }
 
 .info-screen h1 {
-    font-size: min(6vh, 8vw) ;
+    font-size: min(6vh, 8vw);
 }
 
 .info-screen p {
-    font-size: min(2vh, 3vw) ;
+    font-size: min(2vh, 3vw);
 }
 
 .custom-year-hint {
@@ -164,14 +163,14 @@ body[data-theme="black"] {
 }
 
 .sound-hint {
-    font-size: min(2vh, 3vw);
+    font-size: min(2.5vh, 3.5vw);
     color: #777;
     margin: 0;
     padding: 0vh 8vw; 
 }
 
 .social-hint {
-    font-size: min(2vh, 3vw);
+    font-size: min(2.5vh, 3.5vw);
     color: #777;
     margin: 0;
     padding: 0;
@@ -243,6 +242,8 @@ body[data-theme="black"] {
 .debt-amount {
     position: relative;
     line-height: 0;
+    display: flex; /* Use flexbox */
+    align-items: baseline; /* Align items along the baseline */
 }
 
 .debt-amount #counter-pounds {
