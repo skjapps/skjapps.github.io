@@ -78,15 +78,17 @@
         <div class="container">
             <h1 class="title animate__animated animate__fadeInDown">How Much Student Debt Are You In?</h1>
             <p class="prompt hidden-visibility">What year are you in?</p>
-            <div class="year-buttons">
-                <button onclick="selectYear(1)" class="hidden-visibility">First Year</button>
-                <button onclick="selectYear(2)" class="hidden-visibility">Second Year</button>
-                <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
+            <div class="transparent-div">
+                <div class="year-buttons">
+                    <button onclick="selectYear(1)" class="hidden-visibility">First Year</button>
+                    <button onclick="selectYear(2)" class="hidden-visibility">Second Year</button>
+                    <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
+                </div>
+                <!--     Custom Year Button       -->
+                <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
+                Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
+                </button>
             </div>
-            <!--     Custom Year Button       -->
-            <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
-            Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
-            </button>
             <p class="custom-year-hint hidden-visibility">Type a number and click the box</p>
         </div>
     </div>

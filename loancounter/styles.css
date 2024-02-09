@@ -72,14 +72,13 @@ body[data-theme="black"] {
     color: var(--icon-color); /* Use the CSS variable for color */
 }
 
-.container,
-.js-Counter {
+.container {
     position: relative;
-    padding: 2vh 5vw;
+    padding: 2vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 80vh; /* 100% of the viewport height */
     /*  No more scrollbars  */
     overflow: hidden;
@@ -173,7 +172,7 @@ body[data-theme="black"] {
     font-size: min(3vh, 3vw);
     color: #777;
     margin: 0;
-    padding: 0vh max(5.5vh, 6vw);
+    padding: 0vh max(6vh, 6vw);
 }
 
 .social-hint {
@@ -200,7 +199,7 @@ body[data-theme="black"] {
 }
 
 .title {
-    font-size: min(6vh, 5vw); /* Adjust the font size as needed */
+    font-size: 5vw; /* Adjust the font size as needed */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -254,13 +253,13 @@ body[data-theme="black"] {
 }
 
 .debt-amount #counter-pounds {
-    font-size: min(12vh, 10vw);
+    font-size: 10vw;
     display: inline-block;
     font-weight: bold;
 }
 
 .debt-amount #counter-decimal {
-    font-size: min(3vh, 2vw);
+    font-size: 2vw;
     color: #777;
 }
 
@@ -277,6 +276,14 @@ body[data-theme="black"] {
     display: flex;
     flex-direction: row;
     align-items: baseline;
+}
+
+.year-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
 }
 
 .year-buttons button {
