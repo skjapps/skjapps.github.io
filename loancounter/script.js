@@ -31,12 +31,17 @@ const infoScreen = document.querySelector('.info-screen');
 // Comments Screen
 const commentsContainer = document.querySelector('.comments_container');
 
+// Top 'bar' stuff
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
-const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
+const soundButton = document.querySelector('.toggle-sound');
 const commentsButton = document.querySelector('.toggle-comments');
-const infoButton = document.querySelector('.info-button'); 
-const soundHint = document.querySelector('.sound-hint');
+const infoButton = document.querySelector('.info-button');
+// Social Buttons
+const instaButton = document.querySelector('.instagram');
+const tweetButton = document.querySelector('.twitter');
+const soundHint = document.querySelector('.sound-hint'); // Just text
+const socialHint = document.querySelector('.social-hint'); // Just text
 
 // Dark Mode live change to system pref
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -141,7 +146,7 @@ setInterval(() => {
 
     // Update the counter elements with the calculated amount
     // Display the pounds amount with two decimal places
-    counterPoundsElement.textContent = "£ " + wholeAmount;
+    counterPoundsElement.textContent = "£" + wholeAmount;
     // Display the extra decimal places for dramatic effect
     counterDecimalElement.textContent = decimalAmount;
     
@@ -201,6 +206,16 @@ soundButton.addEventListener('click', function() {
     }
 });
 
+// Share to instagram
+instaButton.addEventListener('click', function() {    
+    
+});
+
+// Share to twitter
+tweetButton.addEventListener('click', function() {    
+    
+});
+
 // show comments
 commentsButton.addEventListener('click', function() {    
     // if comments aren't showing
@@ -212,10 +227,10 @@ commentsButton.addEventListener('click', function() {
 
             commentsContainer.classList.remove('hidden-display');
             commentsContainer.classList.add('animate__fadeInRightBig');
-        }, 500); 
+        }, 250); 
         setTimeout(() => {
             commentsContainer.classList.remove('animate__fadeInRightBig');
-        }, 1500);
+        }, 750);
         commentsButton.querySelector('i').className = "fa-solid fa-message";
     } else {
         commentsContainer.classList.add('animate__fadeOutRightBig');
@@ -225,10 +240,10 @@ commentsButton.addEventListener('click', function() {
 
             debtContainer.classList.remove('hidden-display');
             debtContainer.classList.add('animate__fadeInLeftBig');
-        }, 500);
+        }, 250);
         setTimeout(() => {
             debtContainer.classList.remove('animate__fadeInLeftBig');
-        }, 1500);
+        }, 750);
         commentsButton.querySelector('i').className = "fa-regular fa-message";
     }
 });
@@ -240,15 +255,15 @@ infoButton.addEventListener('click', function() {
     // If info isn't showing
     if (infoScreenContainer.classList.contains('hidden-display')) {
         infoScreenContainer.classList.remove('hidden-display');
-        infoScreenContainer.classList.add('animate__fadeInLeftBig');
+        infoScreenContainer.classList.add('animate__fadeInUpBig');
         setTimeout(() => {
-            infoScreenContainer.classList.remove('animate__fadeInLeftBig');
+            infoScreenContainer.classList.remove('animate__fadeInUpBig');
         }, 500);
     } else {
-        infoScreenContainer.classList.add('animate__fadeOutLeftBig');
+        infoScreenContainer.classList.add('animate__fadeOutDownBig');
         setTimeout(() => {
             infoScreenContainer.classList.add('hidden-display');
-            infoScreenContainer.classList.remove('animate__fadeOutLeftBig');
+            infoScreenContainer.classList.remove('animate__fadeOutDownBig');
         }, 500); 
     }
 });
@@ -315,6 +330,9 @@ function selectYear(year) {
     //Remove soundHint
     soundHint.classList.remove('animate__fadeInDown');
     soundHint.classList.add('animate__fadeOutUp');
+    setTimeout(() => {
+        soundHint.classList.add('hidden-display');
+    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Show the motd toggle and info buttons
     setTimeout(() => {
@@ -408,11 +426,25 @@ function selectYear(year) {
         motdText.classList.remove('animate__fadeIn', 'animate__slower');
     }, 10000);  // This delays the second animation by 5 seconds.
 
-    // Show comments button
+    // Show comments and social buttons
     setTimeout(() => {
         commentsButton.classList.remove('hidden-display');
         commentsButton.classList.add('animate__animated', 'animate__fadeInDown')
     }, 10000);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        instaButton.classList.remove('hidden-display');
+        instaButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 10250);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        tweetButton.classList.remove('hidden-display');
+        tweetButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 10500);  // This delays the second animation by 1 second. Adjust as needed.
+
+    // social prompt
+    setTimeout(() => {
+        socialHint.classList.add('animate__animated', 'animate__fadeInRight');
+        socialHint.classList.remove('hidden-display');
+    }, 11000);  // This delays the second animation by 1 second. Adjust as needed.
 
     // Change motd constantly
     setTimeout(() => {
@@ -490,7 +522,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Warning to turn sound off lol
     setTimeout(() => {
         soundHint.classList.add('animate__animated', 'animate__fadeInDown');
-        soundHint.classList.remove('hidden-visibility');
+        soundHint.classList.remove('hidden-display');
     }, 3000);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Custom Year button after 5 seconds

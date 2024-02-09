@@ -51,11 +51,18 @@ body[data-theme="black"] {
     z-index: 100; /* Higher than the .gif-container */
 }
 
+.row {
+    display: flex;
+    flex-direction: row; /* Arrange items horizontally */
+}
+
 .toggle-dark-mode,
 .toggle-sound,
 .toggle-comments,
 .home-button,
-.info-button{
+.info-button,
+.instagram,
+.twitter{
     font-size: 4vw;
     padding: 0.5vh 1vw;
     border: none;
@@ -129,18 +136,26 @@ body[data-theme="black"] {
 
 .info-screen {
     position: absolute;
-    width: 75%;
-    height: 75%;
-    padding: 4vh 4vw;
+    width: 70%;
+    height: 70%;
+    padding: 5vh 5vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     overflow: hidden;
     
     border: none;
     border-radius: 2vh;
-    text-align: justify;
+    text-align: center;
+}
+
+.info-screen h1 {
+    font-size: min(6vh, 8vw) ;
+}
+
+.info-screen p {
+    font-size: min(2vh, 3vw) ;
 }
 
 .custom-year-hint {
@@ -152,7 +167,30 @@ body[data-theme="black"] {
     font-size: min(2vh, 3vw);
     color: #777;
     margin: 0;
-    padding: 0vh 8vw;
+    padding: 0vh 8vw; 
+}
+
+.social-hint {
+    font-size: min(2vh, 3vw);
+    color: #777;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Use flexbox */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Center vertically */
+}
+
+#social_hint_div.transparent-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+}
+
+.social-hint .fa-arrow-left {
+    margin-right: 0.2vw; /* Add some spacing between the arrow and the text */
 }
 
 .title {
@@ -195,11 +233,11 @@ body[data-theme="black"] {
 }
 
 .hidden-visibility {
-    visibility: hidden;
+    visibility: hidden !important;
 }
 
 .hidden-display {
-    display: none;
+    display: none !important;
 }
 
 .debt-amount {
@@ -215,10 +253,6 @@ body[data-theme="black"] {
 
 .debt-amount #counter-decimal {
     font-size: 2vw;
-    position: absolute;
-    left: 100%;
-    top: 95%;
-    transform: translate(100%, -10%);
     color: #777;
 }
 
@@ -228,6 +262,13 @@ body[data-theme="black"] {
     border: none;
     margin: 0;
     padding: 0;
+}
+
+.transparent-div .debt-amount {
+    margin: 0 0 0 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 }
 
 .year-buttons button {

@@ -25,36 +25,45 @@
 <body>
         
     <div class="control-buttons">
-        <!-- Dark mode  -->
-        <button class="toggle-dark-mode">
-            <i class="fa-regular fa-moon" aria-hidden="true"></i>
-        </button>
+        <div class="row">
+            <!-- Dark mode  -->
+            <button class="toggle-dark-mode">
+                <i class="fa-regular fa-moon" aria-hidden="true"></i>
+            </button>
 
-        <!-- Mute Sound  -->
-        <button class="toggle-sound">
-            <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-        </button>
+            <!-- Mute Sound  -->
+            <button class="toggle-sound">
+                <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+            </button>
 
-        <!-- Info Button  -->
-        <button class="info-button hidden-display">
-            <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
-        </button>
+            <!-- Info Button  -->
+            <button class="info-button hidden-display">
+                <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
+            </button>
 
-        <!-- Comments Button -->
-        <button class="toggle-comments hidden-display">
-            <i class="fa-regular fa-message" aria-hidden="true"></i>
-        </button>
+            <!-- Comments Button -->
+            <button class="toggle-comments hidden-display">
+                <i class="fa-regular fa-message" aria-hidden="true"></i>
+            </button>
+
+            <!-- Social Buttons -->
+            <button class="instagram hidden-display">
+                <i class="fa-brands fa-instagram"></i>
+            </button>
+            <button class="twitter hidden-display">
+                <i class="fa-brands fa-twitter"></i>
+            </button>
+
+            <div id="social_hint_div" class="transparent-div" style="opacity: 50%;">
+                <p class="social-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-left"></i> Bother your friends!</p>
+            </div>
+        </div>
 
         <div class="transparent-div" style="opacity: 50%;">
-            <p class="sound-hint hidden-visibility animate__faster"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
+            <p class="sound-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
         </div>
-    </div>
-<!--
-    
-    <div class="sound-hint-container">
         
     </div>
--->
 
     <!-- The year selection interface -->
     <div class="js-Prompt">
@@ -76,19 +85,21 @@
     
     <!-- The Loan Counter -->
     <div class="js-Counter">
-        <div class="container animate__animated hidden-display">
+        <div class="container animate__animated hidden-display animate__faster">
             <h1 class="title animate__animated">My Current Student Debt Is</h1>
-            <p class="debt-amount animate__animated">
-                <span id="counter-pounds" class="hidden-visibility"></span>
-                <span id="counter-decimal" class="hidden-visibility"></span>
-            </p>
-            <div class="transparent-div animate__animated" style="opacity: 40%;">
+            <div class="transparent-div animate__animated">
+                <p class="debt-amount animate__animated">
+                    <span id="counter-pounds" class="hidden-visibility"></span>
+                    <span id="counter-decimal" class="hidden-visibility"></span>
+                </p>
+            </div>
+            <div class="transparent-div animate__animated" style="opacity: 80%;">
                 <div class="motd_bounds">
                     <h2 class="motd hidden-visibility animate__animated">...probably, it might be a bit more or less...</h2> 
                 </div>
             </div>
         </div>
-        <div class="comments_container animate__animated hidden-display">
+        <div class="comments_container animate__animated animate__faster hidden-display">
             <h1>The comments will be here...</h1>
         </div>
         <!--  Confetti GIF  -->
