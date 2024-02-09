@@ -21,6 +21,7 @@ const debtTitle = document.querySelector('.js-Counter .title');
 const debtAmountPounds = document.querySelector('#counter-pounds');
 const debtAmountDecimal = document.querySelector('#counter-decimal');
 const motdText = document.querySelector('.js-Counter .motd');
+const motdContainer = document.querySelector('.js-Counter .motd_bounds');
 const backgroundgif = document.getElementById('money_rain');
 const confettigif = document.getElementById('confetti');
     
@@ -28,10 +29,6 @@ const confettigif = document.getElementById('confetti');
 const infoScreenContainer = document.querySelector('.info-screen-container');
 const infoScreen = document.querySelector('.info-screen');
 
-// Comments Screen
-const commentsContainer = document.querySelector('.comments_container');
-
-// Top 'bar' stuff
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound');
@@ -260,10 +257,10 @@ infoButton.addEventListener('click', function() {
             infoScreenContainer.classList.remove('animate__fadeInUpBig');
         }, 500);
     } else {
-        infoScreenContainer.classList.add('animate__fadeOutDownBig');
+        infoScreenContainer.classList.add('animate__fadeOutLeftBig');
         setTimeout(() => {
             infoScreenContainer.classList.add('hidden-display');
-            infoScreenContainer.classList.remove('animate__fadeOutDownBig');
+            infoScreenContainer.classList.remove('animate__fadeOutLeftBig');
         }, 500); 
     }
 });
@@ -330,14 +327,15 @@ function selectYear(year) {
     //Remove soundHint
     soundHint.classList.remove('animate__fadeInDown');
     soundHint.classList.add('animate__fadeOutUp');
-    setTimeout(() => {
-        soundHint.classList.add('hidden-display');
-    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Show the motd toggle and info buttons
     setTimeout(() => {
         infoButton.classList.remove('hidden-display');
         infoButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 250);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        motdButton.classList.remove('hidden-display');
+        motdButton.classList.add('animate__animated', 'animate__fadeInDown')
     }, 500);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Fade out prompt
@@ -425,26 +423,6 @@ function selectYear(year) {
         // debtAmountDecimal.classList.remove('animate__fadeInUp', 'animate__slower');
         motdText.classList.remove('animate__fadeIn', 'animate__slower');
     }, 10000);  // This delays the second animation by 5 seconds.
-
-    // Show comments and social buttons
-    setTimeout(() => {
-        commentsButton.classList.remove('hidden-display');
-        commentsButton.classList.add('animate__animated', 'animate__fadeInDown')
-    }, 10000);  // This delays the second animation by 1 second. Adjust as needed.
-    setTimeout(() => {
-        instaButton.classList.remove('hidden-display');
-        instaButton.classList.add('animate__animated', 'animate__fadeInDown')
-    }, 10250);  // This delays the second animation by 1 second. Adjust as needed.
-    setTimeout(() => {
-        tweetButton.classList.remove('hidden-display');
-        tweetButton.classList.add('animate__animated', 'animate__fadeInDown')
-    }, 10500);  // This delays the second animation by 1 second. Adjust as needed.
-
-    // social prompt
-    setTimeout(() => {
-        socialHint.classList.add('animate__animated', 'animate__fadeInRight');
-        socialHint.classList.remove('hidden-display');
-    }, 11000);  // This delays the second animation by 1 second. Adjust as needed.
 
     // Change motd constantly
     setTimeout(() => {
