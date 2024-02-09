@@ -2,6 +2,10 @@
 const yearlyAmount = 9250 + 6860; // Tuition + Average maintaince loan 2020/21 from
 // https://assets.publishing.service.gov.uk/media/619e227f8fa8f5037b09c5f9/avg-maintenance-loan-paid-by-domicile_2021.pdf 
 
+// Page
+const pageUrl = encodeURIComponent("https://howmuchstudentdebt.com");
+const pageTitle = encodeURIComponent(document.title);
+
 // Get the counter elements
 const counterPoundsElement = document.getElementById('counter-pounds');
 const counterDecimalElement = document.getElementById('counter-decimal');
@@ -34,10 +38,13 @@ const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound');
 const motdToggle = document.querySelector('.toggle-motd');
 const infoButton = document.querySelector('.info-button');
+const soundHint = document.querySelector('.sound-hint'); // Just text
+const soundHintContainer = document.getElementById('sound-hint-container'); // Just text
+
 // Social Buttons
 const instaButton = document.querySelector('.instagram');
 const tweetButton = document.querySelector('.twitter');
-const soundHint = document.querySelector('.sound-hint'); // Just text
+const facebookButton = document.querySelector('.facebook');
 const socialHint = document.querySelector('.social-hint'); // Just text
 
 // Dark Mode live change to system pref
@@ -57,6 +64,12 @@ const commentsArray = [
     "...probably, it might be a bit more or less...",
     "...probably, based on average annual student loans...",
     "don't stare at it for too long! it just gets you down : /"
+];
+
+// Random choice to share on social media with...
+const shareMessageArray = [
+    "lol right peeps, apparently i have a lot of debt, oh well! what about y'all? ",
+    "okkk guys i don't care but this is how much debt i have?! what number did you guys get? "
 ];
 
 //Avg interest rates on student loans over the past years
@@ -198,14 +211,41 @@ soundButton.addEventListener('click', function() {
     }
 });
 
+
+// SHARING
 // Share to instagram
 instaButton.addEventListener('click', function() {    
-    
+    const shareToInstagramStory = async () => {
+        const shareData = {
+          title: "How much student debt are you in?",
+          text: shareMessageArray[Math.floor(Math.random() * shareMessageArray.length)],
+          url: "https://howmuchstudentdebt.com", // Replace with the URL of your website
+        };
+      
+        try {
+          if (navigator.canShare && navigator.canShare(shareData)) {
+            await navigator.share(shareData);
+          } else {
+            console.log("Sharing not supported");
+          }
+        } catch (error) {
+          console.error("Error sharing:", error);
+        }
+      };
 });
 
 // Share to twitter
-tweetButton.addEventListener('click', function() {    
-    
+tweetButton.addEventListener('click', function() {
+    const tweetText = shareMessageArray[Math.floor(Math.random() * shareMessageArray.length)];
+    const url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + encodeURIComponent(tweetText);
+    window.open(url, '_blank');
+});
+
+// Share to facebook
+facebookButton.addEventListener('click', function() {    
+    const url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+    // Open the URL in a new tab
+    window.open(url, '_blank');
 });
 
 // show MOTD
@@ -227,7 +267,6 @@ motdToggle.addEventListener('click', function() {
         motdToggle.querySelector('i').className = "fa-regular fa-message";
     }
 });
-
 
 // Info Button
 infoButton.addEventListener('click', function() {    
@@ -317,16 +356,18 @@ function selectYear(year) {
     setTimeout(() => {
         infoButton.classList.remove('hidden-display');
         infoButton.classList.add('animate__animated', 'animate__fadeInDown')
-    }, 250);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 250);  
     setTimeout(() => {
         motdToggle.classList.remove('hidden-display');
         motdToggle.classList.add('animate__animated', 'animate__fadeInDown')
-    }, 500);  // This delays the second animation by 1 second. Adjust as needed.
+        // Also turn off sound-hint display
+        soundHintContainer.classList.add('hidden-display');
+    }, 500);  
     
     // Fade out prompt
     setTimeout(() => {
         promptContainer.classList.add('animate__animated', 'animate__fadeOut');
-    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 1000);  
     promptContainer.classList.add('hidden-display');
     
     // Counter Animations
@@ -345,7 +386,7 @@ function selectYear(year) {
             // Audio playback failed
             console.log("Audio playback failed:", err);
         });
-    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 1000);  
     
     // Add some suspense elipses
     for(let i = 1; i <= 3; i++) {
@@ -358,7 +399,7 @@ function selectYear(year) {
     setTimeout(() => {
         debtAmountPounds.classList.remove('hidden-visibility');
         debtAmountPounds.classList.add('animate__animated', 'animate__fadeInUpBig');
-    }, 2500);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 2500);  
 
     // Play the party popper
     setTimeout(() => {
@@ -368,18 +409,18 @@ function selectYear(year) {
             // Audio playback failed
             console.log("Audio playback failed:", err);
         });
-    }, 4000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 4000);  
 
     //Show confetti gif and remove after
     setTimeout(() => {
         confettigif.classList.remove('hidden-display');
-    }, 4000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 4000);  
     setTimeout(() => {
         confettigif.classList.add('animate__fadeOutDown');
-    }, 4750);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 4750);  
     setTimeout(() => {
         confettigif.classList.add('hidden-display');
-    }, 7000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 7000);  
     
     // Delay for decimal counter
     setTimeout(() => {
@@ -420,9 +461,13 @@ function selectYear(year) {
         tweetButton.classList.add('animate__animated', 'animate__fadeInDown');
     }, 10500);
     setTimeout(() => {
+        facebookButton.classList.remove('hidden-display');
+        facebookButton.classList.add('animate__animated', 'animate__fadeInDown');
+    }, 10750);
+    setTimeout(() => {
         socialHint.classList.remove('hidden-display');
         socialHint.classList.add('animate__animated', 'animate__fadeInLeft');
-    }, 10750);
+    }, 11500);
     
 
     // Change motd constantly
@@ -485,7 +530,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         prompt.classList.add('animate__animated', 'animate__fadeInUp');
         prompt.classList.remove('hidden-visibility');
-    }, 1000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 1000);  
     
     // Animating buttons
     let i = 0;
@@ -494,7 +539,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         setTimeout(() => {
             button.classList.add('animate__animated', 'animate__fadeInUp');
             button.classList.remove('hidden-visibility');
-        }, 2000 + i);  // This delays the second animation by 1 second. Adjust as needed.
+        }, 2000 + i);
         i += 500;
     });
     
@@ -502,12 +547,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         soundHint.classList.add('animate__animated', 'animate__fadeInDown');
         soundHint.classList.remove('hidden-display');
-    }, 3000);  // This delays the second animation by 1 second. Adjust as needed.
+        // for(i = 0, i < 5, i++) {
+        //     setTimeout(() => {
+        //         soundHint.classL
+        //     }, 500);  
+        // }
+    }, 3000); 
     
     // Custom Year button after 5 seconds
     setTimeout(() => {
         customYearButton.classList.add('animate__animated', 'animate__fadeInUp');
         customYearButton.classList.remove('hidden-visibility');
-    }, 7000);  // This delays the second animation by 1 second. Adjust as needed.
+    }, 7000);  
     
 });

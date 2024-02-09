@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How Much Student Debt Am I In?</title>
     <link rel="icon" href="loancounter/assets/img/favicon.png" type="image/png">
-    
+    <meta property="og:description" content="This is just a cool and very comforting little thing to show you how much student debt you (probably) have ‼" />
+
     <!--  CSS  -->
     <link rel="stylesheet" type="text/css" href="loancounter/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -54,13 +55,16 @@
             <button class="twitter hidden-display">
                 <i class="fa-brands fa-twitter"></i>
             </button>
+            <button class="facebook hidden-display">
+                <i class="fa-brands fa-facebook"></i>
+            </button>
 
             <div id="social_hint_div" class="transparent-div" style="opacity: 50%;">
                 <p class="social-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-left"></i> Bother your friends!</p>
             </div>
         </div>
 
-        <div class="transparent-div" style="opacity: 50%;">
+        <div id="sound-hint-container" class="transparent-div" style="opacity: 50%;">
             <p class="sound-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
         </div>
         
@@ -114,6 +118,9 @@
     <div class="info-screen-container hidden-display animate__animated animate__faster">
         <div class="info-screen">
             <h1>What is this lol?</h1>
+            <p>
+                This is just a cool and very comforting little thing to show you how much student debt you (probably) have ‼
+            </p>
             <p>
                 Current interest rates are kinda mad, and if you started uni after 2013 (most of you), you ain't really finna pay it back 💀
             </p>

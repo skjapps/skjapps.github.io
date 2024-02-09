@@ -62,7 +62,8 @@ body[data-theme="black"] {
 .home-button,
 .info-button,
 .instagram,
-.twitter{
+.twitter,
+.facebook{
     font-size: 4vw;
     padding: 0.5vh 1vw;
     border: none;
