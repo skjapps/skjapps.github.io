@@ -20,11 +20,20 @@ const debtTitle = document.querySelector('.js-Counter .title');
 const debtAmountPounds = document.querySelector('#counter-pounds');
 const debtAmountDecimal = document.querySelector('#counter-decimal');
 const motdText = document.querySelector('.js-Counter .motd');
+const motdContainer = document.querySelector('.js-Counter .motd_bounds');
+const backgroundgif = document.getElementById('money_rain');
+const confettigif = document.getElementById('confetti');
     
+// Info Screen
+const infoScreenContainer = document.querySelector('.info-screen-container');
+const infoScreen = document.querySelector('.info-screen');
+
 // Control Buttons
 const darkModeButton = document.querySelector('.toggle-dark-mode');
 const soundButton = document.querySelector('.toggle-sound'); // Changed the selector
-const motdButton = document.querySelector('.toggle-motd'); // Changed the selector
+const motdButton = document.querySelector('.toggle-motd');
+const infoButton = document.querySelector('.info-button'); 
+const soundHint = document.querySelector('.sound-hint');
 
 // Dark Mode live change to system pref
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -171,17 +180,44 @@ soundButton.addEventListener('click', function() {
     }
 });
 
-// MOTD Toggle
+// show motd
 motdButton.addEventListener('click', function() {    
-    // Cycling themes
-    if (motdOn) {
-        motdText.classList.add('hidden-visibility');
-        motdOn = false;
-        motdButton.querySelector('i').className = "fa-regular fa-message";
-    } else {
-        motdText.classList.remove('hidden-visibility');
-        motdOn = true;
+    // if motd isn't showing
+    if (motdContainer.classList.contains('hidden-visibility')) {
+        setTimeout(() => {
+            motdContainer.classList.remove('hidden-visibility');
+            motdContainer.classList.add('animate__fadeIn');
+        }, 500); 
+        setTimeout(() => {
+            motdContainer.classList.remove('animate__fadeIn');
+        }, 1500);
         motdButton.querySelector('i').className = "fa-solid fa-message";
+    } else {
+        motdContainer.classList.add('animate__fadeOut');
+        setTimeout(() => {
+            motdContainer.classList.add('hidden-visibility');
+            motdContainer.classList.remove('animate__fadeOut');
+        }, 500);
+        motdButton.querySelector('i').className = "fa-regular fa-message";
+    }
+});
+
+// Info Button
+infoButton.addEventListener('click', function() {    
+    // Show info
+    // If info isn't showing
+    if (infoScreenContainer.classList.contains('hidden-display')) {
+        infoScreenContainer.classList.remove('hidden-display');
+        infoScreenContainer.classList.add('animate__fadeInLeftBig');
+        setTimeout(() => {
+            infoScreenContainer.classList.remove('animate__fadeInLeftBig');
+        }, 500);
+    } else {
+        infoScreenContainer.classList.add('animate__fadeOutLeftBig');
+        setTimeout(() => {
+            infoScreenContainer.classList.add('hidden-display');
+            infoScreenContainer.classList.remove('animate__fadeOutLeftBig');
+        }, 500); 
     }
 });
 
@@ -226,6 +262,20 @@ function validateInput(input) {
 function selectYear(year) {    
     // using the thing
     yearOfUni = year - 1;
+    
+    //Remove soundHint
+    soundHint.classList.remove('animate__fadeInDown');
+    soundHint.classList.add('animate__fadeOutUp');
+    
+    // Show the motd toggle and info buttons
+    setTimeout(() => {
+        infoButton.classList.remove('hidden-display');
+        infoButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 250);  // This delays the second animation by 1 second. Adjust as needed.
+    setTimeout(() => {
+        motdButton.classList.remove('hidden-display');
+        motdButton.classList.add('animate__animated', 'animate__fadeInDown')
+    }, 500);  // This delays the second animation by 1 second. Adjust as needed.
     
     // Fade out prompt
     setTimeout(() => {
@@ -282,7 +332,15 @@ function selectYear(year) {
         });
     }, 8000);  // This delays the second animation by 5 seconds.
     
-    // Reveal motd + play crickets sound effect
+    // Clear animations
+    setTimeout(() => {
+        debtTitle.classList.remove('animate__fadeInDown');
+        debtAmountPounds.classList.remove('animate__fadeInUpBig');
+        // debtAmountDecimal.classList.remove('animate__fadeInUp', 'animate__slower');
+        motdText.classList.remove('animate__fadeIn', 'animate__slower');
+    }, 10000);  // This delays the second animation by 5 seconds.
+
+    // Change motd constantly
     setTimeout(() => {
         // Remove this for re-adding later
         motdText.classList.remove('animate__fadeIn', 'animate__slower');
