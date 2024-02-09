@@ -248,6 +248,18 @@ facebookButton.addEventListener('click', function() {
     window.open(url, '_blank');
 });
 
+// Define a function to handle the resize event
+function handleResize() {
+    // Adjust the font size of the motdText to fit within the container
+    // Set a scaling factor (1.25) - 2x is maximum
+    const fontSize = (debtContainer.offsetWidth / motdText.textContent.length) * 1.25;
+    motdText.style.fontSize = fontSize + 'px';
+
+    // Adjust the font size of the soundHint to fit within the container
+    fontSize = (soundHintContainer.offsetWidth / soundHint.textContent.length) * 1.25;
+    soundHint.style.fontSize = fontSize + 'px';
+}
+
 // show MOTD
 motdToggle.addEventListener('click', function() {    
     // if comments aren't showing
@@ -295,10 +307,6 @@ function changeMOTDWithFade(newText) {
     // After fade out, change the content
     setTimeout(() => {
         motdText.textContent = newText;
-        // Adjust the font size of the motdText to fit within the container
-        // Set a scaling factor (1.25) - 2x is maximum
-        const fontSize = (debtContainer.offsetWidth / motdText.textContent.length) * 1.25;
-        motdText.style.fontSize = fontSize + 'px';
         // Remove fadeOut class
         motdText.classList.remove('animate__fadeOut');
         motdText.classList.add('animate__fadeIn');
@@ -519,6 +527,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.body.setAttribute('data-theme', 'light');
         infoScreen.setAttribute('data-theme', 'dark');
     }
+    
+    // Attach the handleResize function to the resize event of the document
+    window.addEventListener("resize", handleResize);
 
     // Make sure input is always numeric only
     customYearInput.addEventListener('input', function() {
@@ -547,11 +558,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         soundHint.classList.add('animate__animated', 'animate__fadeInDown');
         soundHint.classList.remove('hidden-display');
-        // for(i = 0, i < 5, i++) {
-        //     setTimeout(() => {
-        //         soundHint.classL
-        //     }, 500);  
-        // }
     }, 3000); 
     
     // Custom Year button after 5 seconds

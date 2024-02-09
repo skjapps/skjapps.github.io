@@ -64,7 +64,7 @@ body[data-theme="black"] {
 .instagram,
 .twitter,
 .facebook{
-    font-size: 4vw;
+    font-size: max(3.5vw, 3.5vh);
     padding: 0.5vh 1vw;
     border: none;
     background-color: none;
@@ -72,14 +72,9 @@ body[data-theme="black"] {
     color: var(--icon-color); /* Use the CSS variable for color */
 }
 
+.container,
 .js-Counter {
-    overflow: hidden;
-    overflow-y: hidden;
-}
-
-.container {
     position: relative;
-    top: 10vh;
     padding: 2vh 5vw;
     display: flex;
     flex-direction: column;
@@ -88,7 +83,18 @@ body[data-theme="black"] {
     height: 80vh; /* 100% of the viewport height */
     /*  No more scrollbars  */
     overflow: hidden;
+    overflow-y: hidden;
     z-index: 10;
+}
+
+.js-Counter {
+    top: 0;
+    overflow: hidden;
+    overflow-y: hidden;
+}
+
+.container {
+    top: 10vh;
 }
 
 .gif-container {
@@ -164,10 +170,10 @@ body[data-theme="black"] {
 }
 
 .sound-hint {
-    font-size: min(2.5vh, 3.5vw);
+    font-size: min(3vh, 3vw);
     color: #777;
     margin: 0;
-    padding: 0vh 8vw; 
+    padding: 0vh max(5.5vh, 6vw);
 }
 
 .social-hint {
@@ -194,7 +200,7 @@ body[data-theme="black"] {
 }
 
 .title {
-    font-size: 5vw; /* Adjust the font size as needed */
+    font-size: min(6vh, 5vw); /* Adjust the font size as needed */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -226,7 +232,7 @@ body[data-theme="black"] {
 }
 
 .prompt {
-    font-size: 4vw;
+    font-size: min(5vh, 4vw);
     margin: 2vh;
     text-align: center;
     width: 80%;
@@ -248,13 +254,13 @@ body[data-theme="black"] {
 }
 
 .debt-amount #counter-pounds {
-    font-size: 10vw;
+    font-size: min(12vh, 10vw);
     display: inline-block;
     font-weight: bold;
 }
 
 .debt-amount #counter-decimal {
-    font-size: 2vw;
+    font-size: min(3vh, 2vw);
     color: #777;
 }
 
