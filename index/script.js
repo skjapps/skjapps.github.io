@@ -39,6 +39,7 @@ const maindiv = document.querySelector('.main');
 const mainList = document.querySelectorAll('.main > div');
 const totalElements = mainList.length;
 let currentIndex = 0;
+let userInteracted = false;
 
 //////////////////////
 /*  Page Functions  */
@@ -151,37 +152,128 @@ function showCard() {
 /*  Crappy Custom Carousel  */
 //////////////////////////////
 
-// Function to handle animation of panels
-function animatePanels(currentIndex) {
-    const nextIndex = (currentIndex + 1) % totalElements;
+// Event listeners for user interaction
+document.querySelector('.main').addEventListener('touchstart', handleUserInteraction);
+document.addEventListener('keydown', handleUserInteraction);
+
+document.querySelector('.main').addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+});
+
+document.querySelector('.main').addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe detected
+        if (deltaX > 0) {
+            // Swipe right
+            navigateCarousel('right');
+            console.log("right swiped");    
+        } else {
+            // Swipe left
+            navigateCarousel('left');
+            console.log("left swiped");
+        }
+    }
+});
+
+// Keyboard arrow key event handling
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') {
+        // Left arrow key pressed
+        navigateCarousel('left');
+        console.log("left pressed");
+    } else if (e.key === 'ArrowRight') {
+        // Right arrow key pressed
+        navigateCarousel('right');
+        console.log("right pressed");
+    }
+});
+
+// Function to navigate the carousel
+function navigateCarousel(direction) {
+    if (direction === 'left') {
+        // Navigate to the previous pane
+        const nextIndex = (currentIndex - 1 + totalElements) % totalElements;
+        animatePanels(currentIndex, nextIndex, 'animate__slideOutRight', 'animate__slideInLeft');
+        currentIndex = nextIndex;
+    } else if (direction === 'right') {
+        // Navigate to the next pane
+        const nextIndex = (currentIndex + 1) % totalElements;
+        animatePanels(currentIndex, nextIndex, 'animate__slideOutLeft', 'animate__slideInRight');
+        currentIndex = nextIndex;
+    }
+}
+
+// Function to animate panels
+function animatePanels(currentIndex, nextIndex, currentAnimationOut, nextAnimationIn) {
     const nextPanel = mainList[nextIndex];
     const currentPanel = mainList[currentIndex];
 
-    firstDelay = 0;
-    if (currentIndex==0) {
-        firstDelay = 5000;
-    }
-    
     // Current panel fades out to the left
-    setTimeout(() => {
-        currentPanel.classList.add('animate__fadeOutLeft');
-    }, 5000 + firstDelay);
+    currentPanel.classList.add(currentAnimationOut);
 
     // After the fade-out animation completes, hide the current panel
     setTimeout(() => {
         currentPanel.classList.add('hidden-display');
-        currentPanel.classList.remove('animate__fadeOutLeft');
+        currentPanel.classList.remove(currentAnimationOut);
         // Next panel fades in from the right
         nextPanel.classList.remove('hidden-display');
-        nextPanel.classList.add('animate__fadeInRight');
-    }, 5500 + firstDelay);
+        nextPanel.classList.add(nextAnimationIn);
+    }, 500);
 
     // Reset the animation class from the next panel after the animation completes
     setTimeout(() => {
-        nextPanel.classList.remove('animate__fadeInRight');
-    }, 6000 + firstDelay);
+        nextPanel.classList.remove(nextAnimationIn);
+    }, 1000);
 }
 
+// Update the indicator dot based on the current panel
+function updateIndicator(currentIndex) {
+    const indicatorDots = document.querySelectorAll('.indicator-dot');
+    indicatorDots.forEach((dot, index) => {
+        if (index === currentIndex) {
+            dot.classList.add('active-dot');
+        } else {
+            dot.classList.remove('active-dot');
+        }
+    });
+}
+
+// Call updateIndicator when navigating the carousel
+function navigateCarousel(direction) {
+    if (direction === 'left') {
+        // Navigate to the previous pane
+        const nextIndex = (currentIndex - 1 + totalElements) % totalElements;
+        animatePanels(currentIndex, nextIndex, 'animate__slideOutRight', 'animate__slideInLeft');
+        currentIndex = nextIndex;
+    } else if (direction === 'right') {
+        // Navigate to the next pane
+        const nextIndex = (currentIndex + 1) % totalElements;
+        animatePanels(currentIndex, nextIndex, 'animate__slideOutLeft', 'animate__slideInRight');
+        currentIndex = nextIndex;
+    }
+    // Update the indicator dot
+    updateIndicator(currentIndex);
+}
+
+// Function to handle user interaction
+function handleUserInteraction() {
+    userInteracted = true;
+
+    // Reset userInteracted after 5 seconds if no further interaction
+    setTimeout(() => {
+        userInteracted = false;
+    }, 5000); // Adjust the delay (in milliseconds) as needed
+}
+
+/////////////////////////
+/*  Rest of the stuff  */
+/////////////////////////
 
 // Function to set parallax effect
 function setParallax(xPos, yPos) {
@@ -221,12 +313,19 @@ function loadAnimation() {
         i += 500;
     });  
     
-    // Start the carousel
-    setInterval(() => {
-        animatePanels(currentIndex);
-        currentIndex = (currentIndex + 1) % totalElements; // Move to the next panel
-    }, 10000);
-    
+    // Function to start automatic carousel rotation
+    const startCarouselRotation = () => {
+        // Start the automatic carousel rotation
+        const rotateCarousel = () => {
+            if (!userInteracted) {
+                navigateCarousel('right'); // Rotate to the next panel
+            }
+        };
+        setInterval(rotateCarousel, 10000); // Adjust the interval (in milliseconds) as needed
+    };
+
+    // Start automatic carousel rotation after an extra delay for the original slide
+    setTimeout(startCarouselRotation, 5000);
 }
 
 // Mousemove event
@@ -266,6 +365,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Play page load animations
     loadAnimation();
+
+    // Update the indicator dot on page load
+    updateIndicator(currentIndex);
     
     // Make 3d Card
     threedimensioncard();

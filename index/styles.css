@@ -54,6 +54,26 @@ body {
     overflow: hidden;
 }
 
+/* Add this to your CSS */
+.carousel-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc; /* Default color of the indicator dot */
+    margin: 0 5px; /* Adjust the spacing between dots as needed */
+}
+
+/* Add this to highlight the active dot */
+.active-dot {
+    background-color: #555; /* Color of the active indicator dot */
+}
+
 myCanvas {
     position: relative;
 }
