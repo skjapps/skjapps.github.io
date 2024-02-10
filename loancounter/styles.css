@@ -75,7 +75,7 @@ body[data-theme="black"] {
 
 .container {
     position: relative;
-    padding: 15vh 0vw 0vh 0vw;
+    padding: min(15vh, 10vw) 0vw 0vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -320,6 +320,10 @@ body[data-theme="black"] {
 .custom-year-btn {
     margin: 1vw;
     padding: 0.5vw 4vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     font-size: 3vw;
     text-align: center;
     cursor: pointer;

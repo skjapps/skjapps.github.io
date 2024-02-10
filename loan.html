@@ -19,11 +19,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-03GPTXGGWB"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-03GPTXGGWB');
+        gtag('config', 'G-03GPTXGGWB');
     </script>
 
 </head>
@@ -85,7 +85,7 @@
                     <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
                 </div>
                 <!--     Custom Year Button       -->
-                <button id="customYearButton" class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
+                <button class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
                 Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
                 </button>
                 <p class="custom-year-hint hidden-visibility">Type a number and click the box</p>
