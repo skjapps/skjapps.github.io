@@ -75,18 +75,16 @@ body[data-theme="black"] {
 
 .container {
     position: relative;
-    padding: min(15vh, 10vw) 0vw 0vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60vh; /* 100% of the viewport height */
+    height: 90vh;
     /*  No more scrollbars  */
     overflow: hidden;
     overflow-y: hidden;
     z-index: 10;
 }
-
 
 /* Flex gap size */
 #year-selection-container.container {
