@@ -278,6 +278,13 @@ body[data-theme="black"] {
     align-items: baseline;
 }
 
+#year-buttons-div.transparent-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .year-buttons {
     display: flex;
     flex-direction: row;

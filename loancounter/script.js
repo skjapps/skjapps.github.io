@@ -142,7 +142,7 @@ setInterval(() => {
     // Calculate the amount spent in total over the years
     // The chaging bit + previous loan
     // Now with Interest!
-    //  The compound interest formula is ((P*(1+i)^n) - P), where P is the principal, i is the annual interest rate, and n is the number of periods.
+    // The compound interest formula is ((P*(1+i)^n) - P), where P is the principal, i is the annual interest rate, and n is the number of periods.
     let interest = 0;
     for(let i = 0; i < yearOfUni; i++) {
         interest += yearlyAmount * (1 + (interestArray[i] / 100));
