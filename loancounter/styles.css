@@ -75,7 +75,7 @@ body[data-theme="black"] {
 
 .container {
     position: relative;
-    padding: 10vh 0vw 0vh 0vw;
+    padding: 15vh 0vw 0vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -293,6 +293,7 @@ body[data-theme="black"] {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2vh;
     justify-content: center;
 }
 
@@ -334,7 +335,7 @@ body[data-theme="black"] {
     margin: 1vh;
     padding: 2vh 4vw;
     text-align: center;
-    font-size: 3vw;
+    font-size: min(3vw, 3vh);
     border: none;
     background-color: none;
     border-radius: 1vw;
