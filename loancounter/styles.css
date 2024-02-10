@@ -8,6 +8,7 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Smooth transition */
     --icon-color: #333;  /* Set a default icon color */
     overflow: hidden;
+    overflow-y: hidden;
 }
 
 /* Dark theme styles */
@@ -74,16 +75,26 @@ body[data-theme="black"] {
 
 .container {
     position: relative;
-    padding: 2vh 0vw;
+    padding: 10vh 0vw 0vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    height: 80vh; /* 100% of the viewport height */
+    justify-content: center;
+    height: 60vh; /* 100% of the viewport height */
     /*  No more scrollbars  */
     overflow: hidden;
     overflow-y: hidden;
     z-index: 10;
+}
+
+
+/* Flex gap size */
+#year-selection-container.container {
+    gap: 8vh;
+}
+
+#counter-container.container {
+    gap: 20vh;
 }
 
 .js-Counter {
@@ -282,7 +293,7 @@ body[data-theme="black"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .year-buttons {
