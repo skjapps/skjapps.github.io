@@ -42,7 +42,7 @@ const soundHint = document.querySelector('.sound-hint'); // Just text
 const soundHintContainer = document.getElementById('sound-hint-container'); // Just text
 
 // Social Buttons
-const instaButton = document.querySelector('.instagram');
+const shareButton = document.querySelector('.generic-sharebutton');
 const tweetButton = document.querySelector('.twitter');
 const facebookButton = document.querySelector('.facebook');
 const socialHint = document.querySelector('.social-hint'); // Just text
@@ -213,25 +213,23 @@ soundButton.addEventListener('click', function() {
 
 
 // SHARING
-// Share to instagram
-instaButton.addEventListener('click', function() {    
-    const shareToInstagramStory = async () => {
-        const shareData = {
-          title: "How much student debt are you in?",
-          text: shareMessageArray[Math.floor(Math.random() * shareMessageArray.length)],
-          url: "https://howmuchstudentdebt.com", // Replace with the URL of your website
-        };
-      
+// Share to anything?
+shareButton.addEventListener('click', async () => {   
+    if (navigator.share) {
         try {
-          if (navigator.canShare && navigator.canShare(shareData)) {
-            await navigator.share(shareData);
-          } else {
-            console.log("Sharing not supported");
-          }
-        } catch (error) {
-          console.error("Error sharing:", error);
+        const shareText = shareMessageArray[Math.floor(Math.random() * shareMessageArray.length)];
+        await navigator.share({
+            title: 'How Much Student Debt Are You In?',
+            text: shareText,
+            url: 'https://howmuchstudentloan.com'
+        });
+        console.log('Shared successfully');
+        } catch (err) {
+        console.error('Error sharing:', err);
         }
-      };
+    } else {
+        console.log('Web Share API not supported.');
+    }
 });
 
 // Share to twitter
@@ -453,8 +451,8 @@ function selectYear(year) {
     
     // Show social buttons and hint
     setTimeout(() => {
-        instaButton.classList.remove('hidden-display');
-        instaButton.classList.add('animate__animated', 'animate__fadeInDown');
+        shareButton.classList.remove('hidden-display');
+        shareButton.classList.add('animate__animated', 'animate__fadeInDown');
     }, 10250);
     setTimeout(() => {
         tweetButton.classList.remove('hidden-display');
