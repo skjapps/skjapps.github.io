@@ -2,15 +2,14 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background-image: url('assets/img/background.gif'); /* Replace with the path to your GIF */
-    background-color: #000;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 96.5vh;
+    min-height: 98vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem; /* Adjust this value to control the space around the container */
+    padding: 1.5rem; /* Adjust this value to control the space around the container */
     /*  Text Colour  */
     color: #f0f0f0;
     overflow: hidden;
@@ -18,23 +17,39 @@ body {
 
 .container {
     background-color: rgba(000, 000, 000, 0.98); /* Slight transparency to let the gif show through */
-    border-radius: 15px; /* Rounded rectangle as per your request */
+    border-radius: 1rem; /* Rounded rectangle as per your request */
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 10rem;
     flex-grow: 1; /* Allows the container to take up available space */
 }
 
+.home-button {
+    position: fixed; /* Fixed position */
+    top: 3.5rem; /* Top padding */
+    left: 3.5rem; /* Left padding */
+    font-size: 2rem; /* Icon size */
+    color: #f0f0f0; /* Icon color */
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
 h1 {
+    font-size: 2rem;
     font-family: 'Tiny BoxBitA10', sans-serif;
     text-align: center;
 }
 
-img {
-    max-width: 60%;
-    max-height: auto;
+.screenshots {
+    height: 10rem;
+    width: auto; /* Or a fixed width, if needed */
+    object-fit: contain; /* Or 'contain', depending on the desired effect */
+}
+
+.download {
+    max-height: 10rem;
+    width: auto;
 }
 
 a {
@@ -42,6 +57,7 @@ a {
 }
 
 p1 {
+    padding: 0 1rem;
     text-align: center;
 }
 

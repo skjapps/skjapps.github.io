@@ -40,6 +40,7 @@ body {
 .greeting,
 .loan-pane,
 .clock-pane,
+.audiovis-pane,
 .scene-container {
     /* Size */
     height: 100%;
@@ -90,9 +91,6 @@ myCanvas {
 .clock-pane {
     background-size: cover;
     background-repeat: no-repeat;
-    
-    padding: 0vh 0vw;
-    
     border-radius: 2vh;     /* Rounded edges */
     box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
 }
