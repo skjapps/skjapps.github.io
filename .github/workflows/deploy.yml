@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0  # Needed for pushing to another branch
 
+      - name: List files for debugging
+        run: |
+          pwd
+          ls -alR
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
