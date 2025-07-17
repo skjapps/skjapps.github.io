@@ -1,0 +1,241 @@
+/* Reset and Globals */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden; /* hide scrollbars, cuts off vertical */
+    height: 100vh; /*Body takes all space*/
+    
+    /* Background stuff  */
+    background-image: url('assets/img/background.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background */
+    background-color: #210f0c; /* the background colour behind the image */
+    
+    /* Layout the content in the center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* No scrollbars */
+}
+
+/* Main Container*/
+.main {
+    /* Size */
+    height: 100%;
+    width: 90%;
+
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.greeting,
+.loan-pane,
+.clock-pane,
+.audiovis-pane,
+.scene-container {
+    /* Size */
+    height: 100%;
+    width: 100%;
+    
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Add this to your CSS */
+.carousel-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc; /* Default color of the indicator dot */
+    margin: 0 5px; /* Adjust the spacing between dots as needed */
+}
+
+/* Add this to highlight the active dot */
+.active-dot {
+    background-color: #555; /* Color of the active indicator dot */
+}
+
+myCanvas {
+    position: relative;
+}
+
+.loan-pane {
+    background-image: url('assets/img/Img29_(Windows_Vista)%20(1).png'); /* Replace with the path to your GIF */
+}
+
+.clock-pane {
+    background-image: url('assets/img/Img29_(Windows_Vista).png'); /* Replace with the path to your GIF */
+}
+
+.loan-pane,
+.clock-pane {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 2vh;     /* Rounded edges */
+    box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
+}
+
+/* Typography */
+h1 {
+    font-weight: bold;
+    color: #eee;
+}
+
+h2 {
+    color: #ddd;
+}
+
+.greeting h1 {
+    font-size: 20vh;
+}
+
+.greeting h2 {
+    font-size: 6.5vh;
+}
+
+.loan-pane h1 {
+    /* Layout */
+    font-size: 5vh;
+}
+
+.loan-pane h2 {
+    /* Layout */
+    position: relative;
+    top: 18rem; /* adjust as needed */
+    right: 26rem; /* adjust as needed */
+    font-size: 2.5vh;
+}
+
+.clock-pane h1 {
+    /* Layout */
+    font-size: 10vh;
+    color: black;
+}
+
+.clock-pane h2 {
+    /* Layout */
+    font-size: 5vh;
+    color: #555;
+}
+
+.clock-pane p {
+    /* Layout */
+    position: relative;
+    bottom: 16rem; /* adjust as needed */
+    left: 20rem; /* adjust as needed */
+    
+    color: #bbb;
+    font-size: 2vh;
+}
+
+/* Navbar Styles */
+nav {
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.9);  
+    height: 15vh;
+    padding: 0 5vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(200, 200, 200, 0.75) 100%);
+}
+
+/*AppBar*/
+appbar {
+    justify-content: space-evenly;
+    height: 25vh;
+    padding: 0 0;
+    background: linear-gradient(to bottom, rgba(50, 50, 50, 0.95) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* Common Bar Styles */
+nav, appbar {
+    display: flex; 
+    align-items: center; 
+    width: 95%;              /* Reduced to 95% for a margin effect */
+    margin: 2% auto;         /* Top and bottom margin for hover effect and centered horizontally */
+    border-radius: 2vh;     /* Rounded edges */
+    box-shadow: 0vh 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo img {
+    width: auto; /* Example width - you can adjust as needed */
+    height: 5vh; /* Maintain the aspect ratio */
+    display: block; /* To remove any default vertical spacing */
+}
+
+nav button {
+    border: none;
+    background: none;
+    font-size: 3vh;
+}
+
+/* Hidden styles */
+.hidden-visibility {
+    visibility: hidden;
+}
+
+.hidden-display {
+    display: none;
+}
+
+
+/* Shine Buttons */
+.shine-button {
+    position: relative;
+    overflow: hidden; /* Hide the overflowing parts of pseudo-element */
+    padding: 6.5vh;
+    background-color: #555;
+    background-size: 80%; /* Cover the button */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background image */
+    border: 2vh;
+    border-radius: 2vh;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.8); /* Shadow for depth */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.shine-button:hover {
+    background-color: #777; /* Darkened background on hover */
+}
+
+.shine-button::before {
+    content: ""; /* Empty content for the pseudo-element */
+    position: absolute;
+    top: -50%; /* Start from above the button */
+    left: -50%; /* Start from the left side */
+    width: 200%; /* Double the width */
+    height: 200%; /* Double the height */
+    background: rgba(255, 255, 255, 0.4); /* White with some opacity for shine */
+    transform: rotate(30deg); /* Diagonal shine */
+    pointer-events: none; /* Ensures the shine doesn't interfere with clicks */
+    transition: transform 0.5s, opacity 0.5s; /* Smooth transition */
+    opacity: 0; /* Hide by default */
+    transform-origin: 50% 50%; /* Ensure the rotation is from the center */
+}
+
+.shine-button:hover::before {
+    opacity: 1; /* Show on hover */
+    transform: rotate(30deg) translateX(200%); /* Move to the right on hover */
+}

@@ -1,14 +1,10 @@
-# Environment files
-.env
-.DS_Store
-
 # Node modules
 node_modules/
 
 # Build output
-dist/
-build/
+.next/
 out/
+dist/
 
 # Logs
 npm-debug.log*
@@ -16,56 +12,43 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# OS files
-Thumbs.db
-ehthumbs.db
-*.swp
-
-# Dependency directories
-jspm_packages/
-
-# Environment files
+# Environment variables
+.env
 .env.*
 !.env.example
 
-# Coverage directory
-coverage/
+# OS files
+.DS_Store
+Thumbs.db
 
-# Misc
-*.local
+# Editor directories and files
+.vscode/
+.idea/
 *.sublime-workspace
 *.sublime-project
 
-# VSCode settings
-.vscode/
+# Dependency directories
+bower_components/
 
-# Next.js
-.next/
-.next/cache/
-
-# SvelteKit
-.svelte-kit/
-
-# Nuxt.js
-.nuxt/
-
-# Gatsby files
-.cache/
-public/
-
-# Storybook
-.storybook-out/
-out-storybook/
-
-# Parcel
-.cache/
-
-# Firebase
-.firebase/
-
-# Miscellaneous
+# Misc
+coverage/
+*.local
 *.log
-*.pid
-*.seed
-*.tgz
-.pnpm-debug.log
+
+# Next.js export
+export/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Test coverage
+coverage/
+
+# Next.js build cache
+.next/cache/

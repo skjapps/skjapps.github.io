@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>skjapps</title>
+    <link rel="icon" href="index/assets/img/favicon.png" type="image/png">
+      
+    <!-- CSS  -->
+    <link rel="stylesheet" type="text/css" href="index/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+    <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
+      
+    <!-- Three.js 3d card   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+      
+  </head>
+  <body>
+
+    <!--   Top "Nav" Bar   -->
+    <nav class="animate__animated animate__fadeInDown animate__fast">
+        <button onclick="navigateTo('about.html')"
+                class="hidden-visibility">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+        </button>
+        <div class="logo">
+            <a onclick="showCard()">
+                <img src="index/assets/img/logo.png" alt="skjapps">
+            </a>
+        </div>
+        <button onclick="navigateTo('clockboard.html')"
+                class="hidden-visibility">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+        </button>
+    </nav>
+      
+    <!--   Main pane   -->
+    <div class="main animate__animated animate__faster">
+        <div class="greeting animate__animated animate__faster">
+            <h1>skjapps</h1>
+            <h2>sri's cool stuffs</h2>
+        </div>
+        <!-- loan-pane -->
+        <div class="animate__animated animate__faster hidden-display">
+            <h1>How Much Student Debt Are You In?</h1>
+            <h2><i class="fa-solid fa-arrow-down"></i> click the money bag to find out!</h2>
+        </div>
+        <div class="audiovis-pane animate__animated animate__faster hidden-display">
+            <h1>Check out the new Audio Visualiser for Windows!</h1>
+            <h2><i class="fa-solid fa-arrow-down"></i> With spotify support and loads of options, click the spectrum icon</h2>
+        </div>
+        <!-- <div class="clock-pane animate__animated animate__faster hidden-display">
+            <p>It's up here! <i class="fa-solid fa-arrow-up"></i></p>
+            <h1>Check out my clock!</h1>
+            <h2>Read that again</h2>
+        </div> -->
+    </div>
+
+    <!-- Carousel dots -->
+    <div class="carousel-indicator">
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+    </div>
+    
+    <!--   3d Card   -->
+    <div class="card-pane animate__animated animate__faster hidden-display" id="scene-container">
+        <canvas id="myCanvas"></canvas>
+    </div>
+      
+    <!--   Bottom "App" Bar   -->
+    <appbar class="animate__animated animate__fadeInUp animate__fast">
+        
+        <button style="background-image: url('index/assets/img/loan.png')" 
+            class="shine-button hidden-visibility"
+            onclick="navigateTo('loan.html')">
+        </button>
+        <button style="background-image: url('index/assets/img/audiovisualiser.png')" 
+                class="shine-button hidden-visibility"
+                onclick="navigateTo('audiovisualiser.html')">
+        </button>
+        <button style="background-image: url('index/assets/img/earth.png')" 
+                class="shine-button hidden-visibility" 
+                onclick="navigateTo('spaceflight.html')">
+        </button>
+        <button style="background-image: url('index/assets/img/joker.png')" 
+                class="shine-button hidden-visibility">
+        </button>
+        <button style="background-image: url('index/assets/img/music.png')" 
+                class="shine-button hidden-visibility">
+        </button>
+    </appbar>
+      
+    <!--  JS  -->
+    <script src="index/script.js"></script>
+      
+  </body>
+</html>
