@@ -32,4 +32,3 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           publish_dir: ./out
           publish_branch: main
-          force_orphan: true 
