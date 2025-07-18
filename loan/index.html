@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Student Debt Am I In?</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <!-- Image and description showed in embeds of my website -->
+    <meta property="og:title" content="How Much Student Debt Am I In?">
+    <meta property="og:description" content="This is just a cool and very comforting little thing to show you how much student debt you (probably) have ‼" />
+    <meta property="og:image" content="assets/img/pagepreview.png">
+
+    <!--  CSS  -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+    <script src="https://kit.fontawesome.com/40837cab78.js" crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-03GPTXGGWB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-03GPTXGGWB');
+    </script>
+
+</head>
+<body>
+        
+    <div class="control-buttons">
+        <div class="row">
+            <!-- Dark mode  -->
+            <button class="toggle-dark-mode">
+                <i class="fa-regular fa-moon" aria-hidden="true"></i>
+            </button>
+
+            <!-- Mute Sound  -->
+            <button class="toggle-sound">
+                <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+            </button>
+
+            <!-- Info Button  -->
+            <button class="info-button hidden-display">
+                <i class="fa-solid fa-clipboard-question" aria-hidden="true"></i>
+            </button>
+
+            <!-- MOTD Toggle -->
+            <button class="toggle-motd hidden-display">
+                <i class="fa-solid fa-message" aria-hidden="true"></i>
+            </button>
+
+            <!-- Social Buttons -->
+            <button class="generic-sharebutton hidden-display">
+                <i class="fa-regular fa-share-from-square"></i>
+            </button>
+            <button class="twitter hidden-display">
+                <i class="fa-brands fa-twitter"></i>
+            </button>
+            <button class="facebook hidden-display">
+                <i class="fa-brands fa-facebook"></i>
+            </button>
+
+            <div id="social_hint_div" class="transparent-div" style="opacity: 50%;">
+                <p class="social-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-left"></i> Bother your friends!</p>
+            </div>
+        </div>
+
+        <div id="sound-hint-container" class="transparent-div" style="opacity: 50%;">
+            <p class="sound-hint animate__animated animate__faster hidden-display"><i class="fa-solid fa-arrow-up"></i> You should probably check this if you're in class :p</p>
+        </div>
+        
+    </div>
+
+    <!-- The year selection interface -->
+    <div class="js-Prompt">
+        <div id="year-selection-container" class="container">
+            <h1 class="title animate__animated animate__fadeInDown">How Much Student Debt Are You In?</h1>
+            <p class="prompt hidden-visibility">What year are you in?</p>
+            <div id="year-buttons-div"class="transparent-div">
+                <div class="year-buttons">
+                    <button onclick="selectYear(1)" class="hidden-visibility">First Year</button>
+                    <button onclick="selectYear(2)" class="hidden-visibility">Second Year</button>
+                    <button onclick="selectYear(3)" class="hidden-visibility">Third Year</button>
+                </div>
+                <!--     Custom Year Button       -->
+                <button class="custom-year-btn hidden-visibility" onclick="handleCustomYearClick()">
+                Year <input type="text" id="customYearInput" pattern="[0-9]{1}" maxlength="1" onclick="event.stopPropagation();" >
+                </button>
+                <p class="custom-year-hint hidden-visibility">Type a number and click the box</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- The Loan Counter -->
+    <div class="js-Counter">
+        <div id="counter-container" class="container animate__animated hidden-display animate__faster">
+            <h1 class="title animate__animated">My Current Student Debt Is</h1>
+            <div class="transparent-div animate__animated">
+                <p class="debt-amount animate__animated">
+                    <span id="counter-pounds" class="hidden-visibility"></span>
+                    <span id="counter-decimal" class="hidden-visibility"></span>
+                </p>
+            </div>
+            <div class="transparent-div animate__animated" style="opacity: 80%;">
+                <div class="motd_bounds animate__animated animate__faster">
+                    <h2 class="motd hidden-visibility animate__animated animate__faster">...probably, it might be a bit more or less...</h2> 
+                </div>
+            </div>
+        </div>
+        <!--  Confetti GIF  -->
+        <div id="confetti" class="gif-container hidden-display animate__animated animate__slower">
+            <img src="assets/img/confetti.gif" alt="Confetti">
+        </div>
+        <!--  Money Rain GIF  -->
+        <div id="money_rain" class="gif-container hidden-display animate__animated">
+            <img src="assets/img/raining-money.gif" alt="Money Rain">
+        </div>
+    </div>
+
+    <!-- Info Screen -->
+    <div class="info-screen-container hidden-display animate__animated animate__faster">
+        <div class="info-screen">
+            <h1>What is this lol?</h1>
+            <p>
+                This is just a cool and very comforting little thing to show you how much student debt you (probably) have ‼
+            </p>
+            <p>
+                Current interest rates are pretty bad, and if you started uni after 2013 (most of you now), you probably ain't paying it back 💀
+            </p>
+            <p>
+                It's probably not all that funny, but you could have this on in a lecture or seminar or something... just pay attention to what they're saying at the front lol
+            </p>
+            <p>
+                I think someone thought this was actually real. No, I actually don't know your student debt amount, its just a simple calculation based on average student loans...
+            </p>
+            <p>
+                <a href="https://assets.publishing.service.gov.uk/media/619e227f8fa8f5037b09c5f9/avg-maintenance-loan-paid-by-domicile_2021.pdf" 
+                style="color: inherit; text-decoration: underline;">
+                Here's that "average" i was talking about. </a>
+            </p>
+            <p>
+                <a href="https://www.gov.uk/repaying-your-student-loan" 
+                style="color: inherit; text-decoration: underline;">
+                Each </a>
+
+                <a href="https://www.gov.uk/repaying-your-student-loan/which-repayment-plan-you-are-on" 
+                style="color: inherit; text-decoration: underline;">
+                of </a>
+                
+                <a href="https://www.gov.uk/repaying-your-student-loan/when-you-start-repaying" 
+                style="color: inherit; text-decoration: underline;">
+                these </a>
+
+                <a href="https://www.gov.uk/repaying-your-student-loan/what-you-pay" 
+                style="color: inherit; text-decoration: underline;">
+                words </a>
+
+                <a href="https://www.gov.uk/repaying-your-student-loan/how-you-repay" 
+                style="color: inherit; text-decoration: underline;">
+                lead </a>
+                
+                <a href="https://www.gov.uk/repaying-your-student-loan/make-extra-repayments" 
+                style="color: inherit; text-decoration: underline;">
+                to </a>
+
+                <a href="https://www.gov.uk/repaying-your-student-loan/getting-a-refund" 
+                style="color: inherit; text-decoration: underline;">
+                useful </a>
+
+                <a href="https://www.gov.uk/repaying-your-student-loan/when-your-student-loan-gets-written-off-or-cancelled" 
+                style="color: inherit; text-decoration: underline;">
+                information </a>
+                
+            </p>
+            <p>
+                <a href="mailto:howmuchstudentdebt@gmail.com"
+                style="color: inherit; text-decoration: underline;">
+                Send all your thoughts, grief and hate mail here, I might read it 📮</a>
+            </p>
+            <footer>
+                Made with '❤️' by <a href="https://skjapps.github.io" style="color: inherit; text-decoration: underline;">skjapps</a>
+            </footer>
+        </div> 
+    </div>
+    
+    <!--  JS  -->
+    <script src="script.js"></script>
+    
+</body>
+</html>
