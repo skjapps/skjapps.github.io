@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/skjapps.github.io' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/skjapps.github.io/' : '',
+  basePath: '',
+  assetPrefix: '',
 };
 
 export default nextConfig;
