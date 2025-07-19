@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Play, Pause, Volume2 } from 'lucide-react';
+import { ArrowLeft, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 
 interface MusicPost {
@@ -18,7 +18,6 @@ interface MusicPost {
 export default function MusicPage() {
   const [posts, setPosts] = useState<MusicPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -69,28 +68,28 @@ export default function MusicPage() {
             Music
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Some tracks I've been working on. Click play to listen!
+            Some tracks I&apos;ve been working on. Click play to listen!
           </p>
         </div>
         {/* Music Platform Links */}
         <div className="flex justify-center gap-6 m-8">
           <a href="https://open.spotify.com/user/your-spotify-id" target="_blank" rel="noopener noreferrer" title="Spotify" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" width={64} height={64} style={{ display: 'inline-block' }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
           <a href="https://soundcloud.com/your-soundcloud-id" target="_blank" rel="noopener noreferrer" title="SoundCloud" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Antu_soundcloud.svg" alt="SoundCloud" width={64} height={64} style={{ display: 'inline-block' }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Antu_soundcloud.svg" alt="SoundCloud" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
           <a href="https://music.apple.com/profile/your-apple-music-id" target="_blank" rel="noopener noreferrer" title="Apple Music" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" alt="Apple Music" width={64} height={64} style={{ display: 'inline-block' }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" alt="Apple Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
           <a href="https://tidal.com/your-tidal-id" target="_blank" rel="noopener noreferrer" title="Tidal" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Tidal_%28service%29_logo_only.svg" alt="Tidal" width={64} height={64} style={{ display: 'inline-block', background: '#000', borderRadius: 6 }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/4/41/Tidal_%28service%29_logo_only.svg" alt="Tidal" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
           <a href="https://music.youtube.com/your-youtube-music-id" target="_blank" rel="noopener noreferrer" title="YouTube Music" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Youtube_Music_icon.svg" alt="YouTube Music" width={64} height={64} style={{ display: 'inline-block', background: '#ff0000', borderRadius: 6 }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Youtube_Music_icon.svg" alt="YouTube Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
           <a href="https://music.amazon.com/your-amazon-music-id" target="_blank" rel="noopener noreferrer" title="Amazon Music" className="hover:scale-110 transition-transform">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Amazon_Music_logo.svg" alt="Amazon Music" width={64} height={64} className="h-16" style={{ display: 'inline-block', background: '#000', borderRadius: 6 }} />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/9/92/Amazon_Music_logo.svg" alt="Amazon Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
         </div>
         {/* Music Posts List */}

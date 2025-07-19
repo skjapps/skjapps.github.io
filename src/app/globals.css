@@ -125,7 +125,17 @@
 }
 
 html, body {
-  height: 100%;
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: auto;
+  overscroll-behavior-y: contain;
+  touch-action: manipulation;
+}
+body {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Custom animations for the carousel */

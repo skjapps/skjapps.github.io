@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    domains: [
+      'upload.wikimedia.org',
+    ],
   },
   basePath: '',
   assetPrefix: '',

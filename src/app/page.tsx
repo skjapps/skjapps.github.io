@@ -60,14 +60,29 @@ const appDrawerButtons: AppDrawerButton[] = [
 ];
 
 export default function HomePage() {
+  // All hooks at the top
   const [showAbout, setShowAbout] = useState(false);
   const [showAppDrawer, setShowAppDrawer] = useState(false);
-
-  // Animation state for overlays
   const [aboutVisible, setAboutVisible] = useState(false);
   const aboutTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [fadeOut, setFadeOut] = useState(false);
 
-  // Show/hide logic for About overlay
+  // All useEffects at the top
+  useEffect(() => {
+    if (!loading) return;
+    if (progress < 100) {
+      const timeout = setTimeout(() => setProgress(p => Math.min(p + Math.random() * 15, 100)), 100);
+      return () => clearTimeout(timeout);
+    } else {
+      setTimeout(() => {
+        setFadeOut(true);
+        setTimeout(() => setLoading(false), 600); // match fade duration
+      }, 400);
+    }
+  }, [progress, loading]);
+
   useEffect(() => {
     if (showAbout) {
       setAboutVisible(true);
@@ -82,15 +97,8 @@ export default function HomePage() {
     };
   }, [showAbout, aboutVisible]);
 
-  // Toggle about panel
-  const handleAboutToggle = () => {
-    setShowAbout((prev) => !prev);
-  };
-
-  // Animation logic - matching original script.js
   useEffect(() => {
     let i = 0;
-    // Animate appbar buttons (only the ones in the bottom dock)
     const appbarButtons = document.querySelectorAll('.shine-button.hidden-visibility');
     i = 0;
     appbarButtons.forEach(button => {
@@ -102,7 +110,6 @@ export default function HomePage() {
     });
   }, []);
 
-  // Parallax effect
   useEffect(() => {
     const setParallax = (xPos: number, yPos: number) => {
       const xOffset = (-200 * xPos) + 'px';
@@ -134,6 +141,35 @@ export default function HomePage() {
       document.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
+
+  // Loading overlay conditional rendering AFTER all hooks
+  if (loading) {
+    return (
+      <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-700 ${fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <Image src="/assets/img/logo.png" alt="SKJAPPS Logo" width={256} height={64} className="mb-8 w-64 h-auto drop-shadow-lg" unoptimized />
+        <div className="relative w-64 h-8 flex flex-col items-center mb-4">
+          {/* Pixel-style loading bar */}
+          <div className="absolute top-0 left-0 w-full h-full bg-gray-800 rounded-md border-4 border-black" style={{ boxShadow: '0 0 0 4px #222, 0 0 0 8px #444' }} />
+          <div className="absolute top-0 left-0 h-full bg-cyan-400 rounded-md border-4 border-black transition-all duration-300" style={{ width: `${progress}%`, boxShadow: '0 0 0 4px #222, 0 0 0 8px #444' }} />
+          <span className="relative z-10 text-black font-mono text-lg font-bold tracking-widest" style={{ textShadow: '1px 1px 0 #fff, 2px 2px 0 #000' }}>{Math.floor(progress)}%</span>
+        </div>
+        {/* Pixel spinner */}
+        <div className="mt-2 animate-spin" style={{ width: 32, height: 32 }}>
+          <svg viewBox="0 0 32 32" width={32} height={32} fill="none">
+            <rect x="14" y="2" width="4" height="8" rx="2" fill="#00eaff" />
+            <rect x="14" y="22" width="4" height="8" rx="2" fill="#00eaff" />
+            <rect x="2" y="14" width="8" height="4" rx="2" fill="#00eaff" />
+            <rect x="22" y="14" width="8" height="4" rx="2" fill="#00eaff" />
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
+  // Toggle about panel
+  const handleAboutToggle = () => {
+    setShowAbout((prev) => !prev);
+  };
 
   return (
     <div className="main-container flex flex-col h-full w-full bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:p-8" style={{ backgroundImage: 'url(/assets/img/background.gif)', backgroundColor: '#210f0c' }}>

@@ -196,12 +196,12 @@ export function CarouselPanel({
                 ) : (
                   <>
                     {panel.title && (
-                      <h1 className={panel.titleClassName || 'font-bold text-white text-5xl md:text-7xl'}>
+                      <h1 className={panel.titleClassName || 'font-bold text-white text-2xl md:text-4xl'}>
                         {panel.title}
                       </h1>
                     )}
                     {panel.subtitle && (
-                      <h2 className={panel.subtitleClassName || 'text-gray-200 text-2xl md:text-4xl'}>
+                      <h2 className={panel.subtitleClassName || 'text-gray-200 text-xl md:text-2xl'}>
                         {panel.subtitle}
                       </h2>
                     )}
