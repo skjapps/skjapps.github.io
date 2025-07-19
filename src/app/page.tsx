@@ -193,6 +193,7 @@ export default function HomePage() {
           <ShineButton
             backgroundImage="/assets/img/music.png"
             className="w-16 h-16 md:w-14 md:h-14 sm:w-12 sm:h-12 max-w-[60px] max-h-[60px] aspect-square"
+            onClick={() => window.location.href = '/music'}
           />
           <ShineButton
             className="w-16 h-16 md:w-14 md:h-14 sm:w-12 sm:h-12 max-w-[60px] max-h-[60px] aspect-square"
