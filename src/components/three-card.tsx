@@ -38,7 +38,7 @@ export function ThreeCard({
     sceneRef.current = scene;
 
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(70, 1, 0.1, 100);
     camera.position.z = 5;
 
     // Renderer setup

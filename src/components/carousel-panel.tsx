@@ -139,26 +139,26 @@ export function CarouselPanel({
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center align-middle">
-      {/* Carousel Content */}
-      <div className="flex flex-row w-full h-full justify-center items-center align-middle">
+      {/* Padded Carousel Container */}
+      <div className="relative w-full h-full flex flex-col justify-center items-center px-12 pb-8">
         {/* Navigation Button Left */}
         <Button
           variant="ghost"
           size="icon"
-          className="z-10 absolute left-0 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
+          className="z-10 absolute left-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
           onClick={() => navigateCarousel('left')}
         >
           <ChevronLeft className="h-6 w-6" />
         </Button>
 
+        {/* Carousel Content */}
         <div 
-          className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden"
+          className="relative w-full h-full flex items-center justify-center overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           {panels.map((panel, index) => {
             const isActive = index === currentIndex;
-            
             let animationClass = 'animate__animated animate__faster';
             if (isActive && slideDirection) {
               if (slideDirection === 'left') {
@@ -167,7 +167,6 @@ export function CarouselPanel({
                 animationClass += ' animate__slideInRight';
               }
             }
-
             return (
               <div
                 key={panel.id}
@@ -212,29 +211,28 @@ export function CarouselPanel({
             );
           })}
         </div>
-        
+
         {/* Navigation Button Right */}
         <Button
           variant="ghost"
           size="icon"
-          className="z-10 absolute right-0 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
+          className="z-10 absolute right-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
           onClick={() => navigateCarousel('right')}
         >
           <ChevronRight className="h-6 w-6" />
         </Button>
-      </div>
-
-      {/* Carousel Indicators */}
-      <div className="flex-1 absolute bottom-0 justify-center py-2">
-        {panels.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToPanel(index)}
-            className={`w-[10px] h-[10px] rounded-full mx-[5px] transition-colors duration-300 cursor-pointer ${
-              index === currentIndex ? 'bg-white' : 'bg-white/50'
-            }`}
-          />
-        ))}
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center py-2">
+          {panels.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToPanel(index)}
+              className={`w-[10px] h-[10px] rounded-full mx-[5px] transition-colors duration-300 cursor-pointer ${
+                index === currentIndex ? 'bg-white' : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
