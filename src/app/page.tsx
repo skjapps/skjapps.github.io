@@ -132,7 +132,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="main-container flex flex-col h-full w-full bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:p-8" style={{ backgroundImage: 'url(/assets/img/background.gif)', backgroundColor: '#210f0c' }}>
+    <div className="main-container flex flex-col flex-wrap h-screen w-screen bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:p-8" style={{ backgroundImage: 'url(/assets/img/background.gif)', backgroundColor: '#210f0c' }}>
       {/* Fade group for all background elements */}
       <div className={`flex flex-col flex-1 justify-between gap-y-4 transition-opacity duration-500 ${showAppDrawer ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
         {/* Top Navigation Bar */}
