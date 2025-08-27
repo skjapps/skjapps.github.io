@@ -1,0 +1,16 @@
+[
+    {
+        "id": "deadhau1",
+        "title": "Thriving Rodents",
+        "audioFile": "/assets/audio/ThrivingRodents.wav",
+        "date": "2025-08-27"
+    },
+    {
+        "id": "my-track-id",
+        "title": "My Track Title",
+        "audioFile": "/music/audio/my-track.mp3",
+        "coverImage": "/music/covers/my-cover.jpg",
+        "date": "2024-01-20",
+        "description": "A short description of the track."
+    }
+]
