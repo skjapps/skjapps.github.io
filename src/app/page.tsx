@@ -94,38 +94,6 @@ export default function HomePage() {
     });
   }, []);
 
-  useEffect(() => {
-    const setParallax = (xPos: number, yPos: number) => {
-      const xOffset = (-200 * xPos) + 'px';
-      const yOffset = (-50 * yPos) + 'px';
-      const zoom = 120;
-      const mainContainer = document.querySelector('.main-container') as HTMLElement;
-      if (mainContainer) {
-        mainContainer.style.backgroundPosition = `calc(50% + ${xOffset}) calc(50% + ${yOffset})`;
-        mainContainer.style.backgroundSize = `auto ${zoom}%`;
-      }
-    };
-    const handleMouseMove = (e: MouseEvent) => {
-      const mouseX = e.clientX / window.innerWidth - 0.5;
-      const mouseY = e.clientY / window.innerHeight - 0.5;
-      setParallax(mouseX, mouseY);
-    };
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length === 1) {
-        const touchX = e.touches[0].clientX / window.innerWidth - 0.5;
-        const touchY = e.touches[0].clientY / window.innerHeight - 0.5;
-        setParallax(touchX, touchY);
-      }
-    };
-    setParallax(0, 0);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchmove', handleTouchMove);
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, []);
-
   // Toggle about panel
   const handleAboutToggle = () => {
     setShowAbout((prev) => !prev);
