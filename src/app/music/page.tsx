@@ -72,7 +72,7 @@ export default function MusicPage() {
           </p>
         </div>
         {/* Music Platform Links */}
-        <div className="flex justify-center gap-6 m-8">
+        {/* <div className="flex justify-center gap-6 m-8">
           <a href="https://open.spotify.com/user/your-spotify-id" target="_blank" rel="noopener noreferrer" title="Spotify" className="hover:scale-110 transition-transform">
             <Image src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
@@ -91,7 +91,7 @@ export default function MusicPage() {
           <a href="https://music.amazon.com/your-amazon-music-id" target="_blank" rel="noopener noreferrer" title="Amazon Music" className="hover:scale-110 transition-transform">
             <Image src="https://upload.wikimedia.org/wikipedia/commons/9/92/Amazon_Music_logo.svg" alt="Amazon Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
           </a>
-        </div>
+        </div> */}
         {/* Music Posts List */}
         <div className="max-w-xl mx-auto space-y-6">
           {posts.map((post) => (
