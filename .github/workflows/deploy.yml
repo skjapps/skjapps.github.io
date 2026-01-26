@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - next
+  repository_dispatch:
+    types: [youchat-updated]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -25,6 +28,39 @@ jobs:
 
       - name: Build Next.js static site
         run: npm run build # This will output static files to 'out' with output: 'export' in next.config.ts
+
+      # Checkout and build youchat (Vista)
+      - name: Checkout youchat repository
+        uses: actions/checkout@v4
+        with:
+          repository: skjapps/youchat
+          token: ${{ secrets.GH_PAT }}
+          path: youchat-temp
+
+      - name: Install youchat dependencies
+        run: |
+          cd youchat-temp
+          npm ci
+
+      - name: Build youchat static site with basePath
+        run: |
+          cd youchat-temp
+          # Temporarily update next.config.ts to add basePath
+          node -e "
+            const fs = require('fs');
+            const config = fs.readFileSync('next.config.ts', 'utf8');
+            const updated = config.replace(
+              'const nextConfig: NextConfig = {',
+              'const nextConfig: NextConfig = {\n  basePath: \"/vista\",\n  assetPrefix: \"/vista\",'
+            );
+            fs.writeFileSync('next.config.ts', updated);
+          "
+          npm run build
+
+      - name: Copy youchat build to main out directory
+        run: |
+          mkdir -p ./out/vista
+          cp -r youchat-temp/out/* ./out/vista/
 
       - name: Deploy to main branch
         uses: peaceiris/actions-gh-pages@v4

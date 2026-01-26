@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ArrowLeft, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -13,6 +14,7 @@ interface MusicPost {
   description?: string;
   audioFile: string;
   coverImage?: string;
+  tab?: string;
 }
 
 export default function MusicPage() {
@@ -50,6 +52,16 @@ export default function MusicPage() {
     );
   }
 
+  // Group posts by tab/category
+  const tabMap: Record<string, MusicPost[]> = {};
+  posts.forEach((post) => {
+    const tab = post.tab || 'Other';
+    if (!tabMap[tab]) tabMap[tab] = [];
+    tabMap[tab].push(post);
+  });
+  const tabNames = Object.keys(tabMap);
+  const defaultTab = tabNames[0] || 'Other';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <div className="container mx-auto p-4">
@@ -72,65 +84,68 @@ export default function MusicPage() {
           </p>
         </div>
         {/* Music Platform Links */}
-        {/* <div className="flex justify-center gap-6 m-8">
-          <a href="https://open.spotify.com/user/your-spotify-id" target="_blank" rel="noopener noreferrer" title="Spotify" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-          <a href="https://soundcloud.com/your-soundcloud-id" target="_blank" rel="noopener noreferrer" title="SoundCloud" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Antu_soundcloud.svg" alt="SoundCloud" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-          <a href="https://music.apple.com/profile/your-apple-music-id" target="_blank" rel="noopener noreferrer" title="Apple Music" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" alt="Apple Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-          <a href="https://tidal.com/your-tidal-id" target="_blank" rel="noopener noreferrer" title="Tidal" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/4/41/Tidal_%28service%29_logo_only.svg" alt="Tidal" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-          <a href="https://music.youtube.com/your-youtube-music-id" target="_blank" rel="noopener noreferrer" title="YouTube Music" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Youtube_Music_icon.svg" alt="YouTube Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-          <a href="https://music.amazon.com/your-amazon-music-id" target="_blank" rel="noopener noreferrer" title="Amazon Music" className="hover:scale-110 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/9/92/Amazon_Music_logo.svg" alt="Amazon Music" width={64} height={64} className="object-cover w-16 h-16 rounded-md" unoptimized />
-          </a>
-        </div> */}
-        {/* Music Posts List */}
-        <div className="max-w-xl mx-auto space-y-6">
-          {posts.map((post) => (
-            <Card key={post.id} className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300">
-              <CardContent className="flex flex-col items-center align-middle">
-                <div className="flex flex-col sm:flex-row align-middle justify-center items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
-                  <div className="flex-shrink-0 flex flex-row items-center space-x-2 space-y-2">
-                    {post.coverImage ? (
-                      <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        width={80}
-                        height={80}
-                        className="w-20 h-20 object-cover rounded-lg"
-                      />
-                    ) : (
-                      <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <Volume2 className="h-8 w-8 text-white" />
+        <div className="flex justify-center gap-6 m-4"></div>
+        {/* Tabbed Music Posts */}
+        <div className="max-w-2xl mx-auto mt-8">
+          <Tabs defaultValue={defaultTab} className="w-full">
+            <TabsList className="mb-4 w-full">
+              {tabNames.map((tab) => (
+                <TabsTrigger key={tab} value={tab} className="capitalize">
+                  {tab}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {tabNames.map((tab) => (
+              <TabsContent key={tab} value={tab} className="space-y-6">
+                {tabMap[tab].map((post) => (
+                  <Card key={post.id} className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <CardContent className="flex flex-col items-center align-middle">
+                      <div className="flex flex-col sm:flex-row align-middle justify-center items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <div className="flex-shrink-0 flex flex-row items-center space-x-2 space-y-2">
+                          {/* Cover Image */}
+                          {post.coverImage ? (
+                            <Image
+                              src={post.coverImage}
+                              alt={post.title}
+                              width={80}
+                              height={80}
+                              className="w-20 h-20 object-cover rounded-lg"
+                            />
+                          ) : (
+                            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                              <Volume2 className="h-8 w-8 text-white" />
+                            </div>
+                          )}
+                          {/* Main Text */}
+                          <div className="flex-1 text-center sm:text-left">
+                            <h3 className="text-xl font-semibold text-white mb-1">{post.title}</h3>
+                            <p className="text-sm text-gray-300">{formatDate(post.date)}</p>
+                          </div>
+                          {/* The music */}
+                          <audio
+                            src={post.audioFile}
+                            controls
+                            className="mx-auto sm:my-4 flex align-middle"
+                          />
+                        </div>
                       </div>
-                    )}
-                    <div className="flex-1 text-center sm:text-left">
-                      <h3 className="text-xl font-semibold text-white mb-1">{post.title}</h3>
-                      <p className="text-sm text-gray-300">{formatDate(post.date)}</p>
-                    </div>
+                      <p className="text-gray-300 text-sm leading-relaxed text-center sm:text-left">{post.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+                {tabMap[tab].length === 0 && (
+                  <div className="text-center py-12">
+                    <div className="text-white text-xl mb-4">No music posts in this tab</div>
+                    <p className="text-gray-300">
+                      Check back soon for new tracks!
+                    </p>
                   </div>
-                  <audio
-                    src={post.audioFile}
-                    controls
-                    className="mx-auto sm:my-4 flex align-middle"
-                  />
-                </div>
-                <div className="sm:pl-22 w-full">
-                  <p className="text-gray-300 text-sm leading-relaxed text-center sm:text-left">{post.description}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                )}
+              </TabsContent>
+            ))}
+          </Tabs>
         </div>
-        {/* No music posts yet */}
+        {/* No music posts at all */}
         {posts.length === 0 && (
           <div className="text-center py-12">
             <div className="text-white text-xl mb-4">No music posts yet</div>
@@ -140,6 +155,6 @@ export default function MusicPage() {
           </div>
         )}
       </div>
-    </div >
+    </div>
   );
 } 

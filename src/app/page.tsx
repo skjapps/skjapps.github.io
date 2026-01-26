@@ -160,6 +160,11 @@ export default function HomePage() {
             onClick={() => window.location.href = '/music'}
           />
           <ShineButton
+            backgroundImage="/assets/img/vista.png"
+            className="w-16 h-16 md:w-14 md:h-14 sm:w-12 sm:h-12 max-w-[60px] max-h-[60px] aspect-square"
+            onClick={() => window.location.href = '/vista'}
+          />
+          <ShineButton
             className="w-16 h-16 md:w-14 md:h-14 sm:w-12 sm:h-12 max-w-[60px] max-h-[60px] aspect-square"
             onClick={() => setShowAppDrawer(!showAppDrawer)}>
             <Grid3X3 size={50} className='size-10' />
