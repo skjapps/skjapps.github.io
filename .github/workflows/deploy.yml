@@ -61,16 +61,12 @@ jobs:
         run: |
           mkdir -p ./out/vista
           cp -r youchat-temp/out/* ./out/vista/
-          # Copy main repository's public assets to vista directory
-          # Vista needs access to the main site's assets (images, audio, etc.)
-          if [ -d "./public/assets" ]; then
-            echo "Copying main repository assets to vista..."
-            cp -r ./public/assets ./out/vista/
-          fi
-          # Also copy youchat's own assets if they exist
+          # Copy Vista's public assets to main site's assets directory
+          # Vista loads assets from the root /assets/ path
           if [ -d "youchat-temp/public/assets" ]; then
-            echo "Copying youchat assets..."
-            cp -r youchat-temp/public/assets/* ./out/vista/assets/ 2>/dev/null || true
+            echo "Copying Vista assets to main site assets..."
+            mkdir -p ./out/assets
+            cp -r youchat-temp/public/assets/* ./out/assets/
           fi
 
       - name: Deploy to main branch
