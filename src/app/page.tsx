@@ -142,8 +142,9 @@ export default function HomePage() {
             </DialogContent>
           </Dialog>
         </main>
+
         {/* Bottom App Bar */}
-        <div className="flex flex-row items-center justify-evenly h-20 shrink-0 pb-[env(safe-area-inset-bottom)] rounded-[2vh] shadow-lg bg-black/20 backdrop-blur-md border border-black/30 space-x-4 animate__animated animate__fadeInUp animate__fast">
+        <div className="flex flex-row items-center bottom-0 left-0 right-0 h-20 shrink-0 pb-[env(safe-area-inset-bottom)] justify-evenly rounded-[2vh] shadow-lg bg-black/20 backdrop-blur-md border border-black/30 space-x-4 animate__animated animate__fadeInUp animate__fast">
           <ShineButton
             backgroundImage="/assets/img/loan.png"
             className="w-16 h-16 md:w-14 md:h-14 sm:w-12 sm:h-12 max-w-[60px] max-h-[60px] aspect-square"
@@ -170,9 +171,10 @@ export default function HomePage() {
             <Grid3X3 size={50} className='size-10' />
           </ShineButton>
         </div>
+
+        {/* App Drawer Overlay */}
+        <AppDrawer buttons={appDrawerButtons} onClose={() => setShowAppDrawer(false)} show={showAppDrawer} />
       </div>
-      {/* App Drawer Overlay */}
-      <AppDrawer buttons={appDrawerButtons} onClose={() => setShowAppDrawer(false)} show={showAppDrawer} />
     </div>
   );
 }
