@@ -61,14 +61,16 @@ jobs:
         run: |
           mkdir -p ./out/vista
           cp -r youchat-temp/out/* ./out/vista/
-          # Copy public assets (images, etc.) that Next.js static export includes
-          # Next.js already copies public folder contents during build, but we ensure all assets are present
-          if [ -d "youchat-temp/public" ]; then
-            echo "Copying public assets from youchat..."
-            # The public folder contents should already be in out, but we'll verify the assets folder
-            if [ ! -d "./out/vista/assets" ] && [ -d "youchat-temp/public/assets" ]; then
-              cp -r youchat-temp/public/assets ./out/vista/
-            fi
+          # Copy main repository's public assets to vista directory
+          # Vista needs access to the main site's assets (images, audio, etc.)
+          if [ -d "./public/assets" ]; then
+            echo "Copying main repository assets to vista..."
+            cp -r ./public/assets ./out/vista/
+          fi
+          # Also copy youchat's own assets if they exist
+          if [ -d "youchat-temp/public/assets" ]; then
+            echo "Copying youchat assets..."
+            cp -r youchat-temp/public/assets/* ./out/vista/assets/ 2>/dev/null || true
           fi
 
       - name: Deploy to main branch
