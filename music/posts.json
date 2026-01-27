@@ -4,13 +4,15 @@
         "title": "Thriving Rodents",
         "audioFile": "/music/audio/ThrivingRodents.mp3",
         "date": "2025-08-27",
-        "description": "Thriving Rodents as opposed to dead mice."
+        "description": "Thriving Rodents as opposed to dead mice.",
+        "tab": "Demos"
     },
     {
         "id": "ukd1",
         "title": "A UK Dubstep Demo",
         "audioFile": "/music/audio/demo2.mp3",
         "date": "2025-12-30",
-        "description": "A short UK Dubstep demo of the style i like and am working on pog."
+        "description": "A short UK Dubstep demo of the style i like and am working on pog.",
+        "tab": "WIP"
     }
 ]
