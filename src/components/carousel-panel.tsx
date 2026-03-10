@@ -173,7 +173,7 @@ export function CarouselPanel({
                 className={cn(
                   animationClass,
                   isActive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
-                  'absolute inset-0 w-full h-full flex flex-col items-center justify-center text-center rounded-2xl shadow-2xl',
+                  'absolute inset-0 w-full h-full flex flex-col items-center justify-center text-center rounded-2xl shadow-2xl transition-opacity duration-200',
                   panel.containerClassName
                 )}
                 style={{

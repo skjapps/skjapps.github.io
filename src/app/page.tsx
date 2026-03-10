@@ -46,16 +46,44 @@ const carouselPanels: CarouselPanelData[] = [
 
 const appDrawerButtons: AppDrawerButton[] = [
   {
+    image: '/assets/img/loan.png',
+    label: 'Loan Calc',
+    onClick: () => window.location.href = '/loan',
+  },
+  {
+    image: '/assets/img/audiovisualiser.png',
+    label: 'Audio Vis',
+    onClick: () => window.location.href = '/audiovisualiser',
+  },
+  {
+    image: '/assets/img/music.png',
+    label: 'Music',
+    onClick: () => window.location.href = '/music',
+  },
+  {
+    image: '/assets/img/vista.png',
+    label: 'Vista',
+    onClick: () => window.location.href = '/vista',
+  },
+  {
     image: '/assets/img/bird.png',
+    label: 'Bird Flocking',
     onClick: () => window.location.href = '/flockingsimulation',
   },
   {
     image: '/assets/img/earth.png',
+    label: 'Spaceflight',
     onClick: () => window.location.href = '/spaceflight',
   },
   {
     image: '/assets/img/joker.png',
+    label: 'Card Match',
     onClick: () => window.location.href = '/cardgame',
+  },
+  {
+    image: '/assets/img/audiovisualiser.png', // TODO: replace with chrome ext icon
+    label: 'Chrome Vis',
+    onClick: () => window.location.href = '/chromevisualiser',
   },
 ];
 
@@ -102,7 +130,7 @@ export default function HomePage() {
   return (
     <div className="main-container flex flex-col flex-wrap h-screen w-screen bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:p-8" style={{ backgroundImage: 'url(/assets/img/background.gif)', backgroundColor: '#210f0c' }}>
       {/* Fade group for all background elements */}
-      <div className={`flex flex-col flex-1 justify-between gap-y-4 transition-opacity duration-500 ${showAppDrawer ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+      <div className={`flex flex-col flex-1 justify-between gap-y-4 transition-opacity duration-300 ease-in-out ${showAppDrawer ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
         {/* Top Navigation Bar */}
         <nav className="flex items-center justify-between h-16 px-4 shrink-0 rounded-[2vh] shadow-lg bg-white/20 backdrop-blur-md border border-white/30 animate__animated animate__fadeInDown animate__fast">
           <div style={{ width: 40, height: 40 }} aria-hidden="true" />
@@ -172,9 +200,9 @@ export default function HomePage() {
           </ShineButton>
         </div>
 
-        {/* App Drawer Overlay */}
-        <AppDrawer buttons={appDrawerButtons} onClose={() => setShowAppDrawer(false)} show={showAppDrawer} />
       </div>
+      {/* App Drawer Overlay — outside the fading wrapper so opacity doesn't cascade */}
+      <AppDrawer buttons={appDrawerButtons} onClose={() => setShowAppDrawer(false)} show={showAppDrawer} />
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { X } from 'lucide-react';
 import { ShineButton } from "@/components/ui/shine-button";
 
 export interface AppDrawerButton {
   image: string;
+  label: string;
   onClick: () => void;
 }
 
@@ -16,22 +17,6 @@ interface AppDrawerProps {
 export const AppDrawer: React.FC<AppDrawerProps> = ({ buttons, onClose, show }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [columns, setColumns] = useState(2);
-
-  useEffect(() => {
-    const updateColumns = () => {
-      if (!containerRef.current) return;
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      // Use width/height ratio to determine columns, min 2, max 6
-      const ratio = width / height;
-      const cols = Math.max(2, Math.min(6, Math.round(ratio * 2.5)));
-      setColumns(cols);
-    };
-    updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
-  }, []);
 
   // Close when clicking outside the content
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,7 +28,7 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({ buttons, onClose, show }) 
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-50 flex items-center justify-center p-6 transition-opacity duration-500 ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-6 transition-[opacity,transform] duration-300 ease-in-out ${show ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-95'}`}
       onMouseDown={handleBackdropClick}
     >
       <div
@@ -52,19 +37,20 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({ buttons, onClose, show }) 
         onMouseDown={e => e.stopPropagation()}
       >
         <div
-          className="w-full flex-1 grid gap-8 items-center justify-center"
-          style={{
-            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-            justifyItems: 'center',
-          }}
+          className="w-full flex-1 grid grid-cols-6 gap-6 items-center justify-center"
+          style={{ justifyItems: 'center', alignContent: 'center' }}
         >
           {buttons.map((btn, i) => (
-            <ShineButton
-              key={i}
-              backgroundImage={btn.image}
-              className="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 text-center"
-              onClick={btn.onClick}
-            />
+            <div key={i} className="flex flex-col items-center gap-2">
+              <ShineButton
+                backgroundImage={btn.image}
+                className="w-16 h-16 md:w-20 md:h-20 aspect-square"
+                onClick={btn.onClick}
+              />
+              <span className="text-xs font-medium text-gray-800 text-center leading-tight select-none">
+                {btn.label}
+              </span>
+            </div>
           ))}
         </div>
         <button
@@ -77,4 +63,4 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({ buttons, onClose, show }) 
       </div>
     </div>
   );
-}; 
+};

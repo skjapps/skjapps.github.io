@@ -33,8 +33,9 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const post = await getMusicPost(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const post = await getMusicPost(id);
   if (!post) {
     return {
       title: 'Track Not Found | Music',
@@ -79,8 +80,9 @@ function formatDate(dateString: string) {
   });
 }
 
-export default async function MusicTrackPage({ params }: { params: { id: string } }) {
-  const post = await getMusicPost(params.id);
+export default async function MusicTrackPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const post = await getMusicPost(id);
   if (!post) return notFound();
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
